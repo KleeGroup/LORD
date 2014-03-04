@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Maykel Ange AL ZREIBI (Klee Group) -->
+<!--Created with Liquid XML Studio - FREE Community Edition 7.1.4.1284 (http://www.liquid-technologies.com)-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ksr="urn:kleegoup:spark:reprise" targetNamespace="urn:kleegoup:spark:reprise" id="tes">
+	<xsd:annotation>
+		<xsd:documentation xml:lang="fr">Description du fichier de configuration de l'outil de reprise.</xsd:documentation>
+	</xsd:annotation>
+	<xsd:element name="schema" type="ksr:typeSchema"/>
+	<xsd:complexType name="typeSchema">
+		<xsd:sequence maxOccurs="unbounded">
+			<xsd:element name="fichier" type="ksr:typeFichier" id="fichier" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="encodage" type="xsd:string" use="optional" default="ISO-8859-15"/>
+		<xsd:attribute name="separateur-champs" type="xsd:string" use="optional" default=";"/>
+		<xsd:attribute name="separateur-ligne" type="xsd:string" use="optional" default=" "/>
+		<xsd:attribute name="separateur-decimal" type="xsd:string" use="optional" default="SEPARATEUR_VIRGULE"/>
+		<xsd:attribute name="ignorer-guillemets" type="xsd:boolean" use="optional" default="true"/>
+		<xsd:attribute name="caractere-echappement-guillemets" type="xsd:string" use="optional" default="\"/>
+		<xsd:attribute name="afficher-export-logs" type="xsd:boolean" use="optional" default="true"/>
+	</xsd:complexType>
+	<xsd:complexType name="typeFichier">
+		<xsd:sequence>
+			<xsd:element name="colonnes">
+				<xsd:complexType>
+					<xsd:sequence maxOccurs="unbounded">
+						<xsd:element name="colonne" type="ksr:typeColonne" id="colonne"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+				<xsd:element name="contrainte" type="ksr:typeContrainteMultiColonne"/>
+			</xsd:sequence>
+		</xsd:sequence>
+		<xsd:attribute name="nom" type="xsd:string"/>
+		<xsd:attribute name="groupe" type="xsd:int" default="1"/>
+		<xsd:attribute name="categorie" type="xsd:string" default="" use="optional"/>
+		<xsd:attribute name="prefix-nom" type="xsd:string" use="optional"/>
+		<xsd:attribute name="extension" type="xsd:string" default="csv"/>
+		<xsd:attribute name="seuil-erreurs" type="xsd:int" use="optional" default="-1"/>
+		<xsd:attribute name="nb-lignes-entete" type="xsd:int" use="optional" default="0"/>
+	</xsd:complexType>
+	<xsd:complexType name="typeColonne" id="typeColonne">
+		<xsd:sequence maxOccurs="unbounded">
+			<xsd:element name="contrainte" type="ksr:typeContrainte"/>
+		</xsd:sequence>
+		<xsd:attribute name="nom" type="xsd:string" use="required"/>
+		<xsd:attribute name="description" type="xsd:string" use="required"/>
+		<xsd:attribute name="presence-valeur" type="xsd:string" use="optional" default="FACULTATIF"/>
+		<xsd:attribute name="colonne-de-reference" type="xsd:boolean" use="optional" default="false" />
+	</xsd:complexType>
+	<xsd:complexType name="typeContrainte">
+		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="param" type="xsd:string"/>
+		</xsd:sequence>
+		<xsd:attribute name="type" type="xsd:string" use="required"/>
+	</xsd:complexType>
+	<xsd:complexType name="typeContrainteMultiColonne">
+		<xsd:sequence maxOccurs="unbounded">
+			<xsd:element name="colonne">
+				<xsd:complexType>
+					<xsd:attribute name="nom"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID"/>
+		<xsd:attribute name="nom-fonction" type="xsd:normalizedString"/>
+		<xsd:attribute name="message-erreur" type="xsd:string"/>
+	</xsd:complexType>
+</xsd:schema>
