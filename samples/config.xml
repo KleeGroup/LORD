@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:schema xmlns:ns2="urn:kleegoup:spark:reprise" separateur-champs=";" separateur-decimal="SEPARATEUR_VIRGULE" afficher-export-logs="false">
+    <fichier nom="Catégorie article" groupe="0" categorie="Référentiel" prefix-nom="Categorie_article" extension="csv" seuil-erreurs="-1" nb-lignes-entete="1">
+        <colonnes>
+            <colonne nom="ID" description="Identifiant" presence-valeur="OBLIGATOIRE" colonne-de-reference="true">
+                <contrainte type="ContrainteUnique"/>
+                <contrainte type="ContrainteTypeEntier"/>
+                <contrainte type="ContrainteReferenceLookup"/>
+            </colonne>
+            <colonne nom="Libelle" description="Libellé" presence-valeur="OBLIGATOIRE" colonne-de-reference="false">
+                <contrainte type="ContrainteTypeChaineDeCaractere"/>
+            </colonne>
+        </colonnes>
+    </fichier>
+    <fichier nom="Entrepôts" groupe="0" categorie="Référentiel" prefix-nom="Categorie_article" extension="csv" seuil-erreurs="-1" nb-lignes-entete="1">
+        <colonnes>
+            <colonne nom="ID" description="Identifiant" presence-valeur="OBLIGATOIRE" colonne-de-reference="true">
+                <contrainte type="ContrainteUnique"/>
+                <contrainte type="ContrainteTypeEntier"/>
+                <contrainte type="ContrainteReferenceLookup"/>
+            </colonne>
+            <colonne nom="Libelle" description="Libellé" presence-valeur="OBLIGATOIRE" colonne-de-reference="false">
+                <contrainte type="ContrainteTypeChaineDeCaractere"/>
+                <contrainte type="ContrainteTaille">
+                    <param>200</param>
+                </contrainte>
+            </colonne>
+        </colonnes>
+    </fichier>
+    <fichier nom="Article" groupe="0" categorie="Stock" prefix-nom="Categorie_article" extension="csv" seuil-erreurs="-1" nb-lignes-entete="1">
+        <colonnes>
+            <colonne nom="ID" description="Identifiant" presence-valeur="OBLIGATOIRE" colonne-de-reference="false">
+                <contrainte type="ContrainteUnique"/>
+                <contrainte type="ContrainteTypeEntier"/>
+                <contrainte type="ContrainteReferenceLookup"/>
+            </colonne>
+            <colonne nom="ID_CAT" description="Catégorie" presence-valeur="OBLIGATOIRE" colonne-de-reference="false">
+                <contrainte type="ContrainteTypeEntier"/>
+                <contrainte type="ContrainteReference">
+                    <param>Catégorie article</param>
+                    <param>ID</param>
+                </contrainte>
+            </colonne>
+            <colonne nom="Libelle" description="Libellé" presence-valeur="OBLIGATOIRE" colonne-de-reference="false">
+                <contrainte type="ContrainteTypeChaineDeCaractere"/>
+                <contrainte type="ContrainteTaille">
+                    <param>200</param>
+                </contrainte>
+            </colonne>
+        </colonnes>
+    </fichier>
+    <fichier nom="Stock" groupe="0" categorie="Stock" prefix-nom="Nouveau Fichier" extension="" seuil-erreurs="-1" nb-lignes-entete="0">
+        <colonnes>
+            <colonne nom="ID_ENT" description="Identifiant entrepôt" presence-valeur="OBLIGATOIRE" colonne-de-reference="false">
+                <contrainte type="ContrainteTypeEntier"/>
+                <contrainte type="ContrainteReference">
+                    <param>Entrepôts</param>
+                    <param>ID</param>
+                </contrainte>
+            </colonne>
+            <colonne nom="ID_ART" description="Identifiant article" presence-valeur="OBLIGATOIRE" colonne-de-reference="false">
+                <contrainte type="ContrainteTypeEntier"/>
+                <contrainte type="ContrainteReference">
+                    <param>Article</param>
+                    <param>ID</param>
+                </contrainte>
+            </colonne>
+            <colonne nom="QUANTITE" description="Quantité en stock" presence-valeur="FACULTATIVE" colonne-de-reference="false">
+                <contrainte type="ContrainteTRUE"/>
+                <contrainte type="ContrainteTypeEntier"/>
+            </colonne>
+            <colonne nom="PRISE" description="Nombre de prise" presence-valeur="FACULTATIVE" colonne-de-reference="false">
+                <contrainte type="ContrainteTypeEntier"/>
+            </colonne>
+            <colonne nom="COMMENTAIRE" description="Commentaire" presence-valeur="FACULTATIVE" colonne-de-reference="false">
+                <contrainte type="ContrainteTypeChaineDeCaractere"/>
+            </colonne>
+        </colonnes>
+    </fichier>
+</ns2:schema>
