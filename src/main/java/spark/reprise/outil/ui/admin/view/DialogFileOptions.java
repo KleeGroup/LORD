@@ -14,36 +14,37 @@ import spark.reprise.outil.ui.admin.controller.DialogFileOptionsController;
 /**
  * Fenetre d'option des fichiers.
  */
-public class DialogFileOptions extends JDialog {
+public final class DialogFileOptions extends JDialog {
 
 	private static final long serialVersionUID = -6828356803936809959L;
 
-	private class ActnOk extends AbstractAction{
+	private class ActnOk extends AbstractAction {
 		private static final long serialVersionUID = -2551078572811820430L;
 
-		ActnOk(){
+		ActnOk() {
 			this.putValue(NAME, "OK");
 		}
 
-		/**{@inheritDoc}*/@Override
+		/**{@inheritDoc}*/
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			setFileOptions();
 		}
 	}
-	private class ActnCancel extends AbstractAction{
+
+	private class ActnCancel extends AbstractAction {
 		private static final long serialVersionUID = 8418816007160731744L;
 
-		ActnCancel(){
+		ActnCancel() {
 			this.putValue(NAME, "Annuler");
 		}
 
-		/**{@inheritDoc}*/@Override
+		/**{@inheritDoc}*/
+		@Override
 		public void actionPerformed(ActionEvent e) {
 			dispose();
 		}
 	}
-
-
 
 	private javax.swing.JButton jbtnOk;
 	private javax.swing.JButton jbtnCancel;
@@ -61,7 +62,7 @@ public class DialogFileOptions extends JDialog {
 	 * @param cntrl controlleur de la fenetre
 	 */
 	public DialogFileOptions(DialogFileOptionsController cntrl) {
-		this.controller=cntrl;
+		this.controller = cntrl;
 		initComponents();
 		setEncoding(controller.getEncoding());
 		setFieldSeparator(controller.getFieldSeparator());
@@ -95,9 +96,9 @@ public class DialogFileOptions extends JDialog {
 		jcbEncoding.setModel(new DefaultComboBoxModel(s.toArray()));
 		jcbEncoding.setSelectedItem("ISO-8859-15");
 
-		jcbFieldSeparator.setModel(new DefaultComboBoxModel(new String[]{",",";"}));
+		jcbFieldSeparator.setModel(new DefaultComboBoxModel(new String[] { ",", ";" }));
 		jcbEncoding.setSelectedIndex(1);
-		jcbDecimalSeparator.setModel(new DefaultComboBoxModel(new String[]{",","."}));
+		jcbDecimalSeparator.setModel(new DefaultComboBoxModel(new String[] { ",", "." }));
 		jcbEncoding.setSelectedIndex(0);
 
 		jbtnOk.setAction(new ActnOk());
@@ -190,9 +191,7 @@ public class DialogFileOptions extends JDialog {
 		controller.setDecimalSeparator(jcbDecimalSeparator.getSelectedItem().toString());
 		controller.setFieldSeparator(jcbFieldSeparator.getSelectedItem().toString());
 
-
 		dispose();
 	}
-
 
 }

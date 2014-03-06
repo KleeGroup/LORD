@@ -429,15 +429,15 @@ public class Fichier implements IHierarchieSchema {
 	private void verifieLigne() throws CaractereInterdit, TropDErreurs, AbandonUtilisateur, ExceptionMoteur, IOException {
 		long num_ligne = 0;
 		String[] input;
-		int res = 0;
+		//int res = 0;
 		while (!abandonneVerifFichier && source.hasNext()) {
 			verifieSiUtilisateurVeutAbandonner();
 			input = source.next();
 			num_ligne = source.getPosition();
-			res = 0;
-			for (int i = 0; i < input.length; i++) {
-				res += input[i].length();
-			}
+			//			res = 0;
+			//			for (int i = 0; i < input.length; i++) {
+			//				res += input[i].length();
+			//			}
 
 			try {
 				if (erreurSiTropDeColonnes && input.length > colonnes.size()) {

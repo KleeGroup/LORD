@@ -479,7 +479,8 @@ public class Colonne implements IHierarchieSchema {
 
 	private boolean checkFormatDateValide(String string) {
 		try {
-			new SimpleDateFormat(string);
+			//On vérifie la validité du pattern de date
+			new SimpleDateFormat().applyPattern(string);
 			return true;
 		} catch (final Exception e) {
 			return false;
