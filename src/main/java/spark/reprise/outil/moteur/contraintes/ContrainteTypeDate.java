@@ -8,8 +8,6 @@ import java.util.Locale;
 
 import spark.reprise.outil.moteur.ContrainteUniCol;
 
-
-
 /**
  * vérifie que la valeur représente une date, et qu'elle est au format défini.
  * <br><br>
@@ -20,14 +18,14 @@ import spark.reprise.outil.moteur.ContrainteUniCol;
 public class ContrainteTypeDate extends ContrainteUniCol {
 	protected SimpleDateFormat formatteur;
 	protected String format;
-	
+
 	/**
 	 * Construit la contraite avec le format par défaut "dd/mm/yyyy". 
 	 */
-	public ContrainteTypeDate(){
+	public ContrainteTypeDate() {
 		this("dd/MM/yyyy");
 	}
-	
+
 	/**
 	 * Construit la contrainte avec un format determiné
 	 * 
@@ -35,28 +33,29 @@ public class ContrainteTypeDate extends ContrainteUniCol {
 	 *  java.text.SimpleDateFormat</code>,par exemple ("yyyy", "mm/dd/yy"). 
 	 * @param format le format de la date
 	 */
-	public ContrainteTypeDate(String format){
+	public ContrainteTypeDate(String format) {
 		super();
-		this.format=format;
-		formatteur=new SimpleDateFormat(format,Locale.FRANCE);	
+		this.format = format;
+		formatteur = new SimpleDateFormat(format, Locale.FRANCE);
 		formatteur.setLenient(false);
 	}
 
 	/** {@inheritDoc} */
 	@Override
-	public  boolean estConforme(final String valeur) {
-		try{
+	public boolean estConforme(final String valeur) {
+		try {
 			formatteur.parse(valeur);
-		}catch(ParseException e){
+		} catch (ParseException e) {
 			return false;
 		}
 		return true;
 	}
+
 	/**{@inheritDoc}*/
 	@Override
 	public List<String> getListeParam() {
-		List<String> params= new ArrayList<String>();
-		params.add(format);		
+		List<String> params = new ArrayList<>();
+		params.add(format);
 		return params;
 	}
 
@@ -64,19 +63,18 @@ public class ContrainteTypeDate extends ContrainteUniCol {
 	 * @return le format de la date. 
 	 * */
 	public String getFormat() {
-	    return format;
+		return format;
 	}
-	
+
 	/**{@inheritDoc}*/
 	@Override
-	public boolean isContrainteType(){
-	    return true;
+	public boolean isContrainteType() {
+		return true;
 	}
 
 	/**{@inheritDoc}*/
 	@Override
 	public ContrainteTypeDate copy() {
-	    return new ContrainteTypeDate(format);
+		return new ContrainteTypeDate(format);
 	}
 }
-

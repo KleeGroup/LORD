@@ -1,7 +1,5 @@
 package spark.reprise.outil.moteur;
 
-import com.kleegroup.csv.CsvReaderAdapter;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -47,6 +45,8 @@ import spark.reprise.outil.moteur.util.INotifiable;
 import spark.reprise.outil.moteur.util.LogFilesZipper;
 import spark.reprise.outil.moteur.util.SeparateurDecimales;
 
+import com.kleegroup.csv.CsvReaderAdapter;
+
 /**
  * Sert a ordonner les fichier selon leur dependeances.<br>
  * voir http://en.wikipedia.org/wiki/Topological_sorting
@@ -55,11 +55,11 @@ public class Schema implements INotifiable {
 
 	private static org.apache.log4j.Logger logAppli = Logger.getLogger(Schema.class);
 
-	protected List<Fichier> fichiers = new ArrayList<Fichier>();
+	protected List<Fichier> fichiers = new ArrayList<>();
 
 	protected int niveauActuel = -1;
 
-	protected Map<String, ILogger> loggeurs = new HashMap<String, ILogger>();
+	protected Map<String, ILogger> loggeurs = new HashMap<>();
 
 	protected INotifiable eltANotifier = null;
 
@@ -79,13 +79,13 @@ public class Schema implements INotifiable {
 
 	protected SeparateurDecimales separateurDecimales = SeparateurDecimales.SEPARATEUR_VIRGULE;
 
-	List<String> listCheminFichiersLog = new ArrayList<String>();
+	List<String> listCheminFichiersLog = new ArrayList<>();
 
 	private Fichier fichierEnCours;
 
 	private String emplacementFichiersLogs = "./logs/";
 
-	private final SortedMap<Integer, HashSet<Fichier>> groupes = new TreeMap<Integer, HashSet<Fichier>>();
+	private final SortedMap<Integer, HashSet<Fichier>> groupes = new TreeMap<>();
 
 	private File fichierLogGeneral;
 	private PrintStream loggueurGeneral = null;
@@ -255,21 +255,13 @@ public class Schema implements INotifiable {
 		final String timestamp = (new SimpleDateFormat("yyyyMMddHHmmss")).format(dateDebut) + "-";
 		try {
 			fichierLogGeneral = File.createTempFile(timestamp + " - LogGeneral ", ".log");
-			FileOutputStream fos = null;
-			try {
-				fos = new FileOutputStream(fichierLogGeneral);
+			try (FileOutputStream fos = new FileOutputStream(fichierLogGeneral)) {
 				loggueurGeneral = new PrintStream(new FileOutputStream(fichierLogGeneral));
 				construireLogGeneral(loggueurGeneral);
 				listCheminFichiersLog.add(fichierLogGeneral.getAbsolutePath());
 
 			} catch (final FileNotFoundException e) {
 				logAppli.error(e);
-			} finally {
-
-				if (fos != null) {
-					fos.close();
-				}
-				fos = null;
 			}
 		} catch (final IOException e) {
 			fichierLogGeneral = null;

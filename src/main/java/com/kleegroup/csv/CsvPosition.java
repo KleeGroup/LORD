@@ -13,7 +13,7 @@ package com.kleegroup.csv;
 public class CsvPosition {
 	/** Numéro du caractère courant. */
 	private long caractere;
-	
+
 	/** Numéro de l'enregistrement. */
 	private long enregistrement;
 
@@ -22,15 +22,6 @@ public class CsvPosition {
 
 	/** Numéro de la colonne du fichier (Nb caractères). */
 	private long colonne;
-
-	/**
-	 * Construit une nouvelle instance de CsvPosition
-	 *
-	 * @param enregistrement
-	 */
-	CsvPosition(long enregistrement) {
-		this(0, enregistrement, 0, 0);
-	}
 
 	/**
 	 * Construit une nouvelle instance de CsvPosition
@@ -113,6 +104,5 @@ public class CsvPosition {
 	public long getCaractere() {
 		return caractere;
 	}
-	
-	
+
 }

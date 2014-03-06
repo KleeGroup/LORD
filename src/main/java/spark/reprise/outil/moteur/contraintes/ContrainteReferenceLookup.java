@@ -7,8 +7,6 @@ import java.util.Set;
 
 import spark.reprise.outil.moteur.ContrainteUniCol;
 
-
-
 /**
  * Cette contrainte est une contrainte auxiliaire à la contrainte de référence. <br><br>
  * Elle sert 
@@ -18,47 +16,48 @@ import spark.reprise.outil.moteur.ContrainteUniCol;
  * @author maazreibi
  *
  */
-public class ContrainteReferenceLookup extends ContrainteUniCol{
+public class ContrainteReferenceLookup extends ContrainteUniCol {
 
-	
-	protected Set<String> dict= new HashSet<String>();
+	protected Set<String> dict = new HashSet<>();
+
 	/**
 	 * {@inheritDoc}	  
 	 */
 	@Override
-	public boolean estConforme(final String valeur){
+	public boolean estConforme(final String valeur) {
 		dict.add(valeur);
-		return true;			
+		return true;
 	}
+
 	/**
 	 * 	Cette méthode permet de déterminer si une valeur a déjà été rencontrée dans la colonne
 	 * référencée.
 	 * @param valeur la valeur à tester
 	 * @return <code>true</code> si la valeur a déjà été rencontrée, <code>false</code> sinon  
 	 */
-	public boolean lookup (final String valeur){
+	public boolean lookup(final String valeur) {
 		return dict.contains(valeur);
 	}
-	
+
 	/**
 	 * {@inheritDoc}	  
 	 */
-//	@Override
-//	public String getMessageErreur(){
-//		return "Pas d'erreur";		
-//	}
+	//	@Override
+	//	public String getMessageErreur(){
+	//		return "Pas d'erreur";		
+	//	}
 	/**{@inheritDoc}*/
 	@Override
 	public List<String> getListeParam() {
-		return new ArrayList<String>();
+		return new ArrayList<>();
 	}
-	
+
 	/**{@inheritDoc}*/
 	@Override
-	public void clean(){
-	    dict.clear();
+	public void clean() {
+		dict.clear();
 	}
-	
+
 	/**Il est inutile de copier cette contrainte. <br>Elle sera automatiquement crée lors 
 	 * de l'ajout de la référence en utilisant la fonction 
 	 * {@link spark.reprise.outil.moteur.Fichier#addReference(String, spark.reprise.outil.moteur.Colonne)}
@@ -66,8 +65,7 @@ public class ContrainteReferenceLookup extends ContrainteUniCol{
 	 * */
 	@Override
 	public ContrainteTRUE copy() {
-	    return new ContrainteTRUE();
+		return new ContrainteTRUE();
 	}
-
 
 }

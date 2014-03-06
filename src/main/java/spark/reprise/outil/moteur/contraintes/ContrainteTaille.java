@@ -5,8 +5,6 @@ import java.util.List;
 
 import spark.reprise.outil.moteur.ContrainteUniCol;
 
-
-
 /**
  * Cette contrainte sert à vérifier que les valeurs du champ possèdent une
  *  taille maximale inférieure à une taille limite déterminée.
@@ -14,21 +12,22 @@ import spark.reprise.outil.moteur.ContrainteUniCol;
  *
  */
 public class ContrainteTaille extends ContrainteUniCol {
-	protected int tailleMax=0;
+	protected int tailleMax = 0;
 
 	/**
 	 * Construit une ContrainteTaille.
 	 * @param taille la taille limite à ne pas dépasser
 	 */
-	public ContrainteTaille(int taille){
+	public ContrainteTaille(int taille) {
 		super();//pour PMD
-		tailleMax=taille;
+		tailleMax = taille;
 	}
+
 	/**{@inheritDoc}*/
 	@Override
-	public  String interprete(String balise, int indice){
-		if("taille_champ".equals(balise)){
-		    return Integer.toString(tailleMax);		
+	public String interprete(String balise, int indice) {
+		if ("taille_champ".equals(balise)) {
+			return Integer.toString(tailleMax);
 		}
 		return super.interprete(balise, indice);
 	}
@@ -37,14 +36,15 @@ public class ContrainteTaille extends ContrainteUniCol {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public  boolean estConforme(final String valeur) {
-		return valeur.length()<=tailleMax;
+	public boolean estConforme(final String valeur) {
+		return valeur.length() <= tailleMax;
 	}
+
 	/**{@inheritDoc}*/
 	@Override
 	public List<String> getListeParam() {
-		List<String> params= new ArrayList<String>();
-		params.add(Integer.toString(tailleMax));		
+		List<String> params = new ArrayList<>();
+		params.add(Integer.toString(tailleMax));
 		return params;
 	}
 
@@ -53,21 +53,21 @@ public class ContrainteTaille extends ContrainteUniCol {
 	 * @return la taille maximale permise. 
 	 */
 	public int getTailleMax() {
-	    return tailleMax;
+		return tailleMax;
 	}
+
 	/**
 	 * La taille de la valeur vérifiée doit ête inférieure à la taille maximale définie ici.
 	 * @param tailleMax la taille maximale permise. 
 	 */
 	public void setTailleMax(int tailleMax) {
-	    this.tailleMax = tailleMax;
+		this.tailleMax = tailleMax;
 	}
-	
+
 	/**{@inheritDoc}*/
 	@Override
 	public ContrainteTaille copy() {
-	    return new ContrainteTaille(tailleMax);
+		return new ContrainteTaille(tailleMax);
 	}
-	
-}
 
+}

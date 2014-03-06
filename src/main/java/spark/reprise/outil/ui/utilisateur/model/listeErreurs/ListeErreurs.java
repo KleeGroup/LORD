@@ -13,51 +13,46 @@ import spark.reprise.outil.moteur.IErreur;
  *
  */
 public abstract class ListeErreurs extends javax.swing.table.AbstractTableModel {
-    protected static final ResourceBundle RESOURCEMAP = ResourceBundle
-    .getBundle("resources.GeneralUIMessages");
-    
-    private static final long serialVersionUID = 4157087119873576473L;
-    
-    protected String nomColonne[];
+	protected static final ResourceBundle RESOURCEMAP = ResourceBundle.getBundle("resources.GeneralUIMessages");
 
-    List<IErreur> listeErreurs;
+	private static final long serialVersionUID = 4157087119873576473L;
 
-   
-   
-    
-    
-    protected ListeErreurs(List<IErreur> listeErreurs) {
-	this.listeErreurs = listeErreurs;
-    }
+	protected String nomColonne[];
 
-    /**{@inheritDoc}*/
-    @Override
-	public int getRowCount() {
-	return listeErreurs.size();
-    }
+	List<IErreur> listeErreurs;
 
-    /**{@inheritDoc}*/
-    @Override
-	public int getColumnCount() {
-	return nomColonne.length;
-    }
-
-    /**{@inheritDoc}*/
-    @Override
-    public String getColumnName(int columnIndex) {
-	return nomColonne[columnIndex];
-    }
-
-    /**{@inheritDoc}*/
-    @Override
-    public Class<?> getColumnClass(int columnIndex) {
-	if (columnIndex == 0) {
-	    return Long.class;
+	protected ListeErreurs(List<IErreur> listeErreurs) {
+		this.listeErreurs = listeErreurs;
 	}
-	return String.class;
-    }
 
-    /**{@inheritDoc}*/
-    @Override
+	/**{@inheritDoc}*/
+	@Override
+	public int getRowCount() {
+		return listeErreurs.size();
+	}
+
+	/**{@inheritDoc}*/
+	@Override
+	public int getColumnCount() {
+		return nomColonne.length;
+	}
+
+	/**{@inheritDoc}*/
+	@Override
+	public String getColumnName(int columnIndex) {
+		return nomColonne[columnIndex];
+	}
+
+	/**{@inheritDoc}*/
+	@Override
+	public Class<?> getColumnClass(int columnIndex) {
+		if (columnIndex == 0) {
+			return Long.class;
+		}
+		return String.class;
+	}
+
+	/**{@inheritDoc}*/
+	@Override
 	public abstract Object getValueAt(int rowIndex, int columnIndex);
 }

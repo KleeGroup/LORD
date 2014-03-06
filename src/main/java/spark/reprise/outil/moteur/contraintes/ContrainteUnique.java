@@ -7,40 +7,36 @@ import java.util.Set;
 
 import spark.reprise.outil.moteur.ContrainteUniCol;
 
-
-
-
 /**
  * Vérifie que toutes les valeurs d'une colonne sont uniques.
  * @author maazreibi
  *
  */
-public class ContrainteUnique extends ContrainteUniCol{
-	protected Set<String> dict=new HashSet<String>();
-	
+public class ContrainteUnique extends ContrainteUniCol {
+	protected Set<String> dict = new HashSet<>();
+
 	/** {@inheritDoc} */
 	@Override
-	public boolean estConforme(final String valeur){		
+	public boolean estConforme(final String valeur) {
 		return dict.add(valeur); //le hashset renvoie faux si la valeur est deja presente,true sinon
 	}
-	
-	
+
 	/**{@inheritDoc}*/
 	@Override
 	public List<String> getListeParam() {
-		return new ArrayList<String>();
+		return new ArrayList<>();
 	}
-	
+
 	/**{@inheritDoc}*/
 	@Override
-	public void clean(){
-	    dict.clear();
+	public void clean() {
+		dict.clear();
 	}
 
 	/**{@inheritDoc}*/
 	@Override
 	public ContrainteUniCol copy() {
-	    return new ContrainteUnique();
+		return new ContrainteUnique();
 	}
 
 }

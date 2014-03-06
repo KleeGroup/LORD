@@ -38,27 +38,25 @@ import spark.reprise.outil.moteur.util.SeparateurDecimales;
  * 
  */
 public class Colonne implements IHierarchieSchema {
-    protected final ResourceBundle resourceMap = ResourceBundle
-	.getBundle("resources.ContraintesMessagesErreur");
-    
-	private String nom="";
-	private String description="";
+	protected final ResourceBundle resourceMap = ResourceBundle.getBundle("resources.ContraintesMessagesErreur");
+
+	private String nom = "";
+	private String description = "";
 
 	private Fichier fichierParent;
 
 	private int position;
 
-	private final List<ContrainteUniCol> contraintes = new LinkedList<ContrainteUniCol>();
+	private final List<ContrainteUniCol> contraintes = new LinkedList<>();
 
 	private PRESENCE presenceValeur = PRESENCE.FACULTATIVE;
 
-	private final Map<String, IContrainte> refContraintes = new HashMap<String, IContrainte>();
+	private final Map<String, IContrainte> refContraintes = new HashMap<>();
 
-	
-	private final List<Erreur> erreurs=new ArrayList<Erreur>();
-	private final List<Erreur> listeUneSeuleErreur=new ArrayList<Erreur>();
-	private final Erreur errVide=ErreurUniCol.ERR_VIDE,noErr=Erreur.pasDErreur();
-	private boolean colonneReference=false;
+	private final List<Erreur> erreurs = new ArrayList<>();
+	private final List<Erreur> listeUneSeuleErreur = new ArrayList<>();
+	private final Erreur errVide = ErreurUniCol.ERR_VIDE, noErr = Erreur.pasDErreur();
+	private boolean colonneReference = false;
 
 	/**
 	 * Un type qui sert à indiquer si la valeur d'un champ est obligatoire. *
@@ -102,8 +100,7 @@ public class Colonne implements IHierarchieSchema {
 	 * @throws ExceptionMoteur
 	 *             En cas d'echec de verification
 	 */
-	public List<Erreur> verifie(long numLigne, String valeur[])
-			throws ExceptionMoteur {
+	public List<Erreur> verifie(long numLigne, String valeur[]) throws ExceptionMoteur {
 		clearErreurs();
 
 		final Erreur err = detectePresenceValeur(numLigne, valeur);
@@ -113,7 +110,7 @@ public class Colonne implements IHierarchieSchema {
 		if (err == noErr) {
 			return verifierContraintes(numLigne, valeur);
 		}
-		
+
 		return listWrapError(err);
 
 	}
@@ -139,28 +136,19 @@ public class Colonne implements IHierarchieSchema {
 		return erreurs;
 	}
 
-	private Erreur detectePresenceValeur(long numLigne,
-			 String valeur[]) {
-		final Boolean champEstVide = position >= valeur.length
-				|| "".equals(valeur[position]);
+	private Erreur detectePresenceValeur(long numLigne, String valeur[]) {
+		final Boolean champEstVide = position >= valeur.length || "".equals(valeur[position]);
 		ErreurConstante err = null;
-		
+
 		if (presenceValeur == PRESENCE.OBLIGATOIRE && champEstVide) {
 
-			err = new ErreurConstante(numLigne,
-					resourceMap.getString("colonne.ErreurVide"),
-					getNom(), "",
-					fichierParent.getNom(),
-					fichierParent.getValeursColRef(valeur));
+			err = new ErreurConstante(numLigne, resourceMap.getString("colonne.ErreurVide"), getNom(), "", fichierParent.getNom(), fichierParent.getValeursColRef(valeur));
 
 			return err;
 		}
 
 		if (presenceValeur == PRESENCE.INTERDITE && !champEstVide) {
-			err = new ErreurConstante(numLigne,
-				resourceMap.getString("colonne.ErreurNonVide"),
-					getNom(), valeur[position], fichierParent.getNom(),
-					fichierParent.getValeursColRef(valeur));
+			err = new ErreurConstante(numLigne, resourceMap.getString("colonne.ErreurNonVide"), getNom(), valeur[position], fichierParent.getNom(), fichierParent.getValeursColRef(valeur));
 
 			return err;
 
@@ -199,14 +187,13 @@ public class Colonne implements IHierarchieSchema {
 	public String getNom() {
 		return nom;
 	}
-	
-	
+
 	/**
 	 * @return la description de la colonne si est elle pas nulle, sinon le nom.
 	 */
-	public String getDescOuNom(){
-	    
-	    return "".equals(description)?nom:description;
+	public String getDescOuNom() {
+
+		return "".equals(description) ? nom : description;
 	}
 
 	/**
@@ -313,17 +300,17 @@ public class Colonne implements IHierarchieSchema {
 	 * pour pouvoir  réutiliser cet objet pour une nouvelle vérification
 	 * */
 	public void clean() {
-	    for(final IContrainte c:contraintes){
-		c.clean();
-	    }
-	    
+		for (final IContrainte c : contraintes) {
+			c.clean();
+		}
+
 	}
 
 	/**
 	 * @return la description de la colonne.
 	 */
 	public String getDescription() {
-	    return description;
+		return description;
 	}
 
 	/**
@@ -331,9 +318,9 @@ public class Colonne implements IHierarchieSchema {
 	 * @param description description de la colonne
 	 */
 	public void setDescription(String description) {
-	    if (description!=null){
-		this.description = description;
-	    }
+		if (description != null) {
+			this.description = description;
+		}
 	}
 
 	/**
@@ -341,15 +328,15 @@ public class Colonne implements IHierarchieSchema {
 	 * @param nom le nom de colonne.
 	 */
 	public void setNom(String nom) {
-	    this.nom = nom;
+		this.nom = nom;
 	}
-	
+
 	/**{@inheritDoc}*/
 	@Override
-	public String toString(){
-	    String desc=description;
-	    desc="".equals(desc)?"":" : "+desc;
-	    return nom+ desc;
+	public String toString() {
+		String desc = description;
+		desc = "".equals(desc) ? "" : " : " + desc;
+		return nom + desc;
 	}
 
 	/**
@@ -359,13 +346,13 @@ public class Colonne implements IHierarchieSchema {
 	 * n'a été trouvé
 	 */
 	public ContrainteUniCol getContrainteType() {
-	    for(final ContrainteUniCol cuc:contraintes){
-		if (cuc.isContrainteType()){
-		    return cuc;
+		for (final ContrainteUniCol cuc : contraintes) {
+			if (cuc.isContrainteType()) {
+				return cuc;
+			}
 		}
-	    }
-	    return null;
-	    
+		return null;
+
 	}
 
 	/**
@@ -374,22 +361,22 @@ public class Colonne implements IHierarchieSchema {
 	 * renvoie la taille max, Integer.MAX_VALUE sinon
 	 */
 	public int getTaille() {
-	    for(final ContrainteUniCol cuc:contraintes){
-		if (cuc instanceof ContrainteTaille){
-		    return ((ContrainteTaille)cuc).getTailleMax();
+		for (final ContrainteUniCol cuc : contraintes) {
+			if (cuc instanceof ContrainteTaille) {
+				return ((ContrainteTaille) cuc).getTailleMax();
+			}
 		}
-	    }
-	    return Integer.MAX_VALUE;
+		return Integer.MAX_VALUE;
 	}
 
 	/**
 	 * @return une copie de la colonne.
 	 */
 	public Colonne copy() {
-	    final Colonne colonneEquiv= new Colonne(nom);
-	    colonneEquiv.description=description;
-	    colonneEquiv.presenceValeur=presenceValeur;
-	    for(final ContrainteUniCol contrainteOriginale:contraintes){
+		final Colonne colonneEquiv = new Colonne(nom);
+		colonneEquiv.description = description;
+		colonneEquiv.presenceValeur = presenceValeur;
+		for (final ContrainteUniCol contrainteOriginale : contraintes) {
 			colonneEquiv.addContrainte(contrainteOriginale.copy());
 		}
 		return colonneEquiv;
@@ -399,18 +386,18 @@ public class Colonne implements IHierarchieSchema {
 	 * @return le format de la colonne.
 	 */
 	public String getFormat() {
-	    for(final ContrainteUniCol cuc :contraintes){
-		if (cuc instanceof ContrainteRegex){
-		   return ((ContrainteRegex)cuc).getRegex();
+		for (final ContrainteUniCol cuc : contraintes) {
+			if (cuc instanceof ContrainteRegex) {
+				return ((ContrainteRegex) cuc).getRegex();
+			}
+			if (cuc instanceof ContrainteTypeDate) {
+				return ((ContrainteTypeDate) cuc).getFormat();
+			}
+			if (cuc instanceof ContrainteTypeDecimal) {
+				return ((ContrainteTypeDecimal) cuc).getFormat();
+			}
 		}
-		if (cuc instanceof ContrainteTypeDate){
-		   return ((ContrainteTypeDate)cuc).getFormat();
-		}
-		if (cuc instanceof ContrainteTypeDecimal){
-			   return ((ContrainteTypeDecimal)cuc).getFormat();
-		}
-	    }
-	    return "";
+		return "";
 	}
 
 	/**
@@ -418,58 +405,53 @@ public class Colonne implements IHierarchieSchema {
 	 * @return la contrainte de réfrence.
 	 */
 	public ContrainteReference getContrainteReference() {
-	    for (final ContrainteUniCol cont : contraintes) {
-		if (cont instanceof ContrainteReference) {
-		    return (ContrainteReference)cont;
+		for (final ContrainteUniCol cont : contraintes) {
+			if (cont instanceof ContrainteReference) {
+				return (ContrainteReference) cont;
+			}
 		}
-	    }
-	    return null;
+		return null;
 	}
 
 	/**
 	 * @return la liste des valeurs permise pour cette colonne.
 	 */
 	public String getListeValeursPermise() {
-	    for (final ContrainteUniCol cont : contraintes) {
-		if (cont instanceof ContrainteListeValeursPermises) {
-		    final ContrainteListeValeursPermises ncont=
-			(ContrainteListeValeursPermises)cont;
-		    return ncont.getSimpleListeValeurs();
+		for (final ContrainteUniCol cont : contraintes) {
+			if (cont instanceof ContrainteListeValeursPermises) {
+				final ContrainteListeValeursPermises ncont = (ContrainteListeValeursPermises) cont;
+				return ncont.getSimpleListeValeurs();
+			}
 		}
-	    }
-	    return "";
+		return "";
 	}
 
 	/**
 	 * @return true si les valeurs de cette colonne doivent être uniques.
 	 */
 	public boolean isValeursUniques() {
-	    for (final ContrainteUniCol cont : contraintes) {
-		if (cont instanceof ContrainteUnique) {
-		    return true;
+		for (final ContrainteUniCol cont : contraintes) {
+			if (cont instanceof ContrainteUnique) {
+				return true;
+			}
 		}
-	    }
-	    return false;
+		return false;
 	}
 
 	/**
 	 * @return le type de la colonne.
 	 */
 	public String getType() {
-	    for (final ContrainteUniCol cont : contraintes) {
-		if (isContrainteType(cont)) {
-		    return cont.getClass().getSimpleName()
-		    .substring("ContrainteType".length());
+		for (final ContrainteUniCol cont : contraintes) {
+			if (isContrainteType(cont)) {
+				return cont.getClass().getSimpleName().substring("ContrainteType".length());
+			}
 		}
-	    }
-	    return "";
+		return "";
 	}
 
 	private boolean isContrainteType(IContrainte cont) {
-	    return cont instanceof ContrainteTypeDate
-	    || cont instanceof ContrainteTypeEntier
-	    || cont instanceof ContrainteTypeDecimal
-	    || cont instanceof ContrainteTypeChaineDeCaractere;
+		return cont instanceof ContrainteTypeDate || cont instanceof ContrainteTypeEntier || cont instanceof ContrainteTypeDecimal || cont instanceof ContrainteTypeChaineDeCaractere;
 	}
 
 	/**
@@ -479,57 +461,58 @@ public class Colonne implements IHierarchieSchema {
 	 * @param format le format de la colonne.
 	 */
 	public void createContrainteFormat(String format) {
-	    final String type=getType();
-	    if ("ChaineDeCaractere".equals(type)){
-		replaceContrainteRegex(format);
-	    }
-	    if("Date".equals(type) && checkFormatDateValide(format)) {
-		replaceContrainteDate(format);
-	    }
-	    if("Decimal".equals(type) && checkFormatDecimalValide(format)) {
-		replaceContrainteDecimal(format);
-	    }
+		final String type = getType();
+		if ("ChaineDeCaractere".equals(type)) {
+			replaceContrainteRegex(format);
+		}
+		if ("Date".equals(type) && checkFormatDateValide(format)) {
+			replaceContrainteDate(format);
+		}
+		if ("Decimal".equals(type) && checkFormatDecimalValide(format)) {
+			replaceContrainteDecimal(format);
+		}
 	}
 
 	private boolean checkFormatDecimalValide(String string) {
-	    return string.matches("\\d+(,\\d+)?");
+		return string.matches("\\d+(,\\d+)?");
 	}
 
 	private boolean checkFormatDateValide(String string) {
-	    try{
-		new SimpleDateFormat(string);
-		return true;
-	    }catch(final Exception e){
-		return false;
-	    }
+		try {
+			new SimpleDateFormat(string);
+			return true;
+		} catch (final Exception e) {
+			return false;
+		}
 	}
+
 	/**
 	 * Supprimer les contraintes de type typeContrainte du fichier.
 	 * @param typeContrainte le type des contrainte à supprimer.
 	 */
-	public void removeContraintes(Class<?> typeContrainte){
-	    for(int i =0;i<getContraintes().size();i++){
-		if (getContrainte(i).getClass().equals(typeContrainte)){
-		    getContraintes().remove(i);
-		    i--;
+	public void removeContraintes(Class<?> typeContrainte) {
+		for (int i = 0; i < getContraintes().size(); i++) {
+			if (getContrainte(i).getClass().equals(typeContrainte)) {
+				getContraintes().remove(i);
+				i--;
+			}
 		}
-	    }
-	}
-	private void replaceContrainteDecimal( String string) {
-	    removeContraintes(ContrainteTypeDecimal.class);
-	    addContrainte( ContrainteTypeDecimal.fromString(string));
-	    
 	}
 
+	private void replaceContrainteDecimal(String string) {
+		removeContraintes(ContrainteTypeDecimal.class);
+		addContrainte(ContrainteTypeDecimal.fromString(string));
 
-	private void replaceContrainteDate( String format) {
-	    removeContraintes(ContrainteTypeDate.class);
-	    addContrainte(new ContrainteTypeDate(format));
+	}
+
+	private void replaceContrainteDate(String format) {
+		removeContraintes(ContrainteTypeDate.class);
+		addContrainte(new ContrainteTypeDate(format));
 	}
 
 	private void replaceContrainteRegex(String regex) {
-	    removeContraintes(ContrainteRegex.class);
-	    addContrainte(new ContrainteRegex(regex));
+		removeContraintes(ContrainteRegex.class);
+		addContrainte(new ContrainteRegex(regex));
 	}
 
 	/**
@@ -537,15 +520,15 @@ public class Colonne implements IHierarchieSchema {
 	 * @param value la liste des valeurs permise, séparées par une virgule.
 	 */
 	public void setListeValeursPermises(String value) {
-	    removeContraintes(ContrainteListeValeursPermises.class);
-	    if(value!=null && !"".equals(value.trim())){
-		final String vals[]=value.split(",");
-		for(int i=0;i<vals.length;i++){
-		    vals[i]=vals[i].trim();
+		removeContraintes(ContrainteListeValeursPermises.class);
+		if (value != null && !"".equals(value.trim())) {
+			final String vals[] = value.split(",");
+			for (int i = 0; i < vals.length; i++) {
+				vals[i] = vals[i].trim();
+			}
+
+			addContrainte(new ContrainteListeValeursPermises(vals));
 		}
-	    
-	    addContrainte(new ContrainteListeValeursPermises(vals));
-	    }
 	}
 
 	/**
@@ -553,46 +536,47 @@ public class Colonne implements IHierarchieSchema {
 	 * @param val la taille maximale de la colonne.
 	 */
 	public void setTaille(String val) {
-	    if ("".equals(val)){
-		removeContraintes(ContrainteTaille.class);
-		return;
-	    }
-	    try{
-    	    	final Integer taille=Integer.valueOf(val);
-    	    	if(taille>=0){
-    	    	    removeContraintes(ContrainteTaille.class);
-    	    	    addContrainte(new ContrainteTaille(taille));
-    	    	}
-    	    }catch(final NumberFormatException ex){
-    		//do nothing
-    	    }
+		if ("".equals(val)) {
+			removeContraintes(ContrainteTaille.class);
+			return;
+		}
+		try {
+			final Integer taille = Integer.valueOf(val);
+			if (taille >= 0) {
+				removeContraintes(ContrainteTaille.class);
+				addContrainte(new ContrainteTaille(taille));
+			}
+		} catch (final NumberFormatException ex) {
+			//do nothing
+		}
 	}
 
 	/**
 	 * @param value définit le type de la colonne.
 	 */
 	public void setType(String value) {
-	    removeContraintes(ContrainteTypeChaineDeCaractere.class);
-	    removeContraintes(ContrainteTypeDate.class);
-	    removeContraintes(ContrainteTypeEntier.class);
-	    removeContraintes(ContrainteTypeDecimal.class);
-	    addContrainte(createContrainteType(value));
+		removeContraintes(ContrainteTypeChaineDeCaractere.class);
+		removeContraintes(ContrainteTypeDate.class);
+		removeContraintes(ContrainteTypeEntier.class);
+		removeContraintes(ContrainteTypeDecimal.class);
+		addContrainte(createContrainteType(value));
 	}
+
 	private ContrainteUniCol createContrainteType(String contrainteNom) {
-	    if ("Date".equals(contrainteNom)){
-		return new ContrainteTypeDate();
-	    }
-	    if ("Entier".equals(contrainteNom)){
-		return new ContrainteTypeEntier();
-	    }
-	    if ("Decimal".equals(contrainteNom)){
-		return new ContrainteTypeDecimal(10,SeparateurDecimales.SEPARATEUR_VIRGULE,3);
-	    }
-	    if ("ChaineDeCaractere".equals(contrainteNom)){
-		return new ContrainteTypeChaineDeCaractere();
-	    }
-	    
-	    return new ContrainteTRUE();
+		if ("Date".equals(contrainteNom)) {
+			return new ContrainteTypeDate();
+		}
+		if ("Entier".equals(contrainteNom)) {
+			return new ContrainteTypeEntier();
+		}
+		if ("Decimal".equals(contrainteNom)) {
+			return new ContrainteTypeDecimal(10, SeparateurDecimales.SEPARATEUR_VIRGULE, 3);
+		}
+		if ("ChaineDeCaractere".equals(contrainteNom)) {
+			return new ContrainteTypeChaineDeCaractere();
+		}
+
+		return new ContrainteTRUE();
 	}
 
 	/**
@@ -600,22 +584,17 @@ public class Colonne implements IHierarchieSchema {
 	 * @param value true s'il doivent l'être.
 	 */
 	public void setUnique(boolean value) {
-	    removeContraintes(ContrainteUnique.class);
-	    if(value){//rendre la colonne unique
-	        addContrainte(new ContrainteUnique());
-	    }
+		removeContraintes(ContrainteUnique.class);
+		if (value) {//rendre la colonne unique
+			addContrainte(new ContrainteUnique());
+		}
 	}
 
 	/**
 	 * @return les types possibles de la colonne
 	 */
 	public static String[] getTypesPossibles() {
-		return new String[]{
-			ContrainteTypeEntier.class.getSimpleName().substring("ContrainteType".length()),
-			ContrainteTypeDecimal.class.getSimpleName().substring("ContrainteType".length()),
-			ContrainteTypeDate.class.getSimpleName().substring("ContrainteType".length()),
-			ContrainteTypeChaineDeCaractere.class.getSimpleName().substring("ContrainteType".length()),
-		};
+		return new String[] { ContrainteTypeEntier.class.getSimpleName().substring("ContrainteType".length()), ContrainteTypeDecimal.class.getSimpleName().substring("ContrainteType".length()), ContrainteTypeDate.class.getSimpleName().substring("ContrainteType".length()), ContrainteTypeChaineDeCaractere.class.getSimpleName().substring("ContrainteType".length()), };
 
 	}
 
@@ -624,7 +603,7 @@ public class Colonne implements IHierarchieSchema {
 	 * @param b true pour rajouter à l'ensemble, false sinon.
 	 */
 	public void setColonneReference(boolean b) {
-	    colonneReference=b;
+		colonneReference = b;
 	}
 
 	/**
@@ -632,52 +611,61 @@ public class Colonne implements IHierarchieSchema {
 	 *  des colonne de reference, false sinon.
 	 */
 	public boolean isColonneReference() {
-	    return colonneReference;
+		return colonneReference;
 	}
-/**{@inheritDoc}*/
+
+	/**{@inheritDoc}*/
 	@Override
 	public IHierarchieSchema getChild(int index) {
-	    return contraintes.get(index);
+		return contraintes.get(index);
 	}
-/**{@inheritDoc}*/
+
+	/**{@inheritDoc}*/
 	@Override
 	public int getChildCount() {
-	    return contraintes.size();
+		return contraintes.size();
 	}
-/**{@inheritDoc}*/
+
+	/**{@inheritDoc}*/
 	@Override
 	public int getNiveau() {
-	    return 2;
+		return 2;
 	}
-/**{@inheritDoc}*/
+
+	/**{@inheritDoc}*/
 	@Override
 	public String getNomHierarchie() {
-	    return getDescOuNom();
+		return getDescOuNom();
 	}
-/**{@inheritDoc}*/
+
+	/**{@inheritDoc}*/
 	@Override
 	public IHierarchieSchema getParent() {
-	    return getFichierParent();
+		return getFichierParent();
 	}
-/**{@inheritDoc}*/
+
+	/**{@inheritDoc}*/
 	@Override
 	public boolean isCategorie() {
-	    return false;
+		return false;
 	}
-/**{@inheritDoc}*/
+
+	/**{@inheritDoc}*/
 	@Override
 	public boolean isColonne() {
-	    return true;
+		return true;
 	}
-/**{@inheritDoc}*/
+
+	/**{@inheritDoc}*/
 	@Override
 	public boolean isContrainte() {
-	    return false;
+		return false;
 	}
-/**{@inheritDoc}*/
+
+	/**{@inheritDoc}*/
 	@Override
 	public boolean isFichier() {
-	    return false;
+		return false;
 	}
 
 }

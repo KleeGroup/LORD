@@ -21,81 +21,74 @@ import com.kleegroup.csv.CsvReaderAdapter;
  *
  */
 public class LogFilesZipper {
-    private static org.apache.log4j.Logger logAppli = Logger
-    .getLogger(CsvReaderAdapter.class);
-    
-    /**
-     * @param zipFilePath le path désiré du fichier de log
-     * @param filenames les fichiers à zipper
-     * @throws IOException si une erreur de lecture a lieu
-     */
-    public static void zip(String zipFilePath, List<String> filenames) throws IOException {
-	zip(new File(zipFilePath),filenames);
-    }
-    /**
-     * @param outputZip le File qui représente le fichier de zip
-     * @param filenames les fichiers à zipper
-     * @throws IOException si une erreur de lecture a lieu
-     */
-    public static void zip(File outputZip, List<String> filenames) throws IOException {
-	// Create a buffer for reading the files
-	byte[] buf = new byte[1024];
+	private static org.apache.log4j.Logger logAppli = Logger.getLogger(CsvReaderAdapter.class);
 
-	    // Create the ZIP file
-	    ZipOutputStream out = null;
-	    List<String> fileList=getValidFiles(filenames);
-	    if (fileList.size()==0){
-		return;
-	    }
-	    try{
-	    out=new ZipOutputStream(new FileOutputStream(
-		    outputZip));
-
-	    // Compress the files
-	    for (String filename : fileList) {
-		File f = new File(filename);
-		    
-		    FileInputStream in = null;
-		    try{
-		    in=new FileInputStream(filename);
-
-		    // Add ZIP entry to output stream.
-		    out.putNextEntry(new ZipEntry(f.getName()));
-
-		    // Transfer bytes from the file to the ZIP file
-		    int len;
-		    while ((len = in.read(buf)) > 0) {
-			out.write(buf, 0, len);
-		    }
-
-		    // Complete the entry
-		    out.closeEntry();
-		    }catch(IOException ex){
-			logAppli.error(ex);
-		    }finally{
-			if(in!=null){
-			    in.close();
-			}
-		    }
-		}
-	    }catch(IOException ex){
-		logAppli.error(ex);
-	    }finally{
-
-	    // Complete the ZIP file
-	    if(out!=null){
-		out.close();
-	    }
-	    }
-    }
-    private static List<String> getValidFiles(List<String> filenames) {
-	List<String> res=new ArrayList<String>();
-	for(int i=0;i<filenames.size();i++){
-	    File aTester=new File(filenames.get(i));
-	    if( aTester.exists() &&  aTester.canRead()){
-		res.add(aTester.getAbsolutePath());
-	    }
+	/**
+	 * @param zipFilePath le path désiré du fichier de log
+	 * @param filenames les fichiers à zipper
+	 * @throws IOException si une erreur de lecture a lieu
+	 */
+	public static void zip(String zipFilePath, List<String> filenames) throws IOException {
+		zip(new File(zipFilePath), filenames);
 	}
-	return res;
-    }
+
+	/**
+	 * @param outputZip le File qui représente le fichier de zip
+	 * @param filenames les fichiers à zipper
+	 * @throws IOException si une erreur de lecture a lieu
+	 */
+	public static void zip(File outputZip, List<String> filenames) throws IOException {
+		// Create a buffer for reading the files
+		byte[] buf = new byte[1024];
+
+		// Create the ZIP file
+		ZipOutputStream out = null;
+		List<String> fileList = getValidFiles(filenames);
+		if (fileList.isEmpty()) {
+			return;
+		}
+		try {
+			out = new ZipOutputStream(new FileOutputStream(outputZip));
+
+			// Compress the files
+			for (String filename : fileList) {
+				File f = new File(filename);
+
+				try (FileInputStream in = new FileInputStream(filename)) {
+					// Add ZIP entry to output stream.
+					out.putNextEntry(new ZipEntry(f.getName()));
+
+					// Transfer bytes from the file to the ZIP file
+					int len;
+					while ((len = in.read(buf)) > 0) {
+						out.write(buf, 0, len);
+					}
+
+					// Complete the entry
+					out.closeEntry();
+				} catch (IOException ex) {
+					logAppli.error(ex);
+				}
+			}
+		} catch (IOException ex) {
+			logAppli.error(ex);
+		} finally {
+
+			// Complete the ZIP file
+			if (out != null) {
+				out.close();
+			}
+		}
+	}
+
+	private static List<String> getValidFiles(List<String> filenames) {
+		List<String> res = new ArrayList<>();
+		for (int i = 0; i < filenames.size(); i++) {
+			File aTester = new File(filenames.get(i));
+			if (aTester.exists() && aTester.canRead()) {
+				res.add(aTester.getAbsolutePath());
+			}
+		}
+		return res;
+	}
 }

@@ -5,8 +5,6 @@ import java.util.List;
 
 import spark.reprise.outil.moteur.ContrainteUniCol;
 
-
-
 /**
  * Pseudo-contrainte qui n'effectue pas de vérification. 
  * 
@@ -15,27 +13,24 @@ import spark.reprise.outil.moteur.ContrainteUniCol;
  */
 public class ContrainteTRUE extends ContrainteUniCol {
 
-	
-
 	/** 
 	 * {@inheritDoc}
 	 */
 	@Override
-	public  boolean estConforme(final String valeur) {
+	public boolean estConforme(final String valeur) {
 		return true;
 	}
+
 	/**{@inheritDoc}*/
 	@Override
 	public List<String> getListeParam() {
-		return new ArrayList<String>();
+		return new ArrayList<>();
 	}
-	
+
 	/**{@inheritDoc}*/
 	@Override
 	public ContrainteTRUE copy() {
-	    return new ContrainteTRUE();
+		return new ContrainteTRUE();
 	}
-	
-	
-}
 
+}

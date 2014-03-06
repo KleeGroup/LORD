@@ -39,7 +39,7 @@ public class FrameLogErreursController extends FrameController<FrameLogErreurs, 
 	public void activate() {
 
 		fenetrePrincipale.setEtape(4);
-		final Map<String, LoggueurRam> mapErrs = new HashMap<String, LoggueurRam>();
+		final Map<String, LoggueurRam> mapErrs = new HashMap<>();
 		for (final String nom : fenetrePrincipaleController.model.getSchema().getLoggeurs().keySet()) {
 			mapErrs.put(nom, (LoggueurRam) fenetrePrincipaleController.model.getSchema().getLoggeurs().get(nom));
 		}
@@ -92,8 +92,7 @@ public class FrameLogErreursController extends FrameController<FrameLogErreurs, 
 				res = null;
 			} else {
 				if (res.exists()) {
-					final int answer = JOptionPane.showConfirmDialog(fenetrePrincipale, resourceMap
-							.getString("erreur.fichierExistant"), "", JOptionPane.YES_NO_OPTION);
+					final int answer = JOptionPane.showConfirmDialog(fenetrePrincipale, resourceMap.getString("erreur.fichierExistant"), "", JOptionPane.YES_NO_OPTION);
 					if (answer == JOptionPane.YES_OPTION) {
 						ecraseFichierExistant = true;
 					}
@@ -106,8 +105,7 @@ public class FrameLogErreursController extends FrameController<FrameLogErreurs, 
 			try {
 				fenetrePrincipaleController.model.getSchema().zipLogFiles(res);
 			} catch (final IOException e) {
-				JOptionPane.showMessageDialog(fenetrePrincipale, e.getLocalizedMessage(), resourceMap
-						.getString("erreur.echecEcritureLog"), JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(fenetrePrincipale, e.getLocalizedMessage(), resourceMap.getString("erreur.echecEcritureLog"), JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
@@ -122,7 +120,7 @@ public class FrameLogErreursController extends FrameController<FrameLogErreurs, 
 	protected FrameLogErreursModel createModel() {
 		return new FrameLogErreursModel();
 	}
-	
+
 	static class MyFileFilter extends FileFilter {
 
 		@Override

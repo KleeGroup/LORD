@@ -20,66 +20,64 @@ import spark.reprise.outil.ui.admin.controller.DialogSelectColumnController;
  * Classe qui lance un dialogue de selection de colonne lorsque l'utilisateur clique sur une 
  * cellule d'une table qui affiche les détails d'un fichier.
  */
-public class ColonneChooser extends AbstractCellEditor implements
-	TableCellEditor, ActionListener {
+public class ColonneChooser extends AbstractCellEditor implements TableCellEditor, ActionListener {
 
-    /**
-         * 
-         */
-    private static final long serialVersionUID = 1L;
-    private static final String EDIT = "edit";
-    
-    private JButton button;
+	/**
+	     * 
+	     */
+	private static final long serialVersionUID = 1L;
+	private static final String EDIT = "edit";
 
-    private DialogSelectColumnController dialogController;
+	private JButton button;
 
-    private boolean modeSchema = false;
+	private DialogSelectColumnController dialogController;
 
-    private Fichier fichier;
+	private boolean modeSchema = false;
 
-    private Schema schema;
+	private Fichier fichier;
 
-    private Fichier exclu;
+	private Schema schema;
 
-    private List<Colonne> result = new ArrayList<Colonne>();
-    private Object oldValue;
-    private String colonneExclue="";
+	private Fichier exclu;
 
-    private ColonneChooser() {
-	button = new JButton();
-	button.setVisible(false);
-	button.setActionCommand(EDIT);
-	button.addActionListener(this);
-    }
+	private List<Colonne> result = new ArrayList<>();
+	private Object oldValue;
+	private String colonneExclue = "";
 
-    
-    /**
-     * Construit un ColonneChooser pour afficher les colonnes du fichier f.
-     * @param f le fichier dont on affiche les colonnes.
-     */
-    public ColonneChooser(Fichier f) {
-	this();
-	fichier = f;
+	private ColonneChooser() {
+		button = new JButton();
+		button.setVisible(false);
+		button.setActionCommand(EDIT);
+		button.addActionListener(this);
+	}
 
-    }
-    /**
-     * Construit un ColonneChooser pour afficher les colonnes du schéma schéma.
-     * @param schema le schéma dont affiche les colonnes.
-     * @param exclu fichier exclu de l'affichage des colonnes.
-     */
-    public ColonneChooser(Schema schema, Fichier exclu) {
-	this();
-	this.schema = schema;
-	this.exclu = exclu;
-	modeSchema = true;
+	/**
+	 * Construit un ColonneChooser pour afficher les colonnes du fichier f.
+	 * @param f le fichier dont on affiche les colonnes.
+	 */
+	public ColonneChooser(Fichier f) {
+		this();
+		fichier = f;
 
-    }
+	}
 
-    private void createDialogController() {
+	/**
+	 * Construit un ColonneChooser pour afficher les colonnes du schéma schéma.
+	 * @param schema le schéma dont affiche les colonnes.
+	 * @param exclu fichier exclu de l'affichage des colonnes.
+	 */
+	public ColonneChooser(Schema schema, Fichier exclu) {
+		this();
+		this.schema = schema;
+		this.exclu = exclu;
+		modeSchema = true;
+
+	}
+
+	private void createDialogController() {
 		if (modeSchema) {
-			dialogController = new DialogSelectColumnController(schema, exclu,
-					colonneExclue);
-			List<Object> val = new ArrayList<Object>();
+			dialogController = new DialogSelectColumnController(schema, exclu, colonneExclue);
+			List<Object> val = new ArrayList<>();
 			if (oldValue != null) {
 				val.add(oldValue);
 				dialogController.setInitialValue(val);
@@ -91,38 +89,35 @@ public class ColonneChooser extends AbstractCellEditor implements
 
 	}
 
-
-
-    
-/**{@inheritDoc}*/
-    @Override
+	/**{@inheritDoc}*/
+	@Override
 	public void actionPerformed(ActionEvent e) {
-	if (EDIT.equals(e.getActionCommand())) {
-	    // The user has clicked the cell, so
-	    // bring up the dialog.
-	    createDialogController();
-	    dialogController.showWindow();
-	    if (!dialogController.isUserClickedCancel()) {
-		result = dialogController.getSelectElements();
-	    }
+		if (EDIT.equals(e.getActionCommand())) {
+			// The user has clicked the cell, so
+			// bring up the dialog.
+			createDialogController();
+			dialogController.showWindow();
+			if (!dialogController.isUserClickedCancel()) {
+				result = dialogController.getSelectElements();
+			}
 
-	    fireEditingStopped();
+			fireEditingStopped();
 
+		}
 	}
-    }
-/**{@inheritDoc}*/
-    @Override
-	public Object getCellEditorValue() {
-	return result;
-    }
 
-/**{@inheritDoc}*/
-    @Override
-	public Component getTableCellEditorComponent(JTable table, Object value,
-	    boolean isSelected, int row, int column) {
-	oldValue = value;
-	colonneExclue=table.getModel().getValueAt(row, 0).toString();
-	return button;
-    }
+	/**{@inheritDoc}*/
+	@Override
+	public Object getCellEditorValue() {
+		return result;
+	}
+
+	/**{@inheritDoc}*/
+	@Override
+	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+		oldValue = value;
+		colonneExclue = table.getModel().getValueAt(row, 0).toString();
+		return button;
+	}
 
 }

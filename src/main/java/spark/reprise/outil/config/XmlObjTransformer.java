@@ -33,11 +33,11 @@ import spark.reprise.outil.moteur.util.SeparateurDecimales;
 public class XmlObjTransformer {
 	Schema schemaEquiv = new Schema();
 
-	List<Colonne> colonnesPrinc = new ArrayList<Colonne>();
+	List<Colonne> colonnesPrinc = new ArrayList<>();
 
-	List<String> fichierRef = new ArrayList<String>();
+	List<String> fichierRef = new ArrayList<>();
 
-	List<String> colonneRef = new ArrayList<String>();
+	List<String> colonneRef = new ArrayList<>();
 
 	SeparateurDecimales separateur = SeparateurDecimales.SEPARATEUR_VIRGULE;
 
@@ -51,8 +51,7 @@ public class XmlObjTransformer {
 			return new Schema();
 		}
 		try {
-			separateur = SeparateurDecimales.valueOf(schemaOriginal
-					.getSeparateurDecimal());
+			separateur = SeparateurDecimales.valueOf(schemaOriginal.getSeparateurDecimal());
 		} catch (Exception e) {
 			separateur = SeparateurDecimales.SEPARATEUR_VIRGULE;
 		}
@@ -77,23 +76,19 @@ public class XmlObjTransformer {
 			if (fRef != null) {
 				Colonne cRef = fRef.getColonne(colonneRef.get(i));
 				if (cRef != null) {// la colonne a été trouvee
-					colonnesPrinc.get(i).getFichierParent()
-							.addReference(colonnesPrinc.get(i).getNom(), cRef);
+					colonnesPrinc.get(i).getFichierParent().addReference(colonnesPrinc.get(i).getNom(), cRef);
 				}
 			}
 		}
 	}
 
 	private Fichier transform(TypeFichier fichierOriginal) {
-		Fichier fichierEquiv = new Fichier(fichierOriginal.getNom(),
-				fichierOriginal.getPrefixNom());
+		Fichier fichierEquiv = new Fichier(fichierOriginal.getNom(), fichierOriginal.getPrefixNom());
 		fichierEquiv.setExtension(fichierOriginal.getExtension());
-		for (TypeColonne colonneOriginale : fichierOriginal.getColonnes()
-				.getColonne()) {
+		for (TypeColonne colonneOriginale : fichierOriginal.getColonnes().getColonne()) {
 			fichierEquiv.addColonne(transform(colonneOriginale));
 		}
-		for (TypeContrainteMultiColonne contrainteOriginale : fichierOriginal
-				.getContrainte()) {
+		for (TypeContrainteMultiColonne contrainteOriginale : fichierOriginal.getContrainte()) {
 			fichierEquiv.addContrainteMultiCol(transform(contrainteOriginale));
 		}
 		fichierEquiv.setNbLignesEntete(fichierOriginal.getNbLignesEntete());
@@ -109,8 +104,7 @@ public class XmlObjTransformer {
 		colonneEquiv.setDescription(desc);
 		String presence = colonneOriginale.getPresenceValeur();
 
-		colonneEquiv.setColonneReference(colonneOriginale
-				.getColonneDeReference());
+		colonneEquiv.setColonneReference(colonneOriginale.getColonneDeReference());
 
 		if ("INTERDITE".equals(presence)) {
 			colonneEquiv.setPresenceValeur(PRESENCE.INTERDITE);
@@ -120,11 +114,9 @@ public class XmlObjTransformer {
 			colonneEquiv.setPresenceValeur(PRESENCE.OBLIGATOIRE);
 		}
 
-		for (TypeContrainte contrainteOriginale : colonneOriginale
-				.getContrainte()) {
+		for (TypeContrainte contrainteOriginale : colonneOriginale.getContrainte()) {
 			if ("ContrainteReference".equals(contrainteOriginale.getType())) {
-				addReference(colonneEquiv, contrainteOriginale.getParam()
-						.get(0), contrainteOriginale.getParam().get(1));
+				addReference(colonneEquiv, contrainteOriginale.getParam().get(0), contrainteOriginale.getParam().get(1));
 			} else {
 				// on ignore ContrainteTRUE parceque cette contrainte ne fais
 				// rien
@@ -136,21 +128,16 @@ public class XmlObjTransformer {
 		return colonneEquiv;
 	}
 
-	private ContrainteMultiCol transform(
-			TypeContrainteMultiColonne contrainteOriginale) {
+	private ContrainteMultiCol transform(TypeContrainteMultiColonne contrainteOriginale) {
 		String cols[] = new String[contrainteOriginale.getColonne().size()];
 		for (int i = 0; i < cols.length; i++) {
 			cols[i] = contrainteOriginale.getColonne().get(i).getNom();
 		}
 		if ("Unique".equals(contrainteOriginale.getNomFonction())) {
-			return new ContrainteMultiColUnique(contrainteOriginale.getId(),
-					contrainteOriginale.getMessageErreur(), cols);
+			return new ContrainteMultiColUnique(contrainteOriginale.getId(), contrainteOriginale.getMessageErreur(), cols);
 
 		}
-		return new ContrainteMultiColFonctionsSpecifiques(
-				contrainteOriginale.getId(),
-				contrainteOriginale.getMessageErreur(),
-				contrainteOriginale.getNomFonction(), cols);
+		return new ContrainteMultiColFonctionsSpecifiques(contrainteOriginale.getId(), contrainteOriginale.getMessageErreur(), contrainteOriginale.getNomFonction(), cols);
 
 	}
 
@@ -162,8 +149,7 @@ public class XmlObjTransformer {
 		}
 
 		if ("ContrainteTaille".equals(type)) {
-			int taille = Integer
-					.parseInt(contrainteOriginale.getParam().get(0));
+			int taille = Integer.parseInt(contrainteOriginale.getParam().get(0));
 			return new ContrainteTaille(taille);
 		}
 		if ("ContrainteRegex".equals(type)) {
@@ -173,14 +159,10 @@ public class XmlObjTransformer {
 			return new ContrainteTypeDate(contrainteOriginale.getParam().get(0));
 		}
 		if ("ContrainteTypeDecimal".equals(type)) {
-			return new ContrainteTypeDecimal(
-					Integer.parseInt(contrainteOriginale.getParam().get(0)),
-					separateur, Integer.parseInt(contrainteOriginale.getParam()
-							.get(1)));
+			return new ContrainteTypeDecimal(Integer.parseInt(contrainteOriginale.getParam().get(0)), separateur, Integer.parseInt(contrainteOriginale.getParam().get(1)));
 		}
 		if ("ContrainteListeValeursPermises".equals(type)) {
-			String[] valeursPermises = new String[contrainteOriginale
-					.getParam().size()];
+			String[] valeursPermises = new String[contrainteOriginale.getParam().size()];
 			for (int i = 0; i < valeursPermises.length; i++) {
 				valeursPermises[i] = contrainteOriginale.getParam().get(i);
 			}

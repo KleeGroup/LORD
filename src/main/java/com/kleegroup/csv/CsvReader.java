@@ -9,7 +9,6 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * Classe de lecture d'un fichier CSV.
  *
@@ -60,9 +59,9 @@ public class CsvReader {
 
 	/** CsvPosition de l'enregistrement. */
 	private CsvPosition posEnregistrement;
-    
-    /** CsvPosition du prochain enregistrement. */
-    private CsvPosition posProchainEnregistrement;
+
+	/** CsvPosition du prochain enregistrement. */
+	private CsvPosition posProchainEnregistrement;
 
 	/** Erreur lattente. */
 	private CsvReaderException erreur;
@@ -84,9 +83,9 @@ public class CsvReader {
 
 	/** Flux d'entrée. */
 	private final Reader in;
-	
-	/** Compteur de caracteres lus*/
-	private long nbCaracteresLus=0;
+
+	//	/** Compteur de caracteres lus*/
+	//	private long nbCaracteresLus=0;
 
 	/**
 	 * Construit une nouvelle instance de CsvReader.
@@ -98,7 +97,7 @@ public class CsvReader {
 		posCurseur = new CsvPosition(0, 1, 0, 0);
 		finDeFichier = false;
 		champ = new StringBuffer();
-		enregistrement = new ArrayList<CharSequence>();
+		enregistrement = new ArrayList<>();
 		enregistrementTexte = new StringBuffer();
 	}
 
@@ -194,7 +193,7 @@ public class CsvReader {
 				do {
 					// Lecture du caractère suivant
 					final int iChar = in.read();
-					nbCaracteresLus++;
+					//nbCaracteresLus++;
 					posCurseur.nouvelleColonne();
 
 					// Traitement de la fin de fichier
@@ -207,7 +206,7 @@ public class CsvReader {
 
 						break;
 					}
-					
+
 					final char cChar = (char) iChar;
 					enregistrementTexte.append(cChar);
 
@@ -215,7 +214,7 @@ public class CsvReader {
 					if (cChar == CHAR_IGNORE) {
 						continue;
 					}
-					
+
 					switch (etat) {
 						case ETAT_ENREGISTREMENT:
 						case ETAT_CHAMP:
@@ -265,16 +264,16 @@ public class CsvReader {
 
 						case ETAT_GUILLEMETS:
 
-                                                        if (cChar == CHAR_GUILLEMET) {
-                                                            	nouveauCharactere(CHAR_GUILLEMET);
-                                                            	etat = ETAT_VALEUR_GUILLEMETS;
-                                                        } else if (cChar == CHAR_FDL) {
+							if (cChar == CHAR_GUILLEMET) {
+								nouveauCharactere(CHAR_GUILLEMET);
+								etat = ETAT_VALEUR_GUILLEMETS;
+							} else if (cChar == CHAR_FDL) {
 								nouveauChamp();
 								etat = ETAT_ENREGISTREMENT;
 							} else if (cChar == getFinDeChamp()) {
 								nouveauChamp();
 								etat = ETAT_CHAMP;
-							} else  {
+							} else {
 								nouvelleErreur("Guillemet simple dans un champ.");
 								etat = ETAT_ERREUR;
 							}
@@ -288,7 +287,7 @@ public class CsvReader {
 							}
 
 							break;
-					default:
+						default:
 					}
 
 					// On enregistre la nouvelle ligne éventuelle.
@@ -320,14 +319,14 @@ public class CsvReader {
 
 		// On avance
 		enregistrementLu = null;
-        posEnregistrement = posProchainEnregistrement;
+		posEnregistrement = posProchainEnregistrement;
 
 		if (erreur != null) {
 			throw erreur;
 		}
 
 		// Fin de l'enregistrement
-		return  enregistrement.toArray(new String[enregistrement.size()]);
+		return enregistrement.toArray(new String[enregistrement.size()]);
 	}
 
 	/**

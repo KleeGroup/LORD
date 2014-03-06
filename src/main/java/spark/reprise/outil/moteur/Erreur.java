@@ -15,31 +15,30 @@ public abstract class Erreur implements IErreur {
 	 */
 	private static final ErreurUniCol NOERR = null;
 	protected IContrainte errOrigine;
-	protected String [] errValeurs;
+	protected String[] errValeurs;
 	protected long errLigne;
 	protected String errMessage = "";
-	protected List<String> refColonnes= new ArrayList<String>();
-
+	protected List<String> refColonnes = new ArrayList<>();
 
 	protected Erreur() {
 		super();
 	}
+
 	/**
 	 * @param contrainteParent La contrainte (unicol/multicol) qui génère l'erreur
 	 * @param numLigne le numéro de la ligne de l'erreur
 	 * @param valeurs les valeurs de l'erreur
 	 */
-	public Erreur(IContrainte contrainteParent,long numLigne,String[]valeurs){
-		errOrigine=contrainteParent;
-		errLigne=numLigne;
-		errValeurs=valeurs;
-		Fichier parent=contrainteParent.getFichier();
-		if (parent.hasColonneReference()){
-		    refColonnes=parent.getValeursColRef(valeurs);
+	public Erreur(IContrainte contrainteParent, long numLigne, String[] valeurs) {
+		errOrigine = contrainteParent;
+		errLigne = numLigne;
+		errValeurs = valeurs;
+		Fichier parent = contrainteParent.getFichier();
+		if (parent.hasColonneReference()) {
+			refColonnes = parent.getValeursColRef(valeurs);
 		}
-		
+
 	}
-	
 
 	/**
 	 * Renvoie un objet "Constante" qui représente un état sans erreur.
@@ -54,7 +53,8 @@ public abstract class Erreur implements IErreur {
 	@Override
 	public long getErrLigne() {
 		return errLigne;
-	}	
+	}
+
 	/** {@inheritDoc}*/
 	@Override
 	public String getErrOrigine() {
@@ -67,29 +67,32 @@ public abstract class Erreur implements IErreur {
 	public String[] getErrValeurs() {
 		return errValeurs.clone();//clone pour faire taire findbugs
 	}
+
 	/** {@inheritDoc}*/
 	@Override
-	public String getNomFichier(){
+	public String getNomFichier() {
 		return getContrainteParent().getNomFichier();
 	}
+
 	/** renvoie le fichier de l'erreur.
 	 * @return le fichier de l'erreur*/
-	public Fichier getFichier(){
+	public Fichier getFichier() {
 		return getContrainteParent().getFichier();
 	}
+
 	/** 
 	 * @return la contrainte parent*/
 	public abstract IContrainte getContrainteParent();
+
 	/**
 	 * @return la liste des colonnes de l'erreur
 	 */
 	public abstract List<Colonne> getColonnes();
-	
+
 	/**{@inheritDoc}*/
 	@Override
-	public List<String> getReference(){
-	    return refColonnes;
+	public List<String> getReference() {
+		return refColonnes;
 	}
-
 
 }

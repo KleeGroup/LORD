@@ -12,7 +12,7 @@ import spark.reprise.outil.moteur.contraintes.ContrainteMultiColFonctionsSpecifi
  * Crée une contrainte sur plusieurs colonnes.
  *
  */
-public abstract class ContrainteMultiCol implements IContrainte{
+public abstract class ContrainteMultiCol implements IContrainte {
 
 	protected static final org.apache.log4j.Logger LOGAPPLI = Logger.getLogger(ContrainteMultiColFonctionsSpecifiques.class);
 
@@ -26,41 +26,39 @@ public abstract class ContrainteMultiCol implements IContrainte{
 
 	protected int[] indiceParam = null;
 
-	protected ContrainteMultiCol(String id,String errTemplate,String ...cols){
+	protected ContrainteMultiCol(String id, String errTemplate, String... cols) {
 		super();
-		this.id=id;
+		this.id = id;
 		setErrTemplate(errTemplate);
-		this.cols=cols;
+		this.cols = cols;
 	}
 
-	protected abstract boolean estConforme(String [] valeur);
+	protected abstract boolean estConforme(String[] valeur);
 
 	/**
 	 * @return le nom de la fonction de verification
 	 */
-	public String getNomFonction(){
-        return this.getClass().getSimpleName();
-    }
-
-
+	public String getNomFonction() {
+		return this.getClass().getSimpleName();
+	}
 
 	protected void construitIndiceColonnes(String... colonnes) {
-		int nbreArgs=colonnes.length;
-		indiceParam=new int[nbreArgs];
-		for(int i=0;i<nbreArgs;i++){
-			indiceParam[i]=fichierParent.getColonne(colonnes[i]).getPosition();
+		int nbreArgs = colonnes.length;
+		indiceParam = new int[nbreArgs];
+		for (int i = 0; i < nbreArgs; i++) {
+			indiceParam[i] = fichierParent.getColonne(colonnes[i]).getPosition();
 		}
 	}
 
-	protected boolean verifie(String [] valeurs) {
-		if (indiceParam==null) {
+	protected boolean verifie(String[] valeurs) {
+		if (indiceParam == null) {
 			construitIndiceColonnes(cols);
 		}
 
 		//contruction du tableau de parametre
 		String[] param = new String[indiceParam.length];
-		for(int i=0;i<indiceParam.length;i++){
-			param[i]=valeurs[indiceParam[i]];			
+		for (int i = 0; i < indiceParam.length; i++) {
+			param[i] = valeurs[indiceParam[i]];
 		}
 
 		return estConforme(param);
@@ -73,31 +71,31 @@ public abstract class ContrainteMultiCol implements IContrainte{
 	 * @return un objet Erreur contenant les informations nécessaires
 	 */
 	@Override
-	public IErreur verifie(long numLigne, String [] valeurs) {
-		if (verifie(valeurs)){
+	public IErreur verifie(long numLigne, String[] valeurs) {
+		if (verifie(valeurs)) {
 			return Erreur.pasDErreur();
 		}
 
-		if (interpreteMsg==null){
+		if (interpreteMsg == null) {
 			construitInterprete();
 
 		}
-		errMessage=interpreteMsg.bind(numLigne, valeurs);
+		errMessage = interpreteMsg.bind(numLigne, valeurs);
 
-		ErreurMultiCol e=new ErreurMultiCol(this,numLigne,valeurs);
+		ErreurMultiCol e = new ErreurMultiCol(this, numLigne, valeurs);
 
 		return e;
 	}
 
 	protected void construitInterprete() {
-		interpreteMsg=Interprete.fromTemplate(errTemplate);
+		interpreteMsg = Interprete.fromTemplate(errTemplate);
 		interpreteMsg.setContrainteOrigine(this);
 		interpreteMsg.setIdVerif(id);
 		interpreteMsg.setNomColonne("");
 		interpreteMsg.setNomFichier(fichierParent.getNom());
-		String nomsColonnes[]=new String [fichierParent.getNbColonnes()];
-		for(int i=0;i<nomsColonnes.length;i++){
-			nomsColonnes[i]=fichierParent.getColonne(i).getNom();
+		String nomsColonnes[] = new String[fichierParent.getNbColonnes()];
+		for (int i = 0; i < nomsColonnes.length; i++) {
+			nomsColonnes[i] = fichierParent.getColonne(i).getNom();
 		}
 		interpreteMsg.setNomColonne(nomsColonnes);
 	}
@@ -105,7 +103,7 @@ public abstract class ContrainteMultiCol implements IContrainte{
 	/**
 	 * @return renvoie le message d'erreur
 	 */
-	public String getMessageErreur() {	
+	public String getMessageErreur() {
 
 		return errMessage;
 	}
@@ -145,12 +143,12 @@ public abstract class ContrainteMultiCol implements IContrainte{
 	 * @return la liste des nom des colonnes de la contrainte
 	 */
 	public List<String> getNomColonnes() {
-		List<String> nom=new ArrayList<String>();
-		if(indiceParam!=null){
-		for(int i=0;i<indiceParam.length;i++){
-			nom.add(fichierParent.getColonne(indiceParam[i]).getNom());
-		}		
-		return nom;
+		List<String> nom = new ArrayList<>();
+		if (indiceParam != null) {
+			for (int i = 0; i < indiceParam.length; i++) {
+				nom.add(fichierParent.getColonne(indiceParam[i]).getNom());
+			}
+			return nom;
 		}
 		return Arrays.asList(cols);
 	}
@@ -176,26 +174,26 @@ public abstract class ContrainteMultiCol implements IContrainte{
 	public void setErrTemplate(String errTemplate) {
 		this.errTemplate = errTemplate;
 	}
+
 	/**{@inheritDoc}*/
 	@Override
-	public Fichier getFichier(){
+	public Fichier getFichier() {
 		return fichierParent;
 	}
-	
+
 	/**{@inheritDoc}*/
 	@Override
-	public String interprete(String balise, int indice){
-	    return balise;
+	public String interprete(String balise, int indice) {
+		return balise;
 	}
-	
+
 	/**nettoie l'objet.
 	 * Remet à zero les données spécifique utilisée lors de la dernière vérification
 	 * pour pouvoir  réutiliser cet objet pour une nouvelle vérification 
 	 * */
 	@Override
-	public void clean(){
-	    /**/
+	public void clean() {
+		/**/
 	}
-	
 
 }

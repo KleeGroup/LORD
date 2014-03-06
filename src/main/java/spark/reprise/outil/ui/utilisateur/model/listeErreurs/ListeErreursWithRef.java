@@ -22,7 +22,7 @@ public class ListeErreursWithRef extends ListeErreurs{
         	RESOURCEMAP.getString("TableModel.Colonne"),
         	RESOURCEMAP.getString("TableModel.Valeur"),
         	RESOURCEMAP.getString("TableModel.MessageErreur"),
-                };
+                }; 
     }
     
     /**{@inheritDoc}*/

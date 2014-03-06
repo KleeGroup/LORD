@@ -5,22 +5,20 @@ import java.util.List;
 
 import spark.reprise.outil.moteur.ContrainteUniCol;
 
-
-
 /**
  * Vérifie que les valeurs du champ sont des entiers.
  * @author maazreibi
  *
  */
 public class ContrainteTypeEntier extends ContrainteUniCol {
-	
+
 	/** {@inheritDoc} */
 	@Override
-	public  boolean estConforme(final String valeur) {
-		try{
+	public boolean estConforme(final String valeur) {
+		try {
 			Integer.parseInt(valeur);
 
-		}catch(NumberFormatException e)	{
+		} catch (NumberFormatException e) {
 			return false;
 		}
 
@@ -30,19 +28,19 @@ public class ContrainteTypeEntier extends ContrainteUniCol {
 	/**{@inheritDoc}*/
 	@Override
 	public List<String> getListeParam() {
-		return new ArrayList<String>();
+		return new ArrayList<>();
 	}
+
 	/**{@inheritDoc}*/
 	@Override
-	public boolean isContrainteType(){
-	    return true;
+	public boolean isContrainteType() {
+		return true;
 	}
-	
+
 	/**{@inheritDoc}*/
 	@Override
 	public ContrainteUniCol copy() {
-	    return new ContrainteTypeEntier();
+		return new ContrainteTypeEntier();
 	}
 
 }
-

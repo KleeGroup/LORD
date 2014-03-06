@@ -2,9 +2,8 @@ package spark.reprise.outil.moteur.contraintes;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import spark.reprise.outil.moteur.ContrainteUniCol;
-
-
 
 /**
  * vérifie que les valeurs d'un champ sont conforme à une expression régulière.
@@ -12,33 +11,34 @@ import spark.reprise.outil.moteur.ContrainteUniCol;
  *
  */
 public class ContrainteRegex extends ContrainteUniCol {
-	protected String regex="";
-
+	protected String regex = "";
 
 	/**
 	 * Construit la contrainte.
 	 * @param regex l'expression régulière qui valide les valeurs du champ
 	 */
-	public ContrainteRegex(String regex){
+	public ContrainteRegex(String regex) {
 		super();//ne fais rien.pour faire taire PMD
-		this.regex=regex;
+		this.regex = regex;
 	}
-//	/** {@inheritDoc} */
-//	@Override
-//	public  String getMessageErreur() {
-//		return "La valeur ne suit pas le format défini.";		
-//	}
+
+	//	/** {@inheritDoc} */
+	//	@Override
+	//	public  String getMessageErreur() {
+	//		return "La valeur ne suit pas le format défini.";		
+	//	}
 
 	/** {@inheritDoc} */
 	@Override
-	public  boolean estConforme(final String valeur) {
+	public boolean estConforme(final String valeur) {
 		return valeur.matches(regex);
 	}
+
 	/**{@inheritDoc}*/
 	@Override
 	public List<String> getListeParam() {
-		List<String> params= new ArrayList<String>();
-		params.add(regex);		
+		List<String> params = new ArrayList<>();
+		params.add(regex);
 		return params;
 	}
 
@@ -48,13 +48,12 @@ public class ContrainteRegex extends ContrainteUniCol {
 	 * @return renvoie l'expression régulière de test de la fonction.
 	 * */
 	public String getRegex() {
-	    return regex;
+		return regex;
 	}
-	
+
 	/**{@inheritDoc}*/
 	@Override
 	public ContrainteRegex copy() {
-	    return new ContrainteRegex(regex);
+		return new ContrainteRegex(regex);
 	}
 }
-
