@@ -10,9 +10,9 @@ import java.io.UnsupportedEncodingException;
 
 import org.apache.log4j.Logger;
 
-import spark.reprise.outil.moteur.exceptions.CaractereInterdit;
-import spark.reprise.outil.moteur.util.CountingReader;
-import spark.reprise.outil.moteur.util.ICSVDataSource;
+import com.kleegroup.lord.moteur.exceptions.CaractereInterdit;
+import com.kleegroup.lord.moteur.util.CountingReader;
+import com.kleegroup.lord.moteur.util.ICSVDataSource;
 
 
 
