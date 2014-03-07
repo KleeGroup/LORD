@@ -2,7 +2,7 @@
  * Created on 13 avr. 2004
  * by jmainaud
  */
-package com.kleegroup.csv;
+package com.kleegroup.lord.utils.csv;
 
 /**
  * CsvPosition du curseur.
@@ -11,16 +11,16 @@ package com.kleegroup.csv;
  * @version $Revision: 1.1 $
  */
 public class CsvPosition {
-	/** Numéro du caractère courant. */
+	/** NumÃ©ro du caractÃ¨re courant. */
 	private long caractere;
 
-	/** Numéro de l'enregistrement. */
+	/** NumÃ©ro de l'enregistrement. */
 	private long enregistrement;
 
-	/** Numéro de la ligne du fichier. */
+	/** NumÃ©ro de la ligne du fichier. */
 	private long ligne;
 
-	/** Numéro de la colonne du fichier (Nb caractères). */
+	/** NumÃ©ro de la colonne du fichier (Nb caractÃ¨res). */
 	private long colonne;
 
 	/**
@@ -47,7 +47,7 @@ public class CsvPosition {
 	}
 
 	/**
-	 * Ajoute une ligne. Le nombre de colonne est repis à 1.
+	 * Ajoute une ligne. Le nombre de colonne est repris Ã  1.
 	 */
 	void nouvelleLigne() {
 		++ligne;
@@ -70,7 +70,7 @@ public class CsvPosition {
 	}
 
 	/**
-	 * Lit la propriété <code>enregistrement</code>.
+	 * Lit la propriÃ©tÃ© <code>enregistrement</code>.
 	 *
 	 * @return la valeur de <code>enregistrement</code>.
 	 */
@@ -79,7 +79,7 @@ public class CsvPosition {
 	}
 
 	/**
-	 * Lit la propriété <code>ligne</code>.
+	 * Lit la propriÃ©tÃ© <code>ligne</code>.
 	 *
 	 * @return la valeur de <code>ligne</code>.
 	 */
@@ -88,7 +88,7 @@ public class CsvPosition {
 	}
 
 	/**
-	 * Lit la propriété <code>colonne</code>.
+	 * Lit la propriÃ©tÃ© <code>colonne</code>.
 	 *
 	 * @return la valeur de <code>colonne</code>.
 	 */
@@ -97,7 +97,7 @@ public class CsvPosition {
 	}
 
 	/**
-	 * Lit la propriété <code>caractere</code>.
+	 * Lit la propriÃ©tÃ© <code>caractere</code>.
 	 *
 	 * @return la valeur de <code>caractere</code>.
 	 */

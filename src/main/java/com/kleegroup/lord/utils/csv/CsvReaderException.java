@@ -2,7 +2,7 @@
  * Created on 13 avr. 2004
  * by jmainaud
  */
-package com.kleegroup.csv;
+package com.kleegroup.lord.utils.csv;
 
 /**
  * Exception de lecture du fichier CSV.

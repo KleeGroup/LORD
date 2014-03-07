@@ -1,4 +1,4 @@
-package com.kleegroup.csv;
+package com.kleegroup.lord.utils.csv;
 
 
 import java.io.File;
@@ -18,7 +18,7 @@ import spark.reprise.outil.moteur.util.ICSVDataSource;
 
 /**
  * Cette classe sert comme adaptateur pour la classe CsvReader.
- * Elle permet au moteur de l'utiliser comme source de donnée.
+ * Elle permet au moteur de l'utiliser comme source de donnÃ©e.
  *
  */
 public class CsvReaderAdapter implements ICSVDataSource {
@@ -37,7 +37,7 @@ public class CsvReaderAdapter implements ICSVDataSource {
 	}
 	/**
 	 * @param path path le chemin d'acces du fichier a lire
-	 * @param encoding l'encodage du fichier à lire
+	 * @param encoding l'encodage du fichier Ã  lire
 	 */
 	public CsvReaderAdapter(String path,String encoding){
 		try{

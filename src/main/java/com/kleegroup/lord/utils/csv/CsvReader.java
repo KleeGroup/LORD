@@ -2,7 +2,7 @@
  * Created on 7 avr. 2004
  * by jmainaud
  */
-package com.kleegroup.csv;
+package com.kleegroup.lord.utils.csv;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -18,7 +18,7 @@ import java.util.List;
  * @since 7 avr. 2004
  */
 public class CsvReader {
-	/** Etat Début de l'enregistrement. */
+	/** Etat DÃ©but de l'enregistrement. */
 	private static final int ETAT_ENREGISTREMENT = 0;
 
 	/** Etat Champ. */
@@ -42,7 +42,7 @@ public class CsvReader {
 	/** Fin de ligne. */
 	private static final char CHAR_FDL = '\n';
 
-	/** Caratère ignoré. */
+	/** CaractÃ¨re ignorÃ©. */
 	private static final char CHAR_IGNORE = '\r';
 
 	/** Fin de champ. */
@@ -51,7 +51,7 @@ public class CsvReader {
 	/** Guillemets. */
 	private static final char CHAR_GUILLEMET = '"';
 
-	/** Caratère marquant la fin d'un champ. */
+	/** CaractÃ¨re marquant la fin d'un champ. */
 	private char finDeChamp = CHAR_FDC_DEFAUT;
 
 	/** CsvPosition du curseur. */
@@ -81,7 +81,7 @@ public class CsvReader {
 	/** Ligne courante. */
 	private final StringBuffer enregistrementTexte;
 
-	/** Flux d'entrée. */
+	/** Flux d'entrÃ©e. */
 	private final Reader in;
 
 	//	/** Compteur de caracteres lus*/
@@ -137,8 +137,8 @@ public class CsvReader {
 	}
 
 	/**
-	 * Donne le nom du dernier enregistrement lu. Ou du prochain si <code>hasNext()</code> a été
-	 * appelé.
+	 * Donne le nom du dernier enregistrement lu. Ou du prochain si <code>hasNext()</code> a Ã©tÃ©
+	 * appelÃ©.
 	 *
 	 * @return le nom du dernier enregistrement lu.
 	 */
@@ -156,7 +156,7 @@ public class CsvReader {
 	}
 
 	/**
-	 * Lit la propriété <code>fde</code>.
+	 * Lit la propriÃ©tÃ© <code>fde</code>.
 	 *
 	 * @return la valeur de <code>fde</code>.
 	 */
@@ -165,7 +165,7 @@ public class CsvReader {
 	}
 
 	/**
-	 * Change la propriété <code>fde</code>.
+	 * Change la propriÃ©tÃ© <code>fde</code>.
 	 *
 	 * @param fde la nouvelle valeur de <code>fde</code>.
 	 */
@@ -178,12 +178,12 @@ public class CsvReader {
 	 *
 	 * @return <code>true</code> s'il y a un autre enregsitrement.
 	 *
-	 * @throws IOException En cas d'erreur d'entré-sortie.
+	 * @throws IOException En cas d'erreur d'entrÃ©-sortie.
 	 */
 	public boolean hasNext() throws IOException {
-		// Si la valeur a déjà été calculée, on passe.
+		// Si la valeur a dÃ©jÃ  Ã©tÃ© calculÃ©e, on passe.
 		if (enregistrementLu == null) {
-			// Si la fin du fichier a été atteint, on renvoi null.
+			// Si la fin du fichier a Ã©tÃ© atteint, on renvoi null.
 			if (finDeFichier) {
 				enregistrementLu = Boolean.FALSE;
 			} else {
@@ -191,13 +191,13 @@ public class CsvReader {
 				nouvelEnregistrement();
 
 				do {
-					// Lecture du caractère suivant
+					// Lecture du caractÃ¨re suivant
 					final int iChar = in.read();
 					//nbCaracteresLus++;
 					posCurseur.nouvelleColonne();
 
 					// Traitement de la fin de fichier
-					// On enregistre l'état et on sort de la boucle de lecture.
+					// On enregistre l'Ã©tat et on sort de la boucle de lecture.
 					if (iChar == CHAR_FDF) {
 						if (champ.length() > 0) {
 							nouveauChamp();
@@ -210,7 +210,7 @@ public class CsvReader {
 					final char cChar = (char) iChar;
 					enregistrementTexte.append(cChar);
 
-					// on ignore les caractères à ignorer.
+					// on ignore les caractÃ¨res Ã  ignorer.
 					if (cChar == CHAR_IGNORE) {
 						continue;
 					}
@@ -242,7 +242,7 @@ public class CsvReader {
 								nouveauChamp();
 								etat = ETAT_CHAMP;
 							} else if (cChar == CHAR_GUILLEMET) {
-								nouvelleErreur("Guillemet dans un champ non encadré de guillemets.");
+								nouvelleErreur("Guillemet dans un champ non encadrÃ© de guillemets.");
 								etat = ETAT_ERREUR;
 							} else {
 								nouveauCharactere(cChar);
@@ -290,7 +290,7 @@ public class CsvReader {
 						default:
 					}
 
-					// On enregistre la nouvelle ligne éventuelle.
+					// On enregistre la nouvelle ligne Ã©ventuelle.
 					if (cChar == CHAR_FDL) {
 						nouvelleLigne();
 					}
@@ -307,10 +307,10 @@ public class CsvReader {
 	 * Donne l'enregistement suivant. Lors qu'il n'y a plus d'enregistrement possible, renvoie
 	 * <code>null</code>.
 	 *
-	 * @return Un tableau de String représentant l'enregistrement suivant.
+	 * @return Un tableau de String reprÃ©sentant l'enregistrement suivant.
 	 *
 	 * @throws CsvReaderException En cas d'erreur dans le fichier.
-	 * @throws IOException En cas d'erreur d'entré-sortie.
+	 * @throws IOException En cas d'erreur d'entrÃ©-sortie.
 	 */
 	public String[] next() throws CsvReaderException, IOException {
 		if (!hasNext()) {
@@ -332,7 +332,7 @@ public class CsvReader {
 	/**
 	 * Ferme le lecteur de Fichiers CSV.
 	 *
-	 * @throws IOException En cas d'erreur d'entré-sortie.
+	 * @throws IOException En cas d'erreur d'entrÃ©-sortie.
 	 */
 	public void close() throws IOException {
 		in.close();

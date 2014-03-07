@@ -30,8 +30,11 @@ import org.apache.log4j.Logger;
 
 import spark.reprise.outil.config.ObjXmlTransformer;
 import spark.reprise.outil.config.XmlObjTransformer;
-import spark.reprise.outil.config.xml.ObjectFactory;
-import spark.reprise.outil.config.xml.TypeSchema;
+
+import com.kleegroup.lord.config.xml.ObjectFactory;
+import com.kleegroup.lord.config.xml.TypeSchema;
+import com.kleegroup.lord.utils.csv.CsvReaderAdapter;
+
 import spark.reprise.outil.moteur.Fichier.ETAT;
 import spark.reprise.outil.moteur.exceptions.EchecCreationLogs;
 import spark.reprise.outil.moteur.logs.ILogger;
@@ -44,8 +47,6 @@ import spark.reprise.outil.moteur.util.ICSVDataSource;
 import spark.reprise.outil.moteur.util.INotifiable;
 import spark.reprise.outil.moteur.util.LogFilesZipper;
 import spark.reprise.outil.moteur.util.SeparateurDecimales;
-
-import com.kleegroup.csv.CsvReaderAdapter;
 
 /**
  * Sert a ordonner les fichier selon leur dependeances.<br>
@@ -92,7 +93,7 @@ public class Schema implements INotifiable {
 	private Date dateDebut = null;
 
 	/**
-	 * Ajoute le fichier f au schema, à la fin de liste des fichiers.
+	 * Ajoute le fichier f au schema, ï¿½ la fin de liste des fichiers.
 	 * 
 	 * @param f
 	 *            fichier a rajouter au schema
@@ -102,7 +103,7 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * Ajoute le fichier f au schema à la position pos.
+	 * Ajoute le fichier f au schema ï¿½ la position pos.
 	 * 
 	 * @param f
 	 *            fichier a rajouter au schema
@@ -115,7 +116,7 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * pause la vérification du fichier actuel. La vérification peut continuer
+	 * pause la vï¿½rification du fichier actuel. La vï¿½rification peut continuer
 	 * en appelant {@link #resume()}
 	 */
 	public void pause() {
@@ -170,9 +171,9 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * nettoie l'objet. Remet à zero les données spécifique utilisée lors de la
-	 * dernière vérification pour pouvoir réutiliser cet objet pour une nouvelle
-	 * vérification
+	 * nettoie l'objet. Remet ï¿½ zero les donnï¿½es spï¿½cifique utilisï¿½e lors de la
+	 * derniï¿½re vï¿½rification pour pouvoir rï¿½utiliser cet objet pour une nouvelle
+	 * vï¿½rification
 	 * */
 	public void clean() {
 		niveauActuel = 0;
@@ -297,7 +298,7 @@ public class Schema implements INotifiable {
 		/* voir Fichier#getNiveauTopo */
 		Collections.sort(fichiers, new FichierComparteurOrdreTopo());
 
-		// trier les fichiers par ordre de groupe(défini dans les specs)
+		// trier les fichiers par ordre de groupe(dï¿½fini dans les specs)
 		Collections.sort(fichiers, new FichierComparteurGroupe());
 		niveauActuel = fichiers.get(0).getGroupe();
 	}
@@ -349,7 +350,7 @@ public class Schema implements INotifiable {
 	 *            sert a lire le fichier
 	 * @return le schema XML
 	 * @throws JAXBException
-	 *             si la conversion à partir de l'XML echoue
+	 *             si la conversion ï¿½ partir de l'XML echoue
 	 */
 	public static Schema fromXML(InputStream inputStream) throws JAXBException {
 
@@ -401,11 +402,11 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * désigne l'objet à notifier lorsque certains évenements (voir
+	 * dï¿½signe l'objet ï¿½ notifier lorsque certains ï¿½venements (voir
 	 * {@link INotifiable}) ont lieu.
 	 * 
 	 * @param eltANotifier
-	 *            l'objet à notifier
+	 *            l'objet ï¿½ notifier
 	 */
 	public void setEltANotifier(INotifiable eltANotifier) {
 		this.eltANotifier = eltANotifier;
@@ -415,14 +416,14 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * Reprend la vérification si elle est en pause. voir {@link #pause()}.
+	 * Reprend la vï¿½rification si elle est en pause. voir {@link #pause()}.
 	 */
 	public void resume() {
 		fichierEnCours.resume();
 	}
 
 	/**
-	 * Annule la vérification du fichier en cours.
+	 * Annule la vï¿½rification du fichier en cours.
 	 */
 	public void cancel() {
 		fichierEnCours.cancel();
@@ -430,7 +431,7 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * @return le repertoire où seront sauvegardés les fichiers de logs.
+	 * @return le repertoire oï¿½ seront sauvegardï¿½s les fichiers de logs.
 	 */
 	public String getEmplacementFichiersLogs() {
 		return emplacementFichiersLogs;
@@ -438,14 +439,14 @@ public class Schema implements INotifiable {
 
 	/**
 	 * @param emplacementFichiersLogs
-	 *            repertoire où seront sauvegardés les fichiers de logs.
+	 *            repertoire oï¿½ seront sauvegardï¿½s les fichiers de logs.
 	 */
 	public void setEmplacementFichiersLogs(String emplacementFichiersLogs) {
 		this.emplacementFichiersLogs = emplacementFichiersLogs;
 	}
 
 	/**
-	 * active ou désactive un fichier.
+	 * active ou dï¿½sactive un fichier.
 	 * 
 	 * @param nom
 	 *            le nom du fichier a activer
@@ -483,7 +484,7 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * @return le nombre de fichier non-desactivés dans le schema
+	 * @return le nombre de fichier non-desactivï¿½s dans le schema
 	 */
 	public int getNbFichiersActifs() {
 		int nb = 0;
@@ -503,10 +504,10 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * désigne le'encodage des fichier.
+	 * dï¿½signe le'encodage des fichier.
 	 * 
 	 * @param encoding
-	 *            string qui désigne l'encodage des fichiers. voir
+	 *            string qui dï¿½signe l'encodage des fichiers. voir
 	 *            {@link Charset}.
 	 */
 	public void setEncoding(String encoding) {
@@ -514,7 +515,7 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * @return le separateur de champ utilisé.
+	 * @return le separateur de champ utilisï¿½.
 	 */
 	public char getSeparateurChamp() {
 		return separateurChamp;
@@ -522,19 +523,19 @@ public class Schema implements INotifiable {
 
 	/**
 	 * @param separateurChamp
-	 *            le separateur de champ à utiliser.
+	 *            le separateur de champ ï¿½ utiliser.
 	 */
 	public void setSeparateurChamp(char separateurChamp) {
 		this.separateurChamp = separateurChamp;
 	}
 
 	/**
-	 * Zip les fichier de log dans le fichier désigné.
+	 * Zip les fichier de log dans le fichier dï¿½signï¿½.
 	 * 
 	 * @param outputZip
 	 *            le fichier destination.
 	 * @throws IOException
-	 *             si une erreur d'écriture a lieu.
+	 *             si une erreur d'ï¿½criture a lieu.
 	 */
 	public void zipLogFiles(File outputZip) throws IOException {
 		LogFilesZipper.zip(outputZip, listCheminFichiersLog);
@@ -585,17 +586,17 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * @return les catégories du schéma.
+	 * @return les catï¿½gories du schï¿½ma.
 	 */
 	public Categories getCategories() {
 		return categories;
 	}
 
 	/**
-	 * Retire le fichier du schéma.
+	 * Retire le fichier du schï¿½ma.
 	 * 
 	 * @param f
-	 *            le fichier à retirer.
+	 *            le fichier ï¿½ retirer.
 	 */
 	public void removeFichier(Fichier f) {
 		fichiers.remove(f);
@@ -603,7 +604,7 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * @return le nombre total de fichiers dans le schéma.
+	 * @return le nombre total de fichiers dans le schï¿½ma.
 	 */
 	public int getNbFichiers() {
 		return fichiers.size();

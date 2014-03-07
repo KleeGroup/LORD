@@ -8,7 +8,7 @@ import java.util.Set;
 import spark.reprise.outil.moteur.ContrainteMultiCol;
 
 /**
- * Cette contrainte vérifie l'unicité de plusieurs colonne d'un même fichier. 
+ * Cette contrainte vÃ©rifie l'unicitÃ© de plusieurs colonne d'un mÃªme fichier. 
  */
 public class ContrainteMultiColUnique extends ContrainteMultiCol {
 
@@ -18,7 +18,7 @@ public class ContrainteMultiColUnique extends ContrainteMultiCol {
 	 * Construint une contrainte Unique sur plusieurs colonnes.
 	 * @param id l'identifiant de la contrainte
 	 * @param errTemplate le template du message d'erreur
-	 * @param cols les colonnes définis uniques
+	 * @param cols les colonnes dÃ©finies uniques
 	 */
 	public ContrainteMultiColUnique(String id, String errTemplate, String[] cols) {
 

@@ -2,12 +2,12 @@ package spark.reprise.outil.config;
 
 import javax.xml.bind.JAXBElement;
 
-import spark.reprise.outil.config.xml.ObjectFactory;
-import spark.reprise.outil.config.xml.TypeColonne;
-import spark.reprise.outil.config.xml.TypeContrainte;
-import spark.reprise.outil.config.xml.TypeContrainteMultiColonne;
-import spark.reprise.outil.config.xml.TypeFichier;
-import spark.reprise.outil.config.xml.TypeSchema;
+import com.kleegroup.lord.config.xml.ObjectFactory;
+import com.kleegroup.lord.config.xml.TypeColonne;
+import com.kleegroup.lord.config.xml.TypeContrainte;
+import com.kleegroup.lord.config.xml.TypeContrainteMultiColonne;
+import com.kleegroup.lord.config.xml.TypeFichier;
+import com.kleegroup.lord.config.xml.TypeSchema;
 import spark.reprise.outil.moteur.Categories;
 import spark.reprise.outil.moteur.Colonne;
 import spark.reprise.outil.moteur.ContrainteMultiCol;

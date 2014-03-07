@@ -58,7 +58,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnMoveFileUp() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/go-up.png")));
-	    putValue(SHORT_DESCRIPTION,"Déplacer le fichier ou la catégorie séléctionnés vers le haut.");
+	    putValue(SHORT_DESCRIPTION,"DÃ©placer le fichier ou la catÃ©gorie sÃ©lÃ©ctionnÃ©s vers le haut.");
 	}
 
 	/** {@inheritDoc} */
@@ -76,7 +76,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnMoveFileDn() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/go-down.png")));
-	    putValue(SHORT_DESCRIPTION,"Déplacer le fichier ou la catégorie séléctionnés vers le bas.");
+	    putValue(SHORT_DESCRIPTION,"DÃ©placer le fichier ou la catÃ©gorie sÃ©lÃ©ctionnÃ©s vers le bas.");
 	}
 
 	/** {@inheritDoc} */
@@ -94,7 +94,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnDelFileCat() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/delete.gif")));
-	    putValue(SHORT_DESCRIPTION,"Supprimer le fichier ou la catégorie séléctionnés.");
+	    putValue(SHORT_DESCRIPTION,"Supprimer le fichier ou la catÃ©gorie sÃ©lÃ©ctionnÃ©s.");
 	}
 
 	/** {@inheritDoc} */
@@ -112,7 +112,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnMoveColDn() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/go-down.png")));
-	    putValue(SHORT_DESCRIPTION,"Déplacer la colonne séléctionée vers la droite dans le fichier.");
+	    putValue(SHORT_DESCRIPTION,"DÃ©placer la colonne sÃ©lÃ©ctionÃ©e vers la droite dans le fichier.");
 	}
 
 	/** {@inheritDoc} */
@@ -130,7 +130,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnMoveColUp() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/go-up.png")));
-	    putValue(SHORT_DESCRIPTION,"Déplacer la colonne séléctionée vers la gauche dans le fichier.");
+	    putValue(SHORT_DESCRIPTION,"DÃ©placer la colonne sÃ©lÃ©ctionÃ©e vers la gauche dans le fichier.");
 	}
 
 	/** {@inheritDoc} */
@@ -148,7 +148,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnDeleteCol() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/delete.gif")));
-	    putValue(SHORT_DESCRIPTION,"Supprimer la colonne séléctionée.");
+	    putValue(SHORT_DESCRIPTION,"Supprimer la colonne sÃ©lÃ©ctionÃ©e.");
 	}
 
 	/** {@inheritDoc} */
@@ -185,7 +185,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnNewFile() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/add.gif")));
-	    putValue(SHORT_DESCRIPTION,"Ajouter un nouveau fichier au schéma.");
+	    putValue(SHORT_DESCRIPTION,"Ajouter un nouveau fichier au schÃ©ma.");
 	}
 
 	/** {@inheritDoc} */
@@ -202,7 +202,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnNewCat() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/add_cat.gif")));
-	    putValue(SHORT_DESCRIPTION,"Ajouter une nouvelle catégorie au schéma.");
+	    putValue(SHORT_DESCRIPTION,"Ajouter une nouvelle catÃ©gorie au schÃ©ma.");
 	}
 
 	/** {@inheritDoc} */
@@ -218,9 +218,9 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	private static final long serialVersionUID = -2551078572811820430L;
 
 	ActnShowGeneralOptions() {
-	    this.putValue(NAME, "Options générales...");
+	    this.putValue(NAME, "Options gÃ©nÃ©rales...");
 	    putValue(MNEMONIC_KEY, KeyEvent.VK_G);
-	    putValue(SHORT_DESCRIPTION,"Afficher les options générales du schéma.");
+	    putValue(SHORT_DESCRIPTION,"Afficher les options gÃ©nÃ©rales du schÃ©ma.");
 	}
 
 	/** {@inheritDoc} */
@@ -255,7 +255,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
 	ActnShowMultiColConstraints() {
 	    this.putValue(NAME, "...");
-	    putValue(SHORT_DESCRIPTION,"Modifier les vérifications spécifiques du fichier.");
+	    putValue(SHORT_DESCRIPTION,"Modifier les vÃ©rifications spÃ©cifiques du fichier.");
 	}
 
 	/** {@inheritDoc} */
@@ -295,7 +295,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 			getSystemResource("resources/images/document-open.png")));
 	    putValue(MNEMONIC_KEY, KeyEvent.VK_O);
 	    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control O"));
-	    putValue(SHORT_DESCRIPTION,"Ouvrir un nouveau schéma.");
+	    putValue(SHORT_DESCRIPTION,"Ouvrir un nouveau schÃ©ma.");
 	}
 
 	/** {@inheritDoc} */
@@ -316,7 +316,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 			    "resources/images/document-save.png")));
 	    putValue(MNEMONIC_KEY, KeyEvent.VK_S);
 	    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control S"));
-	    putValue(SHORT_DESCRIPTION,"Sauvegarder le schéma actuel.");
+	    putValue(SHORT_DESCRIPTION,"Sauvegarder le schÃ©ma actuel.");
 	}
 
 	/** {@inheritDoc} */
@@ -336,7 +336,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 		    .getSystemClassLoader().getResource(
 			    "resources/images/document-save-as.png")));
 	    putValue(MNEMONIC_KEY, KeyEvent.VK_A);
-	    putValue(SHORT_DESCRIPTION,"Sauvegarder le schéma actuel dans un fichier différent.");
+	    putValue(SHORT_DESCRIPTION,"Sauvegarder le schÃ©ma actuel dans un fichier diffÃ©rent.");
 	}
 
 	/** {@inheritDoc} */
@@ -354,7 +354,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnDuplicateFile() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/duplicate-file.png")));
-	    putValue(SHORT_DESCRIPTION,"Dupliquer le fichier séléctionné.");
+	    putValue(SHORT_DESCRIPTION,"Dupliquer le fichier sÃ©lÃ©ctionnÃ©.");
 	}
 
 	/** {@inheritDoc} */
@@ -377,7 +377,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(Character
 		    .valueOf('n'), java.awt.event.InputEvent.CTRL_MASK));
 	    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("control N"));
-	    putValue(SHORT_DESCRIPTION,"Créer un nouveau schéma.");
+	    putValue(SHORT_DESCRIPTION,"CrÃ©er un nouveau schÃ©ma.");
 	}
 
 	/** {@inheritDoc} */
@@ -398,7 +398,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 			    "resources/images/validate.gif")));
 	    putValue(MNEMONIC_KEY, KeyEvent.VK_V);
 	    putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke("F5"));
-	    putValue(SHORT_DESCRIPTION,"Vérifier que le schéma est correct.");
+	    putValue(SHORT_DESCRIPTION,"VÃ©rifier que le schÃ©ma est correct.");
 	}
 
 	/** {@inheritDoc} */
@@ -611,10 +611,10 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
     private void setText() {
 	setTitle(ORD_TITLE);
-	jlblNomFichier.setText("Début du nom du fichier");
+	jlblNomFichier.setText("Dï¿½but du nom du fichier");
 	jmbmExtensionFichier.setText("Extension");
 	jlblGroupeFichier.setText("N Groupe du fichier");
-	jlblEnteteFichier.setText("Nombre de ligne d'entête");
+	jlblEnteteFichier.setText("Nombre de ligne d'entï¿½te");
 	jlblSeuilErreurFichier.setText("Seuil d'erreurs");
     }
 
@@ -915,7 +915,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
     private void adjustTableColumnSize() {
 	// Calcul des tailles optimales des colonnes
-	// on utilise unqiuement les données du premier fichier (selectionné par
+	// on utilise unqiuement les donnï¿½es du premier fichier (selectionnï¿½ par
 	// defaut)
 	for (int i = 0; i < jtblFileDetails.getColumnCount(); i++) {
 	    final TableColumn column = jtblFileDetails.getColumnModel()
@@ -950,7 +950,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
     /**
          * @param model
-         *                le modèle de la table des colonnes.
+         *                le modï¿½le de la table des colonnes.
          */
     public void setTableModel(TableModel model) {
 	jtblFileDetails.setModel(model);
@@ -1051,7 +1051,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
     /**
          * @param nom
-         *                la valeur de PrefixNom à afficher à l'utilisateur
+         *                la valeur de PrefixNom Ã  afficher Ã  l'utilisateur
          */
     public void setNamePrefix(String nom) {
 	jtxtNamePrefix.setText(nom);
@@ -1066,14 +1066,14 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
     /**
          * @param extension
-         *                la valeur de l'extension à afficher à l'utilisateur
+         *                la valeur de l'extension Ã  afficher Ã  l'utilisateur
          */
     public void setFileExtension(String extension) {
 	jtxtExtension.setText(extension);
     }
 
     /**
-         * @return le numéro du groupe du fichier que l'utilisateur a choisi
+         * @return le numï¿½ro du groupe du fichier que l'utilisateur a choisi
          */
     public int getFileGroup() {
 	return (Integer) jspnFileGroup.getValue();
@@ -1095,7 +1095,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
     /**
          * @param value
-         *                le numéro du groupe du fichier à afficher à
+         *                le numÃ©ro du groupe du fichier Ã  afficher Ã 
          *                l'utilisateur
          */
     public void setFileGroupNumber(int value) {
@@ -1104,7 +1104,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
     /**
          * @param value
-         *                le nombre de ligne d'entête à afficher à l'utilisateur
+         *                le nombre de ligne d'entÃªte Ã  afficher Ã  l'utilisateur
          */
     public void setFileHeaderLinesCount(int value) {
 	jspnFileHeader.setValue(value);
@@ -1112,7 +1112,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
     /**
          * @param value
-         *                le seuil d'erreurs à afficher à l'utilisateur
+         *                le seuil d'erreurs Ã  afficher Ã  l'utilisateur
          */
     public void setFileErrorLimit(int value) {
 	jspnFileErrorLimit.setValue(value);
@@ -1120,7 +1120,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
     /**
          * synchronisre l'affichage avec le controlleur.<br>
-         * Utilisé suite à des modifications, pour réfléter ces modifications
+         * Utilisï¿½ suite ï¿½ des modifications, pour rï¿½flï¿½ter ces modifications
          * dans l'affichage. par exemple, lors de la selection d'un nouveau
          * fichier
          */
@@ -1153,12 +1153,12 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
     /**
          * @param currentFileMultiColContraintesCount
-         *                le nombre de vérifications à afficher à l'utilisateur
+         *                le nombre de vï¿½rifications ï¿½ afficher ï¿½ l'utilisateur
          */
     public void setFileContraintesMultiColCount(
 	    int currentFileMultiColContraintesCount) {
 	jLabel6.setText(currentFileMultiColContraintesCount
-		+ " Vérification(s) spécifique(s)");
+		+ " Vï¿½rification(s) spï¿½cifique(s)");
 
     }
 
@@ -1319,8 +1319,8 @@ public class FenetrePrincipaleAdmin extends JFrame {
     }
 
     /**
-     * Affiche la zone "détails des fichiers".  Cette zone contient la table
-     * des colonnes ainsi que le reste des paramètres du fichier.
+     * Affiche la zone "dÃ©tails des fichiers".  Cette zone contient la table
+     * des colonnes ainsi que le reste des paramÃ¨tres du fichier.
      * @param etat true s'il faut l'afficher/
      */
     public void showFileDetails(boolean etat) {
@@ -1351,8 +1351,8 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	    /**
 	     * Constructeur MyJTable
 	     * 
-	     * @param currentCellEditor paramètre à définir
-	     * @param controller paramètre à définir
+	     * @param currentCellEditor paramÃ¨tre Ã  dÃ©finir
+	     * @param controller paramÃ¨tre Ã  dÃ©finir
 	     */
 	    public MyJTable(TableCellEditor currentCellEditor, FenetrePrincipaleAdminController controller) {
 	    	super();

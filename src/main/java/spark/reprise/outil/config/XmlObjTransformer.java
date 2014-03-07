@@ -3,11 +3,11 @@ package spark.reprise.outil.config;
 import java.util.ArrayList;
 import java.util.List;
 
-import spark.reprise.outil.config.xml.TypeColonne;
-import spark.reprise.outil.config.xml.TypeContrainte;
-import spark.reprise.outil.config.xml.TypeContrainteMultiColonne;
-import spark.reprise.outil.config.xml.TypeFichier;
-import spark.reprise.outil.config.xml.TypeSchema;
+import com.kleegroup.lord.config.xml.TypeColonne;
+import com.kleegroup.lord.config.xml.TypeContrainte;
+import com.kleegroup.lord.config.xml.TypeContrainteMultiColonne;
+import com.kleegroup.lord.config.xml.TypeFichier;
+import com.kleegroup.lord.config.xml.TypeSchema;
 import spark.reprise.outil.moteur.Colonne;
 import spark.reprise.outil.moteur.Colonne.PRESENCE;
 import spark.reprise.outil.moteur.ContrainteMultiCol;
@@ -75,7 +75,7 @@ public class XmlObjTransformer {
 			Fichier fRef = schemaEquiv.getFichier(fichierRef.get(i));
 			if (fRef != null) {
 				Colonne cRef = fRef.getColonne(colonneRef.get(i));
-				if (cRef != null) {// la colonne a ÈtÈ trouvee
+				if (cRef != null) {// la colonne a √©t√© trouv√©e
 					colonnesPrinc.get(i).getFichierParent().addReference(colonnesPrinc.get(i).getNom(), cRef);
 				}
 			}
@@ -118,7 +118,7 @@ public class XmlObjTransformer {
 			if ("ContrainteReference".equals(contrainteOriginale.getType())) {
 				addReference(colonneEquiv, contrainteOriginale.getParam().get(0), contrainteOriginale.getParam().get(1));
 			} else {
-				// on ignore ContrainteTRUE parceque cette contrainte ne fais
+				// on ignore ContrainteTRUE parce que cette contrainte ne fais
 				// rien
 				if (!"ContrainteTRUE".equals(contrainteOriginale.getType())) {
 					colonneEquiv.addContrainte(transform(contrainteOriginale));

@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>LORD</groupId>
-	<artifactId>klee-reprise</artifactId>
+	<groupId>com.kleegroup</groupId>
+	<artifactId>LORD</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
 	<name>Outil-Reprise-Donnees</name>
@@ -13,10 +13,10 @@
 		<!-- Target JDK version -->
 		<jdk.version>1.7</jdk.version>
 		<!-- User interface for end-user (file testing only) -->
-		<mainClass>spark.reprise.outil.ui.utilisateur.UserUI</mainClass>
+		<mainClass>com.kleegroup.lord.ui.utilisateur.UserUI</mainClass>
 		<!-- User interface for administrator (exclusive with previous) -->
-		<!-- <mainClass>spark.reprise.outil.ui.admin.AdminUI</mainClass> -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- <mainClass>com.kleegroup.lord.ui.admin.AdminUI</mainClass> -->
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 	</properties>
 
 	<build>
@@ -113,7 +113,7 @@
 							<schemaFiles>schemaFichierConfig.xsd</schemaFiles>
 							<staleFile>${project.build.directory}/generated-sources/jaxb/.schemaFichierConfigStaleFlag</staleFile>
 							<!-- The package in which the source files will be generated. -->
-							<packageName>spark.reprise.outil.config.xml</packageName>
+							<packageName>com.kleegroup.lord.config.xml</packageName>
 							<!-- The working directory to create the generated java source files. -->
 							<outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
 						</configuration>

@@ -6,14 +6,14 @@ Ce programme a pour objectif de valider le format et le contenu de fichiers CSV 
 
 ##1. Pourquoi utiliser LORD ?
 
-La reprise de données est un problème récurrent pour lequel le plus souvent des solutions jetables sont mises en place.
+La reprise de données est un problème récurrent pour lequel, le plus souvent, des solutions jetables sont mises en place. LORD est un outil qui permet de limiter les parties spécifiques (et donc jetées) lors de reprises de données.
 
-LORD a pour objectifs principaux
-* formaliser le contrat du format attendu
+LORD a pour objectifs principaux de :
+* formaliser le contrat du format attendu (xml)
 * ne pas recoder les contrôles pour chaque reprise
 * limiter les itérations (données fiables)
 
-Mais aussi :
+Et par conséquence :
 * assurer la confidentialité des données (le contrôle peut être fait chez le client, par des équipes habilités)
 * commencer le chantier d’extraction des données plus tôt
 * valider d’autres données (interfaces, jeux de test)
@@ -40,18 +40,19 @@ LORD est capable de tester les points suivants :
 ### Contraintes sur les données
 
 LORD est capable de tester les points suivants :
-* Unicité de la valeur au sein d'un fichier
+* Unicité de la valeur au sein d'un fichier (colonne unique et multi-colonne)
 * Liste de contrôle (explicite)
 * Intégrité référentielle vers une colonne
+* Validation d'une expression régulière
 	
 ##2. Usage
 
 Lancer l'interface administrateur afin de générer un fichier "schema.xml".
 ```
-java -cp klee-reprise-1.0-shaded.jar spark.reprise.outil.ui.admin.AdminUI 
+java -cp LORD-1.0-shaded.jar spark.reprise.outil.ui.admin.AdminUI 
 ```
 
 Lancer l'interface utilisateur afin de procéder au contrôle.
 ```
-java -cp klee-reprise-1.0-shaded.jar spark.reprise.outil.ui.utilisateur.UserUI
+java -cp LORD-1.0-shaded.jar spark.reprise.outil.ui.utilisateur.UserUI
 ```
