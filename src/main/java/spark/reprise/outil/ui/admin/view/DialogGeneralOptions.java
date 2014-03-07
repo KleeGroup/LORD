@@ -9,7 +9,7 @@ import javax.swing.JDialog;
 import spark.reprise.outil.ui.admin.controller.DialogGeneralOptionsController;
 
 /**
- * Fenetre des options générales.
+ * Fenetre des options gÃ©nÃ©rales
  */
 public class DialogGeneralOptions extends JDialog {
 
@@ -55,7 +55,7 @@ public class DialogGeneralOptions extends JDialog {
     public DialogGeneralOptions(DialogGeneralOptionsController controller) {
 	this.controller=controller;
 	initComponents();
-	setTitle("Options générales");
+	setTitle("Options gÃ©nÃ©rales");
 	center();
     }
 
@@ -81,7 +81,7 @@ public class DialogGeneralOptions extends JDialog {
 
     private void setText() {
 	jCheckBox1.setText
-			("Activer la fonctionalité \"Exporter les logs\" " +
+			("Activer la fonctionalitÃ© \"Exporter les logs\" " +
 			"dans l'interface utilisateur");
 	jButton1.setText("jButton1");
 	jButton2.setText("jButton2");

@@ -12,6 +12,7 @@ LORD a pour objectifs principaux
 * formaliser le contrat du format attendu
 * ne pas recoder les contrôles pour chaque reprise
 * limiter les itérations (données fiables)
+
 Mais aussi :
 * assurer la confidentialité des données (le contrôle peut être fait chez le client, par des équipes habilités)
 * commencer le chantier d’extraction des données plus tôt

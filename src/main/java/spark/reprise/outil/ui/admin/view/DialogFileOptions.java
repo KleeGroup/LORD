@@ -87,7 +87,7 @@ public final class DialogFileOptions extends JDialog {
 	 */
 	private void initComponents() {
 
-		createComonents();
+		createComponents();
 
 		setResizable(false);
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -174,7 +174,7 @@ public final class DialogFileOptions extends JDialog {
 		getContentPane().add(jPanel, gridBagConstraints);
 	}
 
-	private void createComonents() {
+	private void createComponents() {
 		jlblEncoding = new javax.swing.JLabel();
 		jlblSeparateurChamp = new javax.swing.JLabel();
 		jlblSeparateurDecimales = new javax.swing.JLabel();
