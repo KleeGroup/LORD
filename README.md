@@ -1,5 +1,3 @@
-__Warning, this project is still under developement.__
-
 # L'Outil de Reprise de Données (LORD)
 
 Ce programme a pour objectif de valider le format et le contenu de fichiers CSV d'après une spécification XML. Il propose aussi une interface pour définir ces règles.
