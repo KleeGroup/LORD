@@ -58,7 +58,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnMoveFileUp() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/go-up.png")));
-	    putValue(SHORT_DESCRIPTION,"Déplacer le fichier ou la catégorie séléctionnés vers le haut.");
+	    putValue(SHORT_DESCRIPTION,"Déplacer le fichier ou la catégorie sélectionnés vers le haut.");
 	}
 
 	/** {@inheritDoc} */
@@ -76,7 +76,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnMoveFileDn() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/go-down.png")));
-	    putValue(SHORT_DESCRIPTION,"Déplacer le fichier ou la catégorie séléctionnés vers le bas.");
+	    putValue(SHORT_DESCRIPTION,"Déplacer le fichier ou la catégorie sélectionnés vers le bas.");
 	}
 
 	/** {@inheritDoc} */
@@ -94,7 +94,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnDelFileCat() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/delete.gif")));
-	    putValue(SHORT_DESCRIPTION,"Supprimer le fichier ou la catégorie séléctionnés.");
+	    putValue(SHORT_DESCRIPTION,"Supprimer le fichier ou la catégorie sélectionnés.");
 	}
 
 	/** {@inheritDoc} */
@@ -112,7 +112,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnMoveColDn() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/go-down.png")));
-	    putValue(SHORT_DESCRIPTION,"Déplacer la colonne séléctionée vers la droite dans le fichier.");
+	    putValue(SHORT_DESCRIPTION,"Déplacer la colonne sélectionnée vers la droite dans le fichier.");
 	}
 
 	/** {@inheritDoc} */
@@ -130,7 +130,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnMoveColUp() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/go-up.png")));
-	    putValue(SHORT_DESCRIPTION,"Déplacer la colonne séléctionée vers la gauche dans le fichier.");
+	    putValue(SHORT_DESCRIPTION,"Déplacer la colonne sélectionnée vers la gauche dans le fichier.");
 	}
 
 	/** {@inheritDoc} */
@@ -148,7 +148,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnDeleteCol() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/delete.gif")));
-	    putValue(SHORT_DESCRIPTION,"Supprimer la colonne séléctionée.");
+	    putValue(SHORT_DESCRIPTION,"Supprimer la colonne sélectionnée.");
 	}
 
 	/** {@inheritDoc} */
@@ -354,7 +354,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	ActnDuplicateFile() {
 	    super("", new ImageIcon(ClassLoader.
 			getSystemResource("resources/images/duplicate-file.png")));
-	    putValue(SHORT_DESCRIPTION,"Dupliquer le fichier séléctionné.");
+	    putValue(SHORT_DESCRIPTION,"Dupliquer le fichier sélectionné.");
 	}
 
 	/** {@inheritDoc} */
@@ -611,10 +611,10 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
     private void setText() {
 	setTitle(ORD_TITLE);
-	jlblNomFichier.setText("D�but du nom du fichier");
+	jlblNomFichier.setText("Début du nom du fichier");
 	jmbmExtensionFichier.setText("Extension");
 	jlblGroupeFichier.setText("N Groupe du fichier");
-	jlblEnteteFichier.setText("Nombre de ligne d'ent�te");
+	jlblEnteteFichier.setText("Nombre de ligne d'entête");
 	jlblSeuilErreurFichier.setText("Seuil d'erreurs");
     }
 
@@ -905,17 +905,17 @@ public class FenetrePrincipaleAdmin extends JFrame {
     private void resetTableEditors() {
 	jtblFileDetails.getColumnModel().getColumn(2).setCellEditor(
 		new DefaultCellEditor(
-			new JComboBox(controller.getObFacValues())));
+			new JComboBox<String>(controller.getObFacValues())));
 	jtblFileDetails.getColumnModel().getColumn(5)
 		.setCellEditor(
-			new DefaultCellEditor(new JComboBox(controller
+			new DefaultCellEditor(new JComboBox<String>(controller
 				.getTypeValues())));
 
     }
 
     private void adjustTableColumnSize() {
 	// Calcul des tailles optimales des colonnes
-	// on utilise unqiuement les donn�es du premier fichier (selectionn� par
+	// on utilise unqiuement les données du premier fichier (selectionné par
 	// defaut)
 	for (int i = 0; i < jtblFileDetails.getColumnCount(); i++) {
 	    final TableColumn column = jtblFileDetails.getColumnModel()
@@ -1153,12 +1153,12 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
     /**
          * @param currentFileMultiColContraintesCount
-         *                le nombre de v�rifications � afficher � l'utilisateur
+         *                le nombre de vérifications à afficher à l'utilisateur
          */
     public void setFileContraintesMultiColCount(
 	    int currentFileMultiColContraintesCount) {
 	jLabel6.setText(currentFileMultiColContraintesCount
-		+ " V�rification(s) sp�cifique(s)");
+		+ " Vérification(s) spécifique(s)");
 
     }
 

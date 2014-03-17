@@ -6,11 +6,11 @@ import java.util.List;
 import com.kleegroup.lord.moteur.ContrainteUniCol;
 
 /**
- *Cette contrainte permet de s'assurer que l'ensemble ses valeur du champ r�f�rant sont
- * incluses dans l'ensemble des valeurs du champ de r�f�rence.
+ *Cette contrainte permet de s'assurer que l'ensemble ses valeur du champ référant sont
+ * incluses dans l'ensemble des valeurs du champ de référence.
  * <br><br>
  *  Elle utilise une contrainte ContrainteReferenceLookup pour obtenir les valeurs
- *   de r�f�rence.
+ *   de référence.
  * @author maazreibi
  *
  */
@@ -18,11 +18,11 @@ public class ContrainteReference extends ContrainteUniCol {
 	protected ContrainteReferenceLookup dict;
 
 	/**
-	 * Construit la contrainte de r�f�rence en utilisant une contrainte auxiliaire 
-	 * de r�f�rence dict de type ContrainteReferenceLookup.<br><br>
+	 * Construit la contrainte de référence en utilisant une contrainte auxiliaire 
+	 * de référence dict de type ContrainteReferenceLookup.<br><br>
 	 * 
-	 * Il vaut mieux �vite de cr�er cette contrainte � la main.Il est pr�f�rable de passer par
-	 * la m�thode
+	 * Il vaut mieux éviter de créer cette contrainte à la main.Il est préférable de passer par
+	 * la méthode
 	 * {@link com.kleegroup.lord.moteur.Fichier#addReference(String, com.kleegroup.lord.moteur.Colonne)}
 	 * 
 	 * @param dict  contrainte auxiliaire de r�f�rence
@@ -59,14 +59,14 @@ public class ContrainteReference extends ContrainteUniCol {
 	}
 
 	/**
-	 * @return le nom du fichier r�f�renc� par cette contrainte.
+	 * @return le nom du fichier référencé par cette contrainte.
 	 */
 	public String getFichierRef() {
 		return dict.getNomFichier();
 	}
 
 	/**
-	 * @return le nom de la colonne r�f�renc�e par cette contrainte.
+	 * @return le nom de la colonne référencée par cette contrainte.
 	 */
 	public String getColonneRef() {
 		return dict.getColonneParent().getNom();

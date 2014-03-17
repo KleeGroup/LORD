@@ -59,7 +59,7 @@ public final class DialogFileOptions extends JDialog {
 	private final DialogFileOptionsController controller;
 
 	/**
-	 * @param cntrl controlleur de la fenetre
+	 * @param cntrl contrôleur de la fenêtre
 	 */
 	public DialogFileOptions(DialogFileOptionsController cntrl) {
 		this.controller = cntrl;

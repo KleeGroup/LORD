@@ -6,7 +6,7 @@ import java.util.List;
 import com.kleegroup.lord.moteur.ContrainteUniCol;
 
 /**
- * v�rifie que les valeurs d'un champ sont conforme � une expression r�guli�re.
+ * vérifie que les valeurs d'un champ sont conforme à une expression régulière.
  * @author maazreibi
  *
  */
@@ -15,7 +15,7 @@ public class ContrainteRegex extends ContrainteUniCol {
 
 	/**
 	 * Construit la contrainte.
-	 * @param regex l'expression r�guli�re qui valide les valeurs du champ
+	 * @param regex l'expression régulière qui valide les valeurs du champ
 	 */
 	public ContrainteRegex(String regex) {
 		super();//ne fais rien.pour faire taire PMD
@@ -25,7 +25,7 @@ public class ContrainteRegex extends ContrainteUniCol {
 	//	/** {@inheritDoc} */
 	//	@Override
 	//	public  String getMessageErreur() {
-	//		return "La valeur ne suit pas le format d�fini.";		
+	//		return "La valeur ne suit pas le format défini.";		
 	//	}
 
 	/** {@inheritDoc} */
@@ -43,9 +43,9 @@ public class ContrainteRegex extends ContrainteUniCol {
 	}
 
 	/**
-	 * L'expression r�guli�re de test sert � tester les valeurs. Elle doit �tre
-	 * une expression r�guli�re java valide. voir {@link java.util.regex.Pattern} 
-	 * @return renvoie l'expression r�guli�re de test de la fonction.
+	 * L'expression régulière de test sert à tester les valeurs. Elle doit être
+	 * une expression régulière java valide. voir {@link java.util.regex.Pattern} 
+	 * @return renvoie l'expression régulière de test de la fonction.
 	 * */
 	public String getRegex() {
 		return regex;

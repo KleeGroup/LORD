@@ -6,8 +6,8 @@ import java.util.List;
 import com.kleegroup.lord.moteur.ContrainteUniCol;
 
 /**
- * Cette contrainte v�rifie que la valeur est parmi une liste pr�d�termin�e.
- * Elle l�ve une erreur si ce n'est pas le cas.
+ * Cette contrainte vérifie que la valeur est parmi une liste prédéterminée.
+ * Elle lève une erreur si ce n'est pas le cas.
  * @author maazreibi
  */
 public class ContrainteListeValeursPermises extends ContrainteUniCol {
@@ -18,10 +18,10 @@ public class ContrainteListeValeursPermises extends ContrainteUniCol {
 	/**
 	 * Constructeur de la contrainte
 	 * <br><br>
-	 * La liste de valeurs permises peut �tre un array de String (<code> String[]</code>)
-	 * ou bien les valeurs s�par�s par une virgule.
+	 * La liste de valeurs permises peut être un array de String (<code> String[]</code>)
+	 * ou bien les valeurs séparées par une virgule.
 	 * <br><br>
-	 * Les deux exemples suivants sont correctes et �quivalents:<br>
+	 * Les deux exemples suivants sont corrects et équivalents:<br>
 	 * 1
 	 * <code> String a[]=new String(){"1","2","3"}; <br>
 	 * new ContrainteListeValeursPermises(a);<br></code>
@@ -58,9 +58,9 @@ public class ContrainteListeValeursPermises extends ContrainteUniCol {
 	 */
 	@Override
 	public  boolean estConforme(final String valeur) {
-		/*utilisation d'une recherche lin�aire au lieu d'une recherche par dichotomie
-		 * parce que c'est plus simple et plus efficace, surtout que la liste de valeur permises
-		 * contient peu d'elements (moins de 5)
+		/* utilisation d'une boucle au lieu d'une recherche par dichotomie
+		 * parce que c'est plus simple et aussi efficace, étant donné que la liste de valeur permises
+		 * contient peu d'éléments (moins de 5 en général)
 		 */
 
 	/*	if (Arrays.binarySearch(valeur_permise, valeur)<0){					
@@ -83,8 +83,8 @@ public class ContrainteListeValeursPermises extends ContrainteUniCol {
 
 
 	/**renovie la liste des valeurs permises.La valeur v�rifi�e doit appartenir � cette liste.
-	 *La v�rification est sensible aux majuscles.
-	 *@return la liste des valeurs permises s�par�es par une virgule.
+	 *La vérification est sensible aux majuscles.
+	 *@return la liste des valeurs permises séparées par une virgule.
 	 */
 	public String getSimpleListeValeurs() {
 	    return listeValeurs;

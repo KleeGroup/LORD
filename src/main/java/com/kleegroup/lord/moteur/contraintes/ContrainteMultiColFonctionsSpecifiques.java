@@ -8,7 +8,7 @@ import java.util.Collection;
 import com.kleegroup.lord.moteur.ContrainteMultiCol;
 
 /**
- * Cette classe est responsable d'impl�menter les v�rifications sp�cifiques.
+ * Cette classe est responsable d'implémenter les vérifications spécifiques.
  */
 public class ContrainteMultiColFonctionsSpecifiques extends ContrainteMultiCol {
 	private Method method = null;//la m�thode qu'appelera la contrainte pour effectuer la verification
@@ -38,10 +38,10 @@ public class ContrainteMultiColFonctionsSpecifiques extends ContrainteMultiCol {
 
 	/**
 	 * Teste si la fonction est valide. La fonction est valide, si elle existe, si tous
-	 * ses param�tres sont de type String et si le nombre de colonnes d�sign�s param�tres
-	 * est �gale au nombre des param�tres de la fonction.
+	 * ses paramètres sont de type String et si le nombre de colonnes désignés paramètres
+	 * est égale au nombre des paramètres de la fonction.
 	 * @param nomFonction le nom de la fonction
-	 * @param cols les colonnes d�sign�s param�tre de la fonction
+	 * @param cols les colonnes désignés paramètre de la fonction
 	 * @return True si la fonction est valide, false sinon.
 	 */
 	public static boolean isValide(String nomFonction, String... cols) {
@@ -65,8 +65,8 @@ public class ContrainteMultiColFonctionsSpecifiques extends ContrainteMultiCol {
 			return true;
 
 		} catch (Exception e) {
-			/*echec de l'appel de la fonction
-			 * causes probables: nbre de parametre incorrecte, param == null, droits d'acc�s(private,protected method)
+			/* echec de l'appel de la fonction
+			 * causes probables: nbre de parametre incorrecte, param == null, droits d'accès(private,protected method)
 			 */
 			String msg = "";
 			for (int i = 0; i < valeurs.length; i++) {

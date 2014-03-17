@@ -18,7 +18,7 @@ import com.kleegroup.lord.ui.admin.controller.DialogSelectColumnController;
 
 /**
  * Classe qui lance un dialogue de selection de colonne lorsque l'utilisateur clique sur une 
- * cellule d'une table qui affiche les d�tails d'un fichier.
+ * cellule d'une table qui affiche les détails d'un fichier.
  */
 public class ColonneChooser extends AbstractCellEditor implements TableCellEditor, ActionListener {
 
@@ -63,7 +63,7 @@ public class ColonneChooser extends AbstractCellEditor implements TableCellEdito
 
 	/**
 	 * Construit un ColonneChooser pour afficher les colonnes du sch�ma sch�ma.
-	 * @param schema le sch�ma dont affiche les colonnes.
+	 * @param schema le schéma dont affiche les colonnes.
 	 * @param exclu fichier exclu de l'affichage des colonnes.
 	 */
 	public ColonneChooser(Schema schema, Fichier exclu) {

@@ -6,8 +6,8 @@ import java.util.List;
 import com.kleegroup.lord.moteur.ContrainteUniCol;
 
 /**
- * Cette contrainte sert � v�rifier que les valeurs du champ poss�dent une
- *  taille maximale inf�rieure � une taille limite d�termin�e.
+ * Cette contrainte sert à vérifier que les valeurs du champ possèdent une
+ *  taille maximale inférieure à une taille limite déterminée.
  * @author maazreibi
  *
  */
@@ -16,7 +16,7 @@ public class ContrainteTaille extends ContrainteUniCol {
 
 	/**
 	 * Construit une ContrainteTaille.
-	 * @param taille la taille limite � ne pas d�passer
+	 * @param taille la taille limite à ne pas dépasser
 	 */
 	public ContrainteTaille(int taille) {
 		super();//pour PMD

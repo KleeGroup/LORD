@@ -8,11 +8,11 @@ import java.util.Set;
 import com.kleegroup.lord.moteur.ContrainteUniCol;
 
 /**
- * Cette contrainte est une contrainte auxiliaire � la contrainte de r�f�rence. <br><br>
+ * Cette contrainte est une contrainte auxiliaire à la contrainte de référence. <br><br>
  * Elle sert 
- * � stocker les valeurs de la colonne r�f�renc�e dans un HashSet, qui sera utilis� par la 
- * contrainte de r�f�rence principale(ContrainteReference) pour d�terminer si la 
- * valeur r�f�renc�e existe ou pas. 
+ * à stocker les valeurs de la colonne référencée dans un HashSet, qui sera utilisé par la 
+ * contrainte de référence principale(ContrainteReference) pour déterminer si la 
+ * valeur référencée existe ou pas. 
  * @author maazreibi
  *
  */
@@ -30,10 +30,10 @@ public class ContrainteReferenceLookup extends ContrainteUniCol {
 	}
 
 	/**
-	 * 	Cette m�thode permet de d�terminer si une valeur a d�j� �t� rencontr�e dans la colonne
-	 * r�f�renc�e.
-	 * @param valeur la valeur � tester
-	 * @return <code>true</code> si la valeur a d�j� �t� rencontr�e, <code>false</code> sinon  
+	 * 	Cette méthode permet de d�terminer si une valeur a déjà été rencontrée dans la colonne
+	 * référencée.
+	 * @param valeur la valeur à tester
+	 * @return <code>true</code> si la valeur a déjà été rencontrée, <code>false</code> sinon  
 	 */
 	public boolean lookup(final String valeur) {
 		return dict.contains(valeur);
@@ -58,8 +58,8 @@ public class ContrainteReferenceLookup extends ContrainteUniCol {
 		dict.clear();
 	}
 
-	/**Il est inutile de copier cette contrainte. <br>Elle sera automatiquement cr�e lors 
-	 * de l'ajout de la r�f�rence en utilisant la fonction 
+	/**Il est inutile de copier cette contrainte. <br>Elle sera automatiquement crée lors 
+	 * de l'ajout de la référence en utilisant la fonction 
 	 * {@link com.kleegroup.lord.moteur.Fichier#addReference(String, com.kleegroup.lord.moteur.Colonne)}
 	 * @return une contrainte de type {@link ContrainteTRUE}
 	 * */
