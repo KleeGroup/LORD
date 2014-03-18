@@ -2,6 +2,7 @@ package com.kleegroup.lord.ui.admin.view;
 
 import java.awt.event.ActionEvent;
 import java.nio.charset.Charset;
+import java.util.ResourceBundle;
 import java.util.Set;
 
 import javax.swing.AbstractAction;
@@ -18,11 +19,13 @@ public final class DialogFileOptions extends JDialog {
 
 	private static final long serialVersionUID = -6828356803936809959L;
 
+	final ResourceBundle resourceMap = ResourceBundle.getBundle("resources.Administration");
+
 	private class ActnOk extends AbstractAction {
 		private static final long serialVersionUID = -2551078572811820430L;
 
 		ActnOk() {
-			this.putValue(NAME, "OK");
+			this.putValue(NAME, resourceMap.getString("action.ok"));
 		}
 
 		/**{@inheritDoc}*/
@@ -36,7 +39,7 @@ public final class DialogFileOptions extends JDialog {
 		private static final long serialVersionUID = 8418816007160731744L;
 
 		ActnCancel() {
-			this.putValue(NAME, "Annuler");
+			this.putValue(NAME, resourceMap.getString("action.cancel"));
 		}
 
 		/**{@inheritDoc}*/
@@ -48,13 +51,13 @@ public final class DialogFileOptions extends JDialog {
 
 	private javax.swing.JButton jbtnOk;
 	private javax.swing.JButton jbtnCancel;
-	private javax.swing.JComboBox jcbEncoding;
+	private javax.swing.JComboBox<String> jcbEncoding;
 	private javax.swing.JLabel jlblEncoding;
 	private javax.swing.JLabel jlblSeparateurChamp;
 	private javax.swing.JLabel jlblSeparateurDecimales;
 	private javax.swing.JPanel jPanel;
-	private javax.swing.JComboBox jcbFieldSeparator;
-	private javax.swing.JComboBox jcbDecimalSeparator;
+	private javax.swing.JComboBox<String> jcbFieldSeparator;
+	private javax.swing.JComboBox<String> jcbDecimalSeparator;
 
 	private final DialogFileOptionsController controller;
 
@@ -67,7 +70,7 @@ public final class DialogFileOptions extends JDialog {
 		setEncoding(controller.getEncoding());
 		setFieldSeparator(controller.getFieldSeparator());
 		setDecimalSeparator(controller.getDecimalSeparator());
-		setTitle("Options des fichiers");
+		setTitle(resourceMap.getString("window.options.files.title"));
 	}
 
 	private void setDecimalSeparator(String decimalSeparator) {
@@ -96,9 +99,9 @@ public final class DialogFileOptions extends JDialog {
 		jcbEncoding.setModel(new DefaultComboBoxModel(s.toArray()));
 		jcbEncoding.setSelectedItem("ISO-8859-15");
 
-		jcbFieldSeparator.setModel(new DefaultComboBoxModel(new String[] { ",", ";" }));
+		jcbFieldSeparator.setModel(new DefaultComboBoxModel<String>(new String[] { ",", ";" }));
 		jcbEncoding.setSelectedIndex(1);
-		jcbDecimalSeparator.setModel(new DefaultComboBoxModel(new String[] { ",", "." }));
+		jcbDecimalSeparator.setModel(new DefaultComboBoxModel<String>(new String[] { ",", "." }));
 		jcbEncoding.setSelectedIndex(0);
 
 		jbtnOk.setAction(new ActnOk());
@@ -110,9 +113,9 @@ public final class DialogFileOptions extends JDialog {
 	}
 
 	private void setText() {
-		jlblEncoding.setText("Encoding");
-		jlblSeparateurChamp.setText("SeparateurChamp");
-		jlblSeparateurDecimales.setText("SeparateurDecimales");
+		jlblEncoding.setText(resourceMap.getString("label.options.encoding"));
+		jlblSeparateurChamp.setText(resourceMap.getString("label.options.field.separator"));
+		jlblSeparateurDecimales.setText(resourceMap.getString("label.options.decimal.separator"));
 	}
 
 	private void createLayout() {
@@ -178,9 +181,9 @@ public final class DialogFileOptions extends JDialog {
 		jlblEncoding = new javax.swing.JLabel();
 		jlblSeparateurChamp = new javax.swing.JLabel();
 		jlblSeparateurDecimales = new javax.swing.JLabel();
-		jcbEncoding = new javax.swing.JComboBox();
-		jcbFieldSeparator = new javax.swing.JComboBox();
-		jcbDecimalSeparator = new javax.swing.JComboBox();
+		jcbEncoding = new javax.swing.JComboBox<String>();
+		jcbFieldSeparator = new javax.swing.JComboBox<String>();
+		jcbDecimalSeparator = new javax.swing.JComboBox<String>();
 		jPanel = new javax.swing.JPanel();
 		jbtnOk = new javax.swing.JButton();
 		jbtnCancel = new javax.swing.JButton();

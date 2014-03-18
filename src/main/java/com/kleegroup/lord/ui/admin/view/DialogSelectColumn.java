@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
 import javax.swing.Box;
@@ -21,12 +22,15 @@ import com.kleegroup.lord.ui.admin.controller.DialogSelectColumnController;
  * Fenetre qui permet de selectionner une(ou plusieurs) colonne parmi une liste de colonne.  
  */
 public class DialogSelectColumn extends javax.swing.JDialog {
+
+	final ResourceBundle resourceMap = ResourceBundle.getBundle("resources.Administration");
+
 	private class ActnOK extends AbstractAction {
 
 		private static final long serialVersionUID = 1L;
 
 		ActnOK() {
-			putValue(NAME, "OK");
+			putValue(NAME, resourceMap.getString("action.ok"));
 		}
 
 		/**{@inheritDoc}*/
@@ -42,7 +46,7 @@ public class DialogSelectColumn extends javax.swing.JDialog {
 		private static final long serialVersionUID = 1L;
 
 		ActnCancel() {
-			putValue(NAME, "Cancel");
+			putValue(NAME, resourceMap.getString("action.cancel"));
 		}
 
 		/**{@inheritDoc}*/
@@ -95,18 +99,19 @@ public class DialogSelectColumn extends javax.swing.JDialog {
 
 	private final boolean singleSelectMode;
 
-	/** Cr�e une nouvelle fenetre de selection de colonnes. 
+	/** Crée une nouvelle fenêtre de sélection de colonnes. 
 	 * @param controller le controlleur de la fenetre
-	 * @param multiSelectMode true pour permettre la selection de plusieure colonne */
+	 * @param multiSelectMode true pour permettre la sélection de plusieurs colonnes
+	 **/
 	public DialogSelectColumn(DialogSelectColumnController controller, boolean multiSelectMode) {
 		this.controller = controller;
 		initComponents();
 		this.singleSelectMode = multiSelectMode;
 		jtreeCols.setRootVisible(false);
 		if (singleSelectMode) {
-			setTitle("Choisir une colonne");
+			setTitle(resourceMap.getString("window.colselect.title.mono"));
 		} else {
-			setTitle("Choisir les colonnes");
+			setTitle(resourceMap.getString("window.colselect.title.multi"));
 		}
 	}
 
@@ -134,23 +139,21 @@ public class DialogSelectColumn extends javax.swing.JDialog {
 			public void changedUpdate(DocumentEvent e) {
 				setFilter();
 			}
-
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				setFilter();
 			}
-
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				setFilter();
 			}
 		});
+
 		jtreeCols.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				addSelectedElement(e);
 			}
-
 		});
 
 		if (singleSelectMode) {
@@ -166,14 +169,14 @@ public class DialogSelectColumn extends javax.swing.JDialog {
 	}
 
 	private void setText() {
-		jlblFiltre.setText("Filtre");
-		jlblListColonnes.setText("Liste des Colonne");
-		jlblColonnesSelectionnees.setText("Colonnes selectionn�es");
+		jlblFiltre.setText(resourceMap.getString("label.colselect.filter"));
+		jlblListColonnes.setText(resourceMap.getString("label.colselect.list"));
+		jlblColonnesSelectionnees.setText(resourceMap.getString("label.colselect.selection"));
 	}
 
 	/**
-	 * Active/d�sactive le bouton ok.
-	 * @param enabled true si le bouton doit �tre activ�
+	 * Active/désactive le bouton ok.
+	 * @param enabled true si le bouton doit être activé
 	 */
 	public void setOkEnabled(boolean enabled) {
 		jbtnOK.setEnabled(enabled);

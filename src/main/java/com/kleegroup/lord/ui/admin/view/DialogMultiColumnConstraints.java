@@ -2,6 +2,7 @@ package com.kleegroup.lord.ui.admin.view;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
+import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
 import javax.swing.Box;
@@ -21,7 +22,9 @@ public class DialogMultiColumnConstraints extends JDialog {
     
     private static final long serialVersionUID = 2357228148372984990L;
     
-    final DialogMultiColumnConstraintsController controller;
+	final ResourceBundle resourceMap = ResourceBundle.getBundle("resources.Administration");
+
+	final DialogMultiColumnConstraintsController controller;
     
     private javax.swing.JButton jbtnAddContrainte;
 
@@ -75,7 +78,7 @@ public class DialogMultiColumnConstraints extends JDialog {
 	private static final long serialVersionUID = 1L;
 
 	ActnOK() {
-	    putValue(NAME, "OK");
+	    putValue(NAME, resourceMap.getString("action.ok"));
 	}
 
 	/**{@inheritDoc}*/
@@ -91,7 +94,7 @@ public class DialogMultiColumnConstraints extends JDialog {
 	private static final long serialVersionUID = 1L;
 
 	ActnCancel() {
-	    putValue(NAME, "Cancel");
+	    putValue(NAME, resourceMap.getString("action.cancel"));
 	}
 
 	/**{@inheritDoc}*/
@@ -103,7 +106,7 @@ public class DialogMultiColumnConstraints extends JDialog {
     }
 
     /**
-     * Cree une fenetre d'édition des contrainte MultiColonne.
+     * Crée une fenêtre d'édition des contrainte MultiColonne.
      * @param controller controlleur de la fenetre
      */
     public DialogMultiColumnConstraints(
@@ -127,18 +130,18 @@ public class DialogMultiColumnConstraints extends JDialog {
 	jbtnAddContrainte.setAction(new ActnAddConstraint());
 	jbtnDelContrainte.setAction(new ActnDeleteConstraint());
 
-	setTitle("Vérifications Spécifiques");
+	setTitle(resourceMap.getString("window.multicolconstraint"));
 	createLayout();
 	pack();
 	setLocationRelativeTo(null);
     }
 
     private void setText() {
-	jlblListeVerif.setText("Liste des vérifications");
-	jbtnAddContrainte.setText("+");
-	jbtnDelContrainte.setText("-");
-	jbtnOk.setText("OK");
-	jbtnCancel.setText("Annuler");
+	jlblListeVerif.setText(resourceMap.getString("window.multicolconstraint.list"));
+	//jbtnAddContrainte.setText("+");
+	//jbtnDelContrainte.setText("-");
+	//jbtnOk.setText(resourceMap.getString("action.ok"));
+	//jbtnCancel.setText(resourceMap.getString("action.cancel"));
     }
 
     private void createLayout() {

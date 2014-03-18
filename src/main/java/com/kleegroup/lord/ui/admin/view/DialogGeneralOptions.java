@@ -1,6 +1,7 @@
 package com.kleegroup.lord.ui.admin.view;
 
 import java.awt.event.ActionEvent;
+import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
 import javax.swing.Box;
@@ -14,6 +15,9 @@ import com.kleegroup.lord.ui.admin.controller.DialogGeneralOptionsController;
 public class DialogGeneralOptions extends JDialog {
 
     private static final long serialVersionUID = 1L;
+
+	final ResourceBundle resourceMap = ResourceBundle.getBundle("resources.Administration");
+
     private final DialogGeneralOptionsController controller;
     
     private javax.swing.JButton jButton1;
@@ -27,7 +31,7 @@ public class DialogGeneralOptions extends JDialog {
 	private static final long serialVersionUID = -2551078572811820430L;
 
 	ActnOk(){
-	    this.putValue(NAME, "OK");
+	    this.putValue(NAME, resourceMap.getString("action.ok"));
 	}
 
 	/**{@inheritDoc}*/
@@ -40,7 +44,7 @@ public class DialogGeneralOptions extends JDialog {
 	private static final long serialVersionUID = 8418816007160731744L;
 
 	ActnCancel(){
-	    this.putValue(NAME, "Annuler");
+	    this.putValue(NAME, resourceMap.getString("action.cancel"));
 	}
 
 	/**{@inheritDoc}*/
@@ -55,7 +59,7 @@ public class DialogGeneralOptions extends JDialog {
     public DialogGeneralOptions(DialogGeneralOptionsController controller) {
 	this.controller=controller;
 	initComponents();
-	setTitle("Options générales");
+	setTitle(resourceMap.getString("window.options.general.title"));
 	center();
     }
 
@@ -80,11 +84,9 @@ public class DialogGeneralOptions extends JDialog {
     }
 
     private void setText() {
-	jCheckBox1.setText
-			("Activer la fonctionalité \"Exporter les logs\" " +
-			"dans l'interface utilisateur");
-	jButton1.setText("jButton1");
-	jButton2.setText("jButton2");
+	jCheckBox1.setText(resourceMap.getString("label.options.logexport"));
+	//jButton1.setText("jButton1");
+	//jButton2.setText("jButton2");
     }
 
     private void createLayout() {

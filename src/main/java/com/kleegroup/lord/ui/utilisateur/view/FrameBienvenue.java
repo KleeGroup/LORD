@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 import javax.swing.BoxLayout;
 
 /**
- * Fenetre d'accueil du programme.
+ * Fenêtre d'accueil du programme.
  */
 public class FrameBienvenue extends javax.swing.JPanel {
 

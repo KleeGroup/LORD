@@ -23,7 +23,7 @@ import com.kleegroup.lord.moteur.util.SeparateurDecimales;
 import com.kleegroup.lord.ui.common.model.FileTreeModel;
 
 /**
- * Modele de la fenetre principale de la fenetre administrateur.
+ * Modèle de la fenêtre principale de la fenêtre administrateur.
  */
 public class FenetrePrincipaleAdminModel {
 
@@ -42,7 +42,7 @@ public class FenetrePrincipaleAdminModel {
 		 */
 		private static final long serialVersionUID = 4157087119873576473L;
 
-		private final String nomColonne[] = new String[] { "Colonne", "Description", "O/F", "Ref", "Unique", "Type", "Format", "Taille Max", "Valeurs permises", "Champ de contr�le", };
+		private final String nomColonne[] = new String[] { "Colonne", "Description", "O/F", "Ref", "Unique", "Type", "Format", "Taille Max", "Valeurs permises", "Champ de contrôle", };
 
 		private Fichier f = new Fichier("", "");
 
@@ -208,12 +208,12 @@ public class FenetrePrincipaleAdminModel {
 
 		}
 
-		private void setValueAtPart2(Object value, int row, int col) {
+		private void setValueAtPart2(Object value, int row, int colType) {
 			final Colonne c = f.getColonne(row);
-			switch (col) {
+			switch (colType) {
 				case 5:
 					createContrainteType((String) value, c);
-					fireTableCellUpdated(row, col + 1);
+					fireTableCellUpdated(row, colType + 1);
 					break;
 				case 6:
 					createContrainteFormat((String) value, c);
@@ -225,7 +225,7 @@ public class FenetrePrincipaleAdminModel {
 					createContrainteListeValeursPermises((String) value, c);
 					break;
 				case 9:
-					final List<Colonne> tmpCol = new ArrayList<>();
+					final List<Colonne> tmpCol = new ArrayList<Colonne>();
 					for (final Colonne o : (List<Colonne>) value) {
 						tmpCol.add(o);
 					}
