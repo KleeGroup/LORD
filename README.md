@@ -1,6 +1,6 @@
 # L'Outil de Reprise de Données (LORD)
 
-Ce programme a pour objectif de valider le format et le contenu de fichiers CSV d'après une spécification XML. Il propose aussi une interface pour définir ces règles.
+Ce programme a pour objectif de valider le format et le contenu d'un ensemble de fichiers CSV d'après une spécification XML. Il propose aussi une interface pour aider à la définition de ces règles (mode admin).
 
 ##1. Pourquoi utiliser LORD ?
 
@@ -44,6 +44,12 @@ LORD est capable de tester les points suivants :
 * Validation d'une expression régulière
 	
 ##2. Usage
+
+###2.1. Construction du JAR
+
+N'oubliez pas d'inclure "target/generated-sources/jaxb" dans votre build path.
+
+###2.2. Exécution du programme
 
 Lancer l'interface administrateur afin de générer un fichier "schema.xml".
 ```
