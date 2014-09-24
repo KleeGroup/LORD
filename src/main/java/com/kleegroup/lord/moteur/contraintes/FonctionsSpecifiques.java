@@ -1,7 +1,7 @@
 package com.kleegroup.lord.moteur.contraintes;
 
 /**
- * Contient les fonctions statiques utilisables pour crï¿½er un contrainte multicolonne.
+ * Contient les fonctions statiques utilisables pour créer une contrainte multicolonne.
  * 
  * @author maazreibi
  *

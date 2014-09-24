@@ -21,8 +21,8 @@ public interface ICSVDataSource  {
 	 */
 	long getNbCharactersRead();
 	/**
-	 * dï¿½finit le sï¿½prateur de champ de la source.
-	 * @param separator le sï¿½prateur de champ de la source.
+	 * dï¿½finit le séparateur de champ de la source.
+	 * @param separator le séparateur de champ de la source.
 	 */
 	void setFieldSeparator(char separator);
 	/**

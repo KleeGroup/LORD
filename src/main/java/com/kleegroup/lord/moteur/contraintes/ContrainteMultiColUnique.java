@@ -8,7 +8,7 @@ import java.util.Set;
 import com.kleegroup.lord.moteur.ContrainteMultiCol;
 
 /**
- * Cette contrainte vÃ©rifie l'unicitÃ© de plusieurs colonne d'un mÃªme fichier. 
+ * Cette contrainte vérifie l'unicité de plusieurs colonne d'un même fichier. 
  */
 public class ContrainteMultiColUnique extends ContrainteMultiCol {
 
@@ -18,7 +18,7 @@ public class ContrainteMultiColUnique extends ContrainteMultiCol {
 	 * Construint une contrainte Unique sur plusieurs colonnes.
 	 * @param id l'identifiant de la contrainte
 	 * @param errTemplate le template du message d'erreur
-	 * @param cols les colonnes dÃ©finies uniques
+	 * @param cols les colonnes définies uniques
 	 */
 	public ContrainteMultiColUnique(String id, String errTemplate, String[] cols) {
 

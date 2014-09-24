@@ -8,7 +8,7 @@ import java.util.Set;
 import com.kleegroup.lord.moteur.ContrainteUniCol;
 
 /**
- * Vï¿½rifie que toutes les valeurs d'une colonne sont uniques.
+ * Vérifie que toutes les valeurs d'une colonne sont uniques.
  * @author maazreibi
  *
  */

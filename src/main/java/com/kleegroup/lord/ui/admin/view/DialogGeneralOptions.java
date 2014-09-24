@@ -10,7 +10,7 @@ import javax.swing.JDialog;
 import com.kleegroup.lord.ui.admin.controller.DialogGeneralOptionsController;
 
 /**
- * Fenetre des options gÃ©nÃ©rales
+ * Fenêtre des options générales
  */
 public class DialogGeneralOptions extends JDialog {
 

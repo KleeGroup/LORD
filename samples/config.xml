@@ -21,7 +21,6 @@
             <colonne nom="ID" description="Identifiant" presence-valeur="OBLIGATOIRE" colonne-de-reference="false">
                 <contrainte type="ContrainteUnique"/>
                 <contrainte type="ContrainteTypeEntier"/>
-                <contrainte type="ContrainteTRUE"/>
             </colonne>
             <colonne nom="Nom" description="Libellé" presence-valeur="OBLIGATOIRE" colonne-de-reference="false">
                 <contrainte type="ContrainteTypeChaineDeCaractere"/>
@@ -114,13 +113,13 @@
     <fichier nom="Stock" groupe="0" categorie="Stock" prefix-nom="Nouveau Fichier" extension="" seuil-erreurs="-1" nb-lignes-entete="0">
         <colonnes>
             <colonne nom="CODE_ENT" description="Identifiant entrepôt" presence-valeur="OBLIGATOIRE" colonne-de-reference="false">
-                <contrainte type="ContrainteReference">
-                    <param>Entrepôts</param>
-                    <param>Code</param>
-                </contrainte>
                 <contrainte type="ContrainteTypeChaineDeCaractere"/>
                 <contrainte type="ContrainteTaille">
                     <param>4</param>
+                </contrainte>
+                <contrainte type="ContrainteReference">
+                    <param>Entrepôts</param>
+                    <param>Code</param>
                 </contrainte>
             </colonne>
             <colonne nom="ID_ART" description="Identifiant article" presence-valeur="OBLIGATOIRE" colonne-de-reference="false">

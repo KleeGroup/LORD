@@ -42,7 +42,7 @@ public class FenetrePrincipaleAdminModel {
 		 */
 		private static final long serialVersionUID = 4157087119873576473L;
 
-		private final String nomColonne[] = new String[] { "Colonne", "Description", "O/F", "Ref", "Unique", "Type", "Format", "Taille Max", "Valeurs permises", "Champ de contrÃ´le", };
+		private final String nomColonne[] = new String[] { "Colonne", "Description", "O/F", "Ref", "Unique", "Type", "Format", "Taille Max", "Valeurs permises", "Champ de contrôle", };
 
 		private Fichier f = new Fichier("", "");
 

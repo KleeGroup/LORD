@@ -13,7 +13,7 @@ import javax.swing.JDialog;
 import com.kleegroup.lord.ui.admin.controller.DialogFileOptionsController;
 
 /**
- * Fenetre d'option des fichiers.
+ * Fenêtre d'option des fichiers.
  */
 public final class DialogFileOptions extends JDialog {
 
