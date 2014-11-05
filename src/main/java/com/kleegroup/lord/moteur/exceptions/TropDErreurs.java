@@ -1,4 +1,4 @@
-package com.kleegroup.lord.moteur.exceptions;
+﻿package com.kleegroup.lord.moteur.exceptions;
 
 /**
  * Excpetion lev�e si le nombre d'erreur rencontr�e est sup�rieur � un seuil d�fini. 

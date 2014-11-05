@@ -1,4 +1,4 @@
-package com.kleegroup.lord.config;
+﻿package com.kleegroup.lord.config;
 
 import javax.xml.bind.JAXBElement;
 

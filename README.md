@@ -40,7 +40,7 @@ LORD est capable de tester les points suivants :
 LORD est capable de tester les points suivants :
 * Unicité de la valeur au sein d'un fichier (colonne unique et multi-colonne)
 * Liste de contrôle (explicite)
-* Intégrité référentielle vers une colonne
+* Intégrité référentielle vers une donnée du même fichier ou d'un autre
 * Validation d'une expression régulière
 	
 ##2. Usage

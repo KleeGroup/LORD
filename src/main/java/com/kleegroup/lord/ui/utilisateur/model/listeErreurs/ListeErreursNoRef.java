@@ -1,4 +1,4 @@
-package com.kleegroup.lord.ui.utilisateur.model.listeErreurs;
+﻿package com.kleegroup.lord.ui.utilisateur.model.listeErreurs;
 
 import java.util.List;
 

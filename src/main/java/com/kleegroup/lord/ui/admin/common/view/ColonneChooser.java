@@ -1,4 +1,4 @@
-package com.kleegroup.lord.ui.admin.common.view;
+﻿package com.kleegroup.lord.ui.admin.common.view;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;

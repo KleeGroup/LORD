@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Created on 7 avr. 2004
  * by jmainaud
  */

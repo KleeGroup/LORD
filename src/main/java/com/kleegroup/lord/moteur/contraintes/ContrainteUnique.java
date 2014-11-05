@@ -1,4 +1,4 @@
-package com.kleegroup.lord.moteur.contraintes;
+﻿package com.kleegroup.lord.moteur.contraintes;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,7 +8,7 @@ import java.util.Set;
 import com.kleegroup.lord.moteur.ContrainteUniCol;
 
 /**
- * V�rifie que toutes les valeurs d'une colonne sont uniques.
+ * Vérifie que toutes les valeurs d'une colonne sont uniques.
  * @author maazreibi
  *
  */
