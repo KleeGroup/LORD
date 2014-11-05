@@ -1,23 +1,25 @@
-package com.kleegroup.lord.ui.admin.model;
+﻿package com.kleegroup.lord.ui.admin.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.kleegroup.lord.moteur.Colonne;
 import com.kleegroup.lord.moteur.ContrainteMultiCol;
+import com.kleegroup.lord.moteur.ContrainteRegistry;
+import com.kleegroup.lord.moteur.ContrainteRegistry.ContrainteMulticolEnum;
 import com.kleegroup.lord.moteur.Fichier;
 import com.kleegroup.lord.moteur.contraintes.ContrainteMultiColFonctionsSpecifiques;
 
 /**
- * Cette classe sert � repr�senter, construire et d�truire les contraintes d'un fichier.<br>
+ * Cette classe sert ï¿½ reprï¿½senter, construire et dï¿½truire les contraintes d'un fichier.<br>
  * <br>
  * Comme l'utilisateur peut annuler ses modifications, et que la construction d'une contrainte
- * se fait par �tape, cette classe m�morise les choix de l'utilisateur, dans des objets
- * "commandes de contrainte" sans  r�ellement construire de contrainte.<br><br>
+ * se fait par ï¿½tape, cette classe mï¿½morise les choix de l'utilisateur, dans des objets
+ * "commandes de contrainte" sans  rï¿½ellement construire de contrainte.<br><br>
  * 
  * <br>
  *  La construction des contraintes a lieu dans la fonction {@link #createConstraints()},
- *  qui est appel�e une fois que l'utilisateur a fini ses modifications et cliqu� sur OK.
+ *  qui est appelï¿½e une fois que l'utilisateur a fini ses modifications et cliquï¿½ sur OK.
  * 
  */
 public class DialogMultiColumnConstraintsModel {
@@ -38,7 +40,6 @@ public class DialogMultiColumnConstraintsModel {
 				return test;
 			}
 			return test && ContrainteMultiColFonctionsSpecifiques.isValide(method, cols.toArray(new String[cols.size()]));
-
 		}
 	}
 
@@ -179,7 +180,7 @@ public class DialogMultiColumnConstraintsModel {
 		}
 
 		/**
-		 * @return la position de la premi�re commande de contrainte invalide.
+		 * @return la position de la premiï¿½re commande de contrainte invalide.
 		 */
 		public int getFirstInvalideConstrainte() {
 			for (int j = 0; j < commandes.size(); j++) {
@@ -195,8 +196,8 @@ public class DialogMultiColumnConstraintsModel {
 		}
 
 		/**
-		 * supprime la commande de contrainte � la postion pos.
-		 * @param pos la position de la commande � supprimer.
+		 * supprime la commande de contrainte ï¿½ la postion pos.
+		 * @param pos la position de la commande ï¿½ supprimer.
 		 */
 		public void deleteConstraint(int pos) {
 			if (pos >= 0 && pos < commandes.size()) {
@@ -212,7 +213,7 @@ public class DialogMultiColumnConstraintsModel {
 	private final Fichier f;
 
 	/**
-	 * @param f le fichier mod�le
+	 * @param f le fichier modï¿½le
 	 */
 	public DialogMultiColumnConstraintsModel(Fichier f) {
 		tableModel = new TableModel(f);
@@ -227,7 +228,7 @@ public class DialogMultiColumnConstraintsModel {
 	}
 
 	/**
-	 * Cr�e une nouvelle "Commande" de contrainte. la commande est initialement vide.
+	 * Crï¿½e une nouvelle "Commande" de contrainte. la commande est initialement vide.
 	 */
 	public void addConstraintCommand() {
 		tableModel.addConstraint();
@@ -235,11 +236,11 @@ public class DialogMultiColumnConstraintsModel {
 	}
 
 	/**
-	 * modifie la contrainte � la ligne row. le row d�termine la propri�t� de la contrainte qui sera
-	 * modifi�e( id, message d'erreur , nom de fonction, ...).
+	 * modifie la contrainte ï¿½ la ligne row. le row dï¿½termine la propriï¿½tï¿½ de la contrainte qui sera
+	 * modifiï¿½e( id, message d'erreur , nom de fonction, ...).
 	 * @param value la nouvelle valeur de la colonne.
-	 * @param row la position de la contrainte � modifier.
-	 * @param col la propri�t� de la contrainte � modifier.
+	 * @param row la position de la contrainte ï¿½ modifier.
+	 * @param col la propriï¿½tï¿½ de la contrainte ï¿½ modifier.
 	 */
 	public void changeFileValue(Object value, int row, int col) {
 		tableModel.setValueAt(value, row, col);
@@ -247,11 +248,13 @@ public class DialogMultiColumnConstraintsModel {
 	}
 
 	/**
-	 * @return la liste des noms de m�thode disponibles.
+	 * @return la liste des noms de méthode disponibles.
 	 */
 	public String[] getPossibleMethodNames() {
-		final List<String> pmn = new ArrayList<>(ContrainteMultiColFonctionsSpecifiques.getMethods());
-		pmn.add("Unique");
+		final List<String> pmn = new ArrayList<String>();
+		for (ContrainteMulticolEnum c : ContrainteRegistry.ContrainteMulticolEnum.values()) {
+			pmn.add(c.getFonction());
+		}
 		return pmn.toArray(new String[pmn.size()]);
 	}
 
@@ -263,7 +266,7 @@ public class DialogMultiColumnConstraintsModel {
 	}
 
 	/**
-	 * L'utilisateur a cliqu� sur OK. on prend les "commandes" de l'utilisateur
+	 * L'utilisateur a cliqué sur OK. on prend les "commandes" de l'utilisateur
 	 * et on construit.
 	 */
 	public void createConstraints() {
@@ -272,7 +275,7 @@ public class DialogMultiColumnConstraintsModel {
 
 	/**
 	 * @return la ligne de la premiere contrainte invalide
-	 * (nbre de parametre incorrect, m�thode inexsitante, ...) ou -1 si
+	 * (nbre de parametre incorrect, mï¿½thode inexsitante, ...) ou -1 si
 	 * toutes les contraintes sont valides.
 	 */
 	public int getFirstInvalidConstraint() {
@@ -281,7 +284,7 @@ public class DialogMultiColumnConstraintsModel {
 
 	/**
 	 * supprime une contrainte.
-	 * @param selectedRow la position de la contrainte � supprimer.
+	 * @param selectedRow la position de la contrainte ï¿½ supprimer.
 	 */
 	public void deleteConstraint(int selectedRow) {
 		tableModel.deleteConstraint(selectedRow);

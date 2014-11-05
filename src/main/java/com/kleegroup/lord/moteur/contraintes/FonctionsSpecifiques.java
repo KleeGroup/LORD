@@ -1,7 +1,7 @@
-package com.kleegroup.lord.moteur.contraintes;
+﻿package com.kleegroup.lord.moteur.contraintes;
 
 /**
- * Contient les fonctions statiques utilisables pour cr�er une contrainte multicolonne.
+ * Contient les fonctions statiques utilisables pour créer une contrainte multicolonne.
  * 
  * @author maazreibi
  *
@@ -11,14 +11,14 @@ public abstract class FonctionsSpecifiques {
 	 * compare deux strings.
 	 * @param string1 le premier string
 	 * @param string2 le second string
-	 * @return si string1 est �gal � string2
+	 * @return si string1 est ï¿½gal ï¿½ string2
 	 */
 	public static boolean test (final String string1,final String string2){
 		return string1.equals(string2);
 	}
 	/**
-	 * v�rifie si un string est vide.
-	 * @param valeur le string � v�rifier
+	 * vérifie si un string est vide.
+	 * @param valeur le string à vérifier
 	 * @return si valeur est vide
 	 */
 	public static boolean notnull (final String valeur){

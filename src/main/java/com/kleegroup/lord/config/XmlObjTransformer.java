@@ -1,4 +1,4 @@
-package com.kleegroup.lord.config;
+﻿package com.kleegroup.lord.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,14 +9,13 @@ import com.kleegroup.lord.config.xml.TypeContrainteMultiColonne;
 import com.kleegroup.lord.config.xml.TypeFichier;
 import com.kleegroup.lord.config.xml.TypeSchema;
 import com.kleegroup.lord.moteur.Colonne;
+import com.kleegroup.lord.moteur.Colonne.PRESENCE;
 import com.kleegroup.lord.moteur.ContrainteMultiCol;
+import com.kleegroup.lord.moteur.ContrainteRegistry;
 import com.kleegroup.lord.moteur.ContrainteUniCol;
 import com.kleegroup.lord.moteur.Fichier;
 import com.kleegroup.lord.moteur.Schema;
-import com.kleegroup.lord.moteur.Colonne.PRESENCE;
 import com.kleegroup.lord.moteur.contraintes.ContrainteListeValeursPermises;
-import com.kleegroup.lord.moteur.contraintes.ContrainteMultiColFonctionsSpecifiques;
-import com.kleegroup.lord.moteur.contraintes.ContrainteMultiColUnique;
 import com.kleegroup.lord.moteur.contraintes.ContrainteRegex;
 import com.kleegroup.lord.moteur.contraintes.ContrainteTRUE;
 import com.kleegroup.lord.moteur.contraintes.ContrainteTaille;
@@ -42,9 +41,8 @@ public class XmlObjTransformer {
 	SeparateurDecimales separateur = SeparateurDecimales.SEPARATEUR_VIRGULE;
 
 	/**
-	 * @param schemaOriginal
-	 *            le schema extrait de l'XML
-	 * @return le schema de moteur
+	 * @param schemaOriginal	le schema extrait du XML
+	 * @return 					le schema de moteur
 	 */
 	public Schema transform(TypeSchema schemaOriginal) {
 		if (schemaOriginal == null) {
@@ -75,7 +73,7 @@ public class XmlObjTransformer {
 			Fichier fRef = schemaEquiv.getFichier(fichierRef.get(i));
 			if (fRef != null) {
 				Colonne cRef = fRef.getColonne(colonneRef.get(i));
-				if (cRef != null) {// la colonne a été trouvée
+				if (cRef != null) {// la colonne a été trouvéeaaa
 					colonnesPrinc.get(i).getFichierParent().addReference(colonnesPrinc.get(i).getNom(), cRef);
 				}
 			}
@@ -118,8 +116,7 @@ public class XmlObjTransformer {
 			if ("ContrainteReference".equals(contrainteOriginale.getType())) {
 				addReference(colonneEquiv, contrainteOriginale.getParam().get(0), contrainteOriginale.getParam().get(1));
 			} else {
-				// on ignore ContrainteTRUE parce que cette contrainte ne fais
-				// rien
+				// on ignore ContrainteTRUE parce que cette contrainte ne fait rien
 				if (!"ContrainteTRUE".equals(contrainteOriginale.getType())) {
 					colonneEquiv.addContrainte(transform(contrainteOriginale));
 				}
@@ -133,12 +130,7 @@ public class XmlObjTransformer {
 		for (int i = 0; i < cols.length; i++) {
 			cols[i] = contrainteOriginale.getColonne().get(i).getNom();
 		}
-		if ("Unique".equals(contrainteOriginale.getNomFonction())) {
-			return new ContrainteMultiColUnique(contrainteOriginale.getId(), contrainteOriginale.getMessageErreur(), cols);
-
-		}
-		return new ContrainteMultiColFonctionsSpecifiques(contrainteOriginale.getId(), contrainteOriginale.getMessageErreur(), contrainteOriginale.getNomFonction(), cols);
-
+		return ContrainteRegistry.ContrainteMulticolEnum.getInstance(contrainteOriginale.getId(), contrainteOriginale.getMessageErreur(), contrainteOriginale.getNomFonction(), cols);
 	}
 
 	private ContrainteUniCol transform(TypeContrainte contrainteOriginale) {

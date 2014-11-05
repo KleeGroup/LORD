@@ -1,4 +1,4 @@
-package com.kleegroup.lord.moteur.util;
+﻿package com.kleegroup.lord.moteur.util;
 
 /**
  * Enum simple pour indique quel est la s�parateur de d�cimal (point ou virgule).

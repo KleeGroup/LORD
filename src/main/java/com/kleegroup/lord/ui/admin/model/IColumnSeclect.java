@@ -1,4 +1,4 @@
-package com.kleegroup.lord.ui.admin.model;
+﻿package com.kleegroup.lord.ui.admin.model;
 
 import java.util.List;
 
@@ -8,38 +8,38 @@ import javax.swing.tree.TreePath;
 import com.kleegroup.lord.moteur.Colonne;
 
 /**
- * Interface que les mod�le de la boite de selection des colonnes doivent impl�menter.
+ * Interface que les modèles de la boîte de sélection des colonnes doivent implémenter.
  */
 public interface IColumnSeclect {
 
    /**
-     * @return le mod�le qu'affichera l'arbre des colonnes.
+     * @return le modèle qu'affichera l'arbre des colonnes.
      */
     TreeModel getTreeModel();
 
      /**
-     * filtrer la liste des colonnes affich�s.
+     * filtrer la liste des colonnes affichées.
      * @param text le filtre des colonnes.
      */
     void setFilter(String text);
 
       /**
-     * @param tp ajouter l'�l�ment dont le treepath est tp � la s�lection.
+     * @param tp ajouter l'élément dont le treepath est tp à la sélection.
      */
     void selectElement(TreePath tp);
 
       /**
-     * @return une chaine qui represente les elements selectionn�s.
+     * @return une chaîne qui represente les éléments selectionnés.
      */
     String getSelectedElements();
 
       /**
-     * @return la liste des colonnes selectionn�es.
+     * @return la liste des colonnes selectionnées.
      */
     List<Colonne> getSelectedEltsList();
 
       /**
-     * mettre � 0 la s�l�ction.
+     * mettre à 0 la sélection.
      */
     void clear();
 

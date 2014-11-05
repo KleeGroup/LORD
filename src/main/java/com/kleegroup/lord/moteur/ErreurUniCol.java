@@ -1,18 +1,18 @@
-package com.kleegroup.lord.moteur;
+﻿package com.kleegroup.lord.moteur;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Repr�sentre une erreur rencntr�e. Contient toutes les informations n�cessaires sous 
+ * Représente une erreur rencontrée. Contient toutes les informations nécessaires sous 
  * forme de string.
  * 
- * Cet objet est cr�e par une des classes contraintes, quand une erreur est detect�e.
+ * Cet objet est créé par une des classes contraintes, quand une erreur est detectée.
  */
 public class ErreurUniCol extends Erreur {
 
 	/**
-	 * Indique que la valeur est vide, et qu'il est inutile de continuer les v�rifications.
+	 * Indique que la valeur est vide, et qu'il est inutile de continuer les vérifications.
 	 */
 	public static final ErreurUniCol ERR_VIDE = new ErreurUniCol();
 
@@ -21,8 +21,8 @@ public class ErreurUniCol extends Erreur {
 	}
 
 	/**
-	 * @param contrainteParent La contrainte unicol qui g�n�re l'erreur
-	 * @param numLigne le num�ro de la ligne de l'erreur
+	 * @param contrainteParent La contrainte unicol qui génère l'erreur
+	 * @param numLigne le numéro de la ligne de l'erreur
 	 * @param valeurs les valeurs de l'erreur
 	 */
 	public ErreurUniCol(ContrainteUniCol contrainteParent, long numLigne, String valeurs[]) {

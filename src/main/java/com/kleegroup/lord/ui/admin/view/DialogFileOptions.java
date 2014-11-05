@@ -1,4 +1,4 @@
-package com.kleegroup.lord.ui.admin.view;
+﻿package com.kleegroup.lord.ui.admin.view;
 
 import java.awt.event.ActionEvent;
 import java.nio.charset.Charset;
@@ -13,7 +13,7 @@ import javax.swing.JDialog;
 import com.kleegroup.lord.ui.admin.controller.DialogFileOptionsController;
 
 /**
- * Fen�tre d'option des fichiers.
+ * Fenêtre d'option des fichiers.
  */
 public final class DialogFileOptions extends JDialog {
 
@@ -62,7 +62,7 @@ public final class DialogFileOptions extends JDialog {
 	private final DialogFileOptionsController controller;
 
 	/**
-	 * @param cntrl contrôleur de la fenêtre
+	 * @param cntrl contrÃ´leur de la fenÃªtre
 	 */
 	public DialogFileOptions(DialogFileOptionsController cntrl) {
 		this.controller = cntrl;
@@ -96,7 +96,7 @@ public final class DialogFileOptions extends JDialog {
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 		setText();
 		final Set<String> s = Charset.availableCharsets().keySet();
-		jcbEncoding.setModel(new DefaultComboBoxModel(s.toArray()));
+		jcbEncoding.setModel(new DefaultComboBoxModel<String>((String[]) s.toArray()));
 		jcbEncoding.setSelectedItem("ISO-8859-15");
 
 		jcbFieldSeparator.setModel(new DefaultComboBoxModel<String>(new String[] { ",", ";" }));

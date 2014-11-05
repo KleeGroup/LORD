@@ -1,4 +1,4 @@
-package com.kleegroup.lord.ui.admin.model;
+﻿package com.kleegroup.lord.ui.admin.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;

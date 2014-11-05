@@ -1,4 +1,4 @@
-package com.kleegroup.lord.ui.admin.view;
+﻿package com.kleegroup.lord.ui.admin.view;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -16,7 +16,7 @@ import com.kleegroup.lord.ui.admin.common.view.ColonneChooser;
 import com.kleegroup.lord.ui.admin.controller.DialogMultiColumnConstraintsController;
 
 /**
- * Fenetre qui permet de modifier les contraintes multicolonne du fichier.
+ * Fenêtre qui permet de modifier les contraintes multicolonne du fichier.
  */
 public class DialogMultiColumnConstraints extends JDialog {
     
@@ -36,8 +36,7 @@ public class DialogMultiColumnConstraints extends JDialog {
 
     private javax.swing.JLabel jlblListeVerif;
 
-   
-    private javax.swing.JScrollPane jScrollPaneTable;
+       private javax.swing.JScrollPane jScrollPaneTable;
 
     private javax.swing.JTable jtblContraintes;
     
@@ -245,7 +244,7 @@ public class DialogMultiColumnConstraints extends JDialog {
 
     private void adjustTableColumnSize() {
 	//Calcul des tailles optimales des colonnes
-	//on utilise unqiuement les données du premier fichier (selectionné par defaut)
+	//on utilise unqiuement les donnÃ©es du premier fichier (selectionnÃ© par defaut)
 	for (int i = 0; i < jtblContraintes.getColumnCount(); i++) {
 	    final TableColumn column = jtblContraintes.getColumnModel().getColumn(i);
 

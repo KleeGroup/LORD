@@ -1,18 +1,18 @@
-package com.kleegroup.lord.moteur;
+﻿package com.kleegroup.lord.moteur;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Repr�sentre une erreur rencntr�e. Contient toutes les informations n�cessaires sous 
+ * Représente une erreur rencontrée. Contient toutes les informations nécessaires sous
  * forme de string.
  * 
- * Cet objet est cr�e par une des classes contraintes, quand une erreur est detect�e.
+ * Cet objet est créé par une des classes contraintes, quand une erreur est detectée.
  */
 public class ErreurMultiCol extends Erreur {
 	/**
-	 * @param contrainteParent la contrainte qui a g�n�r�e l'erreur
-	 * @param numLigne num�ro de ligne de l'erreur
+	 * @param contrainteParent la contrainte qui a générée l'erreur
+	 * @param numLigne numéro de ligne de l'erreur
 	 * @param valeurs les valeurs de tous les champs de la ligne de l'erreurs
 	 */
 	public ErreurMultiCol(ContrainteMultiCol contrainteParent, long numLigne, String[] valeurs) {
@@ -41,7 +41,13 @@ public class ErreurMultiCol extends Erreur {
 	public String getErrValeur() {
 		StringBuilder msg = new StringBuilder("'" + errValeurs[getContrainteParent().getIndiceParam()[0]] + "'");
 		for (int i = 1; i < getContrainteParent().getIndiceParam().length; i++) {
-			msg.append(", >" + errValeurs[getContrainteParent().getIndiceParam()[i]] + "<");
+			int indiceParam = getContrainteParent().getIndiceParam()[i];
+			// FIXED : cas d'une contrainte multicolonne dont la dernière est facultative
+			if (indiceParam < errValeurs.length) {
+				msg.append(", >" + errValeurs[indiceParam] + "<");
+			} else {
+				msg.append(", >null< (ou colonne #"+ indiceParam +" facultative)");
+			}
 		}
 		return msg.toString();
 	}

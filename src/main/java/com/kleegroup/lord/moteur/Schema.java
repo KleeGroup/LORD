@@ -1,4 +1,4 @@
-package com.kleegroup.lord.moteur;
+﻿package com.kleegroup.lord.moteur;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -348,7 +348,7 @@ public class Schema implements INotifiable {
 	 *            sert a lire le fichier
 	 * @return le schema XML
 	 * @throws JAXBException
-	 *             si la conversion � partir de l'XML echoue
+	 *             si la conversion à partir du XML échoue
 	 */
 	public static Schema fromXML(InputStream inputStream) throws JAXBException {
 
@@ -400,11 +400,11 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * d�signe l'objet � notifier lorsque certains �venements (voir
+	 * désigne l'objet à notifier lorsque certains �venements (voir
 	 * {@link INotifiable}) ont lieu.
 	 * 
 	 * @param eltANotifier
-	 *            l'objet � notifier
+	 *            l'objet à notifier
 	 */
 	public void setEltANotifier(INotifiable eltANotifier) {
 		this.eltANotifier = eltANotifier;

@@ -1,4 +1,4 @@
-package com.kleegroup.lord.ui;
+﻿package com.kleegroup.lord.ui;
 
 import java.awt.EventQueue;
 import java.io.File;
@@ -10,13 +10,13 @@ import javax.swing.UIManager;
 import org.apache.log4j.PropertyConfigurator;
 
 /**
- * La classe qui d�marre l'application.
+ * La classe qui démarre l'application.
  */
 public abstract class UILauncher {
 	protected File execDir;
 
 	/**
-	 * D�marre le programme.
+	 * Démarre le programme.
 	 */
 	public final void run() {
 		//	    URL url = getClass().getClassLoader().getResource(getClass().getPackage().getName().replace('.', '/'));
@@ -31,7 +31,7 @@ public abstract class UILauncher {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
-			/**Ne fais rien*/
+			/** Ne fait rien */
 			e.getMessage();
 		}
 
@@ -60,8 +60,8 @@ public abstract class UILauncher {
 	protected File getExecDir() {
 		/**
 		 * http://weblogs.java.net/blog/kohsuke/archive/2007/04/how_to_convert.html  
-		 * Pour corriger un bug. LE programme ne marchait pas 
-		 * si le repertoire contenanit un espace (%20) dans son chemin.
+		 * Pour corriger un bug. Le programme ne marchait pas 
+		 * si le repertoire contenait un espace (%20) dans son chemin.
 		 * */
 
 		final URL location = getClass().getProtectionDomain().getCodeSource().getLocation();

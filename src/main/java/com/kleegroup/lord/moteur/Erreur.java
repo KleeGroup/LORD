@@ -1,4 +1,4 @@
-package com.kleegroup.lord.moteur;
+﻿package com.kleegroup.lord.moteur;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,8 @@ import java.util.List;
 public abstract class Erreur implements IErreur {
 
 	/**
-	 * Un objet "Constante" qui repr�sente un �tat sans erreur.
-	 * Utilis� pour tester si une erreur est lev�e ou pas.
+	 * Un objet "Constante" qui représente un état sans erreur.
+	 * Utilisé pour tester si une erreur est levée ou pas.
 	 */
 	private static final ErreurUniCol NOERR = null;
 	protected IContrainte errOrigine;
@@ -25,8 +25,8 @@ public abstract class Erreur implements IErreur {
 	}
 
 	/**
-	 * @param contrainteParent La contrainte (unicol/multicol) qui g�n�re l'erreur
-	 * @param numLigne le num�ro de la ligne de l'erreur
+	 * @param contrainteParent La contrainte (unicol/multicol) qui génère l'erreur
+	 * @param numLigne le numéro de la ligne de l'erreur
 	 * @param valeurs les valeurs de l'erreur
 	 */
 	public Erreur(IContrainte contrainteParent, long numLigne, String[] valeurs) {
@@ -41,9 +41,9 @@ public abstract class Erreur implements IErreur {
 	}
 
 	/**
-	 * Renvoie un objet "Constante" qui repr�sente un �tat sans erreur.
-	 * Utilis� pour tester si une erreur est lev�e ou pas.
-	 * @return l'erreur Constante qui reprs�sente l'�tat pas d'erreur
+	 * Renvoie un objet "Constante" qui représente un état sans erreur.
+	 * Utilisé pour tester si une erreur est levée ou pas.
+	 * @return l'erreur Constante qui représente l'état pas d'erreur
 	 */
 	public static ErreurUniCol pasDErreur() {
 		return NOERR;

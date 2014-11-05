@@ -1,4 +1,4 @@
-package com.kleegroup.lord.ui.common.model;
+﻿package com.kleegroup.lord.ui.common.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import com.kleegroup.lord.moteur.Categories.Categorie;
 import com.kleegroup.lord.moteur.util.IHierarchieSchema;
 
 /**
- * Constuit un mod�le d'un sch�ma utilisable par un {@link javax.swing.JTree}.
+ * Constuit un modèle d'un schéma utilisable par un {@link javax.swing.JTree}.
  */
 public class FileTreeModel implements javax.swing.tree.TreeModel {
 
@@ -27,7 +27,7 @@ public class FileTreeModel implements javax.swing.tree.TreeModel {
 	private int numCatAjoutee = 0;
 
 	/**
-	     * Constuit un mod�le d'un sch�ma utilisable par un
+	     * Constuit un modèle d'un schéma utilisable par un
 	     * {@link javax.swing.JTree}.
 	     * 
 	     * @param s

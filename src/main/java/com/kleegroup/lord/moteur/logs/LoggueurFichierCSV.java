@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 
  */
 package com.kleegroup.lord.moteur.logs;

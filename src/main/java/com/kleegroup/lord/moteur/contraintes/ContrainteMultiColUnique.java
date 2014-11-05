@@ -1,4 +1,4 @@
-package com.kleegroup.lord.moteur.contraintes;
+ï»¿package com.kleegroup.lord.moteur.contraintes;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,20 +8,20 @@ import java.util.Set;
 import com.kleegroup.lord.moteur.ContrainteMultiCol;
 
 /**
- * Cette contrainte vérifie l'unicité de plusieurs colonne d'un même fichier. 
+ * Cette contrainte vÃ©rifie l'unicitÃ© de plusieurs colonne d'un mÃªme fichier. 
  */
 public class ContrainteMultiColUnique extends ContrainteMultiCol {
 
 	protected Set<List<String>> dict = new HashSet<>();
 
 	/**
-	 * Construint une contrainte Unique sur plusieurs colonnes.
+	 * Construit une contrainte Unique sur plusieurs colonnes.
+	 * 
 	 * @param id l'identifiant de la contrainte
 	 * @param errTemplate le template du message d'erreur
-	 * @param cols les colonnes définies uniques
+	 * @param cols les colonnes dÃ©finies uniques
 	 */
-	public ContrainteMultiColUnique(String id, String errTemplate, String[] cols) {
-
+	public ContrainteMultiColUnique(String id, String errTemplate, String nomFonction, String[] cols) {
 		super(id, errTemplate, cols);
 	}
 
@@ -31,8 +31,8 @@ public class ContrainteMultiColUnique extends ContrainteMultiCol {
 	}
 
 	/**
-	 * renvoie le nom de la fonction de verification.
-	 * @return le nom de la fonction de verification
+	 * renvoie le nom de la fonction de vÃ©rification.
+	 * @return le nom de la fonction de vÃ©rification
 	 */
 	@Override
 	public String getNomFonction() {

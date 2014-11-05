@@ -1,4 +1,4 @@
-package com.kleegroup.lord.ui.admin.view;
+ï»¿package com.kleegroup.lord.ui.admin.view;
 
 import java.awt.event.ActionEvent;
 import java.util.ResourceBundle;
@@ -10,7 +10,7 @@ import javax.swing.JDialog;
 import com.kleegroup.lord.ui.admin.controller.DialogGeneralOptionsController;
 
 /**
- * Fenêtre des options générales
+ * FenÃªtre des options gÃ©nÃ©rales
  */
 public class DialogGeneralOptions extends JDialog {
 
