@@ -32,10 +32,9 @@ import com.kleegroup.lord.moteur.util.IHierarchieSchema;
  */
 public abstract class ContrainteUniCol  implements IContrainte,IHierarchieSchema {
 
-    	protected final ResourceBundle resourceMap = ResourceBundle
-    		.getBundle("resources.ContraintesMessagesErreur");
+    protected final ResourceBundle resourceMap = ResourceBundle.getBundle("resources.ContraintesMessagesErreur");
     	
-    	private Colonne colonneParent;
+    private Colonne colonneParent;
 
 	private Interprete interpreteMsg=null;
 	
@@ -43,12 +42,12 @@ public abstract class ContrainteUniCol  implements IContrainte,IHierarchieSchema
 
 	private String id=this.getClass().getSimpleName();
 	/**
-	 * Cette fonction effectue les vï¿½rifications nï¿½cessaires sur la valeur d'entrï¿½e.
-	 * Si une erreur est detectï¿½e, l'appel suivant ï¿½ {@link #getMessageErreur()}
+	 * Cette fonction effectue les vérifications nï¿½cessaires sur la valeur d'entrée.
+	 * Si une erreur est detectée, l'appel suivant à {@link #getMessageErreur()}
 	 * doit renvoyer le message d'erreur correspondant.
-	 * @param valeur la valeur ï¿½ vï¿½rifier
-	 * @return <code>true</code> si aucune erreur n'est detectï¿½e.
-	 * 			 <false> si une erreur est detectï¿½e.
+	 * @param valeur la valeur à vérifier
+	 * @return <code>true</code> si aucune erreur n'est detectée.
+	 * 			 <false> si une erreur est detectée.
 	 * @throws ExceptionMoteur si la contrainte ne peut etre verifiee
 	 *  
 	 */

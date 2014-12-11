@@ -75,11 +75,9 @@ public abstract class ContrainteMultiCol implements IContrainte {
 
 	/**
 	 * 
-	 * @param numLigne
-	 *            le numéro de la ligne à vérifier
-	 * @param valeurs
-	 *            les valeurs à vérifier
-	 * @return un objet Erreur contenant les informations nécessaires
+	 * @param numLigne	le numéro de la ligne à vérifier
+	 * @param valeurs	les valeurs à vérifier
+	 * @return 			un objet Erreur contenant les informations nécessaires
 	 */
 	@Override
 	public IErreur verifie(long numLigne, String[] valeurs) {

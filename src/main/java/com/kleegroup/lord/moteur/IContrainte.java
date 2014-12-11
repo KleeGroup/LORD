@@ -5,10 +5,10 @@ import com.kleegroup.lord.moteur.exceptions.ExceptionMoteur;
 
 
 /**
- *Impl�ment� par  tout objet qui effectue des v�rifications.
- *Elle contient des fonctions qui permettent de lancer la v�rification sur sun String,
- *des fonctions qui r�cup�rent les messages d'erreurs.<br>
- *Elle d�finit aussi des constantes � utiliser pour identifier les erreurs	
+ *Implémentée par  tout objet qui effectue des vérifications.
+ *Elle contient des fonctions qui permettent de lancer la vérification sur un String,
+ *des fonctions qui récupèrent les messages d'erreurs.<br>
+ *Elle définit aussi des constantes à utiliser pour identifier les erreurs	
  *
  * @author maazreibi
  *
@@ -17,12 +17,12 @@ import com.kleegroup.lord.moteur.exceptions.ExceptionMoteur;
 public interface IContrainte  {
 	
 	/**
-	 * V�rifie que la valeur est valide selon les contraintes pr�d�finies.
+	 * Vérifie que la valeur est valide selon les contraintes prédéfinies.
 	 * @param numLigne le numero de la ligne a verifier
-	 * @param valeurs les valeurs � v�rifier
-	 * @return NO_ERR si aucune erreur n'est d�t�ct�e <br>
-	 * Sinon, un objet Erreur contenant les informations n�cessaires.
-	 * @throws ExceptionMoteur si la verification detecte une anomalie 
+	 * @param valeurs les valeurs à vérifier
+	 * @return NO_ERR si aucune erreur n'est détectée <br>
+	 * Sinon, un objet Erreur contenant les informations nécessaires.
+	 * @throws ExceptionMoteur si la vérification detecte une anomalie 
 	 * bloquante(caractere interdit, trop d'erreurs,...)
 	 * 
 	 */
@@ -51,8 +51,8 @@ public interface IContrainte  {
 
 	/**
 	 * renvoie une interpretation de la balise. voir {@link com.kleegroup.lord.moteur.Interprete}
-	 * @param balise la balise � interpreter 
-	 * @param indice l'indice (ignor� dans ce cas)
+	 * @param balise la balise à interpreter 
+	 * @param indice l'indice (ignoré dans ce cas)
 	 * @return balise
 	 * */
 	String interprete(String balise, int indice);
@@ -62,6 +62,5 @@ public interface IContrainte  {
 	 * pour pouvoir  r�utiliser cet objet pour une nouvelle v�rification 
 	 * */
 	void clean();
-	
 	
 }

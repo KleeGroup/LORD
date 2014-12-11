@@ -3,7 +3,7 @@
 import java.util.List;
 
 /**
- * Interface qui fournit les m�thode communes � tous les objets Erreur.
+ * Interface qui fournit les méthode communes à tous les objets Erreur.
  *
  */
 public interface IErreur {
@@ -16,8 +16,8 @@ public interface IErreur {
 	String getErrColonne();
 
 	/**
-	 * Indique le num�ro de la ligne d'erreur .
-	 * @return le num�ro de la ligne d'erreur 
+	 * Indique le numéro de la ligne d'erreur .
+	 * @return le numéro de la ligne d'erreur 
 	 */
 	long getErrLigne();
 
@@ -34,8 +34,8 @@ public interface IErreur {
 	String getErrOrigine();
 
 	/**
-	 * Indique la valeur qui a caus� l'erreur .
-	 * @return la valeur qui a caus� l'erreur 
+	 * Indique la valeur qui a causé l'erreur .
+	 * @return la valeur qui a causé l'erreur 
 	 */
 	String getErrValeur();
 

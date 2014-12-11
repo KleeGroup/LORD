@@ -108,7 +108,7 @@ public class Interprete {
 				type.remove(i + 1);
 			}
 		}
-		logAppli.trace("apr�s compact \n" + this);
+		logAppli.trace("après compact \n" + this);
 
 	}
 
@@ -176,7 +176,7 @@ public class Interprete {
 		logAppli.trace("template interprete =" + template);
 		Interprete inft = new Interprete();
 		inft.separerExpression(template);
-		logAppli.trace("interprete g�n�r� \n" + inft);
+		logAppli.trace("interprète généré \n" + inft);
 
 		return inft;
 	}

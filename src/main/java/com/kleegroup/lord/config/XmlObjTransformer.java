@@ -130,7 +130,7 @@ public class XmlObjTransformer {
 		for (int i = 0; i < cols.length; i++) {
 			cols[i] = contrainteOriginale.getColonne().get(i).getNom();
 		}
-		return ContrainteRegistry.ContrainteMulticolEnum.getInstance(contrainteOriginale.getId(), contrainteOriginale.getMessageErreur(), contrainteOriginale.getNomFonction(), cols);
+		return ContrainteRegistry.ContrainteMulticolEnum.createConstraint(contrainteOriginale.getId(), contrainteOriginale.getMessageErreur(), contrainteOriginale.getNomFonction(), cols);
 	}
 
 	private ContrainteUniCol transform(TypeContrainte contrainteOriginale) {

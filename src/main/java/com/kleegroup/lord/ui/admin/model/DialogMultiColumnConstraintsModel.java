@@ -8,18 +8,17 @@ import com.kleegroup.lord.moteur.ContrainteMultiCol;
 import com.kleegroup.lord.moteur.ContrainteRegistry;
 import com.kleegroup.lord.moteur.ContrainteRegistry.ContrainteMulticolEnum;
 import com.kleegroup.lord.moteur.Fichier;
-import com.kleegroup.lord.moteur.contraintes.ContrainteMultiColFonctionsSpecifiques;
 
 /**
- * Cette classe sert ï¿½ reprï¿½senter, construire et dï¿½truire les contraintes d'un fichier.<br>
+ * Cette classe sert à représenter, construire et détruire les contraintes d'un fichier.<br>
  * <br>
  * Comme l'utilisateur peut annuler ses modifications, et que la construction d'une contrainte
- * se fait par ï¿½tape, cette classe mï¿½morise les choix de l'utilisateur, dans des objets
- * "commandes de contrainte" sans  rï¿½ellement construire de contrainte.<br><br>
+ * se fait par étape, cette classe mémorise les choix de l'utilisateur, dans des objets
+ * "commandes de contrainte" sans  réellement construire de contrainte.<br><br>
  * 
  * <br>
  *  La construction des contraintes a lieu dans la fonction {@link #createConstraints()},
- *  qui est appelï¿½e une fois que l'utilisateur a fini ses modifications et cliquï¿½ sur OK.
+ *  qui est appelée une fois que l'utilisateur a fini ses modifications et cliqué sur OK.
  * 
  */
 public class DialogMultiColumnConstraintsModel {
@@ -35,11 +34,13 @@ public class DialogMultiColumnConstraintsModel {
 		}
 
 		boolean isValide() {
-			final boolean test = id != null && !("".equals(id)) && method != null && errorMessage != null && cols != null && cols.size() > 0;
-			if ("Unique".equals(method)) {
-				return test;
-			}
-			return test && ContrainteMultiColFonctionsSpecifiques.isValide(method, cols.toArray(new String[cols.size()]));
+			final boolean test = id != null
+					             && !("".equals(id))
+					             && method != null
+					             && errorMessage != null
+					             && cols != null
+					             && cols.size() > 0;
+			return test && ContrainteRegistry.ContrainteMulticolEnum.isValide(method, cols.toArray(new String[cols.size()]));
 		}
 	}
 

@@ -26,11 +26,14 @@ import com.kleegroup.lord.moteur.util.INotifiable;
  */
 public class Fichier implements IHierarchieSchema {
 
-	static final ResourceBundle RESOURCEMAP = ResourceBundle.getBundle("resources.GeneralUIMessages");
+	static final ResourceBundle RESOURCEMAP = ResourceBundle
+			.getBundle("resources.GeneralUIMessages");
 
-	private static String nomRefLookup = ContrainteReferenceLookup.class.getSimpleName().substring("Contrainte".length());
+	private static String nomRefLookup = ContrainteReferenceLookup.class
+			.getSimpleName().substring("Contrainte".length());
 
-	private static org.apache.log4j.Logger logAppli = Logger.getLogger(Fichier.class);
+	private static org.apache.log4j.Logger logAppli = Logger
+			.getLogger(Fichier.class);
 
 	protected INotifiable eltAnotifier = null;
 
@@ -81,8 +84,8 @@ public class Fichier implements IHierarchieSchema {
 	private int posColRef[] = new int[0];
 
 	/*
-	 * determine le mode d'affichage de toString 0 = le nom simplement
-	 * autre= nom +(nbErreurs) si nbErreurs!=0
+	 * determine le mode d'affichage de toString 0 = le nom simplement autre=
+	 * nom +(nbErreurs) si nbErreurs!=0
 	 */
 	private int modeAffichage = 0;
 
@@ -93,7 +96,7 @@ public class Fichier implements IHierarchieSchema {
 		 * Le fichier n'a pas été encore vérifié.
 		 */
 		EN_ATTENTE {
-			/**{@inheritDoc}*/
+			/** {@inheritDoc} */
 			@Override
 			/**{@inheritDoc}*/
 			public String toString() {
@@ -102,34 +105,37 @@ public class Fichier implements IHierarchieSchema {
 		},
 		/** en cours de verification. */
 		EN_COURS_DE_VERIFICATION {
-			/**{@inheritDoc}*/
+			/** {@inheritDoc} */
 			@Override
 			/**{@inheritDoc}*/
 			public String toString() {
-				return RESOURCEMAP.getString("etatFichier.EN_COURS_DE_VERIFICATION");
+				return RESOURCEMAP
+						.getString("etatFichier.EN_COURS_DE_VERIFICATION");
 			}
 		},
 		/**
 		 * l'utilisateur a demandé l'abandon de la vérification.
 		 */
 		ABANDONNE_UTILISATEUR {
-			/**{@inheritDoc}*/
+			/** {@inheritDoc} */
 			@Override
 			/**{@inheritDoc}*/
 			public String toString() {
-				return RESOURCEMAP.getString("etatFichier.ABANDONNE_UTILISATEUR");
+				return RESOURCEMAP
+						.getString("etatFichier.ABANDONNE_UTILISATEUR");
 			}
 		},
 		/**
-		 * l'utilisateur a demandï¿½ l'abandon de la vï¿½rification.
+		 * l'utilisateur a demandé l'abandon de la vérification.
 		 */
 
 		ABANDONNE_ERREUR_LECTURE {
-			/**{@inheritDoc}*/
+			/** {@inheritDoc} */
 			@Override
 			/**{@inheritDoc}*/
 			public String toString() {
-				return RESOURCEMAP.getString("etatFichier.ABANDONNE_ERREUR_LECTURE");
+				return RESOURCEMAP
+						.getString("etatFichier.ABANDONNE_ERREUR_LECTURE");
 			}
 		},
 
@@ -137,10 +143,11 @@ public class Fichier implements IHierarchieSchema {
 		 * L'utilisateur a désactivé la vérification de ce fichier.
 		 * */
 		DESACTIVE_UTILISATEUR {
-			/**{@inheritDoc}*/
+			/** {@inheritDoc} */
 			@Override
 			public String toString() {
-				return RESOURCEMAP.getString("etatFichier.DESACTIVE_UTILISATEUR");
+				return RESOURCEMAP
+						.getString("etatFichier.DESACTIVE_UTILISATEUR");
 			}
 		},
 		/**
@@ -148,10 +155,11 @@ public class Fichier implements IHierarchieSchema {
 		 * l'utilisateur.
 		 */
 		DESACTIVE_DEPENDANCE {
-			/**{@inheritDoc}*/
+			/** {@inheritDoc} */
 			@Override
 			public String toString() {
-				return RESOURCEMAP.getString("etatFichier.DESACTIVE_DEPENDANCE");
+				return RESOURCEMAP
+						.getString("etatFichier.DESACTIVE_DEPENDANCE");
 			}
 		},
 
@@ -159,7 +167,7 @@ public class Fichier implements IHierarchieSchema {
 		 * le fichier a été vérifié. Il ne contient pas d'erreur.
 		 */
 		VERIFIE_SANS_ERREUR {
-			/**{@inheritDoc}*/
+			/** {@inheritDoc} */
 			@Override
 			/**{@inheritDoc}*/
 			public String toString() {
@@ -170,7 +178,7 @@ public class Fichier implements IHierarchieSchema {
 		 * le fichier a été vérifié. Il contient des erreurs.
 		 */
 		VERIFIE_AVEC_ERREUR {
-			/**{@inheritDoc}*/
+			/** {@inheritDoc} */
 			@Override
 			/**{@inheritDoc}*/
 			public String toString() {
@@ -184,30 +192,36 @@ public class Fichier implements IHierarchieSchema {
 		 */
 
 		ABANDONNE_DEPENDANCE {
-			/**{@inheritDoc}*/
+			/** {@inheritDoc} */
 			@Override
 			public String toString() {
-				return RESOURCEMAP.getString("etatFichier.ABANDONNE_DEPENDANCE");
+				return RESOURCEMAP
+						.getString("etatFichier.ABANDONNE_DEPENDANCE");
 			}
 		},
 		/**
 		 * Dépassement du seuil toléré d'erreurs dans le fichier.
 		 */
 		ABANDON_TROP_D_ERREUR {
-			/**{@inheritDoc}*/
+			/** {@inheritDoc} */
 			@Override
 			/**{@inheritDoc}*/
 			public String toString() {
-				return RESOURCEMAP.getString("etatFichier.ABANDON_TROP_D_ERREUR");
+				return RESOURCEMAP
+						.getString("etatFichier.ABANDON_TROP_D_ERREUR");
 			}
 		},
-		/**Une exception non gérée a eu lieu dans le moteur.Vérification abandonnée.*/
+		/**
+		 * Une exception non gérée a eu lieu dans le moteur.Vérification
+		 * abandonnée.
+		 */
 		ABANDON_ERREUR_MOTEUR {
-			/**{@inheritDoc}*/
+			/** {@inheritDoc} */
 			@Override
 			/**{@inheritDoc}*/
 			public String toString() {
-				return RESOURCEMAP.getString("etatFichier.ABANDON_ERREUR_MOTEUR");
+				return RESOURCEMAP
+						.getString("etatFichier.ABANDON_ERREUR_MOTEUR");
 			}
 		},
 
@@ -217,27 +231,35 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * Contruit un fichier .
-	 *
-	 * @param nom     nom du fichier
-	 * @param chemin  le chemin d'acces du fichier
-	 * @param source  source des lignes du fichier
-	 * @param log     Objet responsable de logguer les erreurs
+	 * 
+	 * @param nom
+	 *            nom du fichier
+	 * @param chemin
+	 *            le chemin d'acces du fichier
+	 * @param source
+	 *            source des lignes du fichier
+	 * @param log
+	 *            Objet responsable de logguer les erreurs
 	 */
 	public Fichier(String nom, String chemin, ICSVDataSource source, ILogger log) {
 		this(nom, chemin);
 		this.logger = log;
 		this.source = source;
-		logAppli.trace(">" + nom + "<.loggueur!=null ? =" + Boolean.toString(log != null) + "\n" + ">" + nom + "<.source!=null ? =" + Boolean.toString(source != null));
+		logAppli.trace(">" + nom + "<.loggueur!=null ? ="
+				+ Boolean.toString(log != null) + "\n" + ">" + nom
+				+ "<.source!=null ? =" + Boolean.toString(source != null));
 	}
 
 	/**
 	 * Construit un fichier.<br>
-	 *
-	 * @param nom     		nom du fichier
-	 * @param prefixNom		le début du nom du fichier (pour le retrouver automatiquement)
+	 * 
+	 * @param nom
+	 *            nom du fichier
+	 * @param prefixNom
+	 *            le début du nom du fichier (pour le retrouver automatiquement)
 	 */
 	public Fichier(String nom, String prefixNom) {
-		logAppli.trace("Crétion d'un fichier. nom = " + nom);
+		logAppli.trace("Création d'un fichier. nom = " + nom);
 		this.nom = nom;
 		this.prefixNom = prefixNom;
 		cancel = false;
@@ -248,28 +270,35 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * Rajoute une contrainte multicolonne au fichier.
-	 *
-	 * @param id			l'identifiant de l'erreur multicolonne
-	 * @param errTemplate	le template du message d'erreur
-	 * @param nomFonction	le nom de la fonction de vérification de la contrainte
-	 * @param cols    		les colonnes à vérifier
+	 * 
+	 * @param id
+	 *            l'identifiant de l'erreur multicolonne
+	 * @param errTemplate
+	 *            le template du message d'erreur
+	 * @param nomFonction
+	 *            le nom de la fonction de vérification de la contrainte
+	 * @param cols
+	 *            les colonnes à vérifier
 	 */
-	public void addContrainteMultiCol(String id, String errTemplate, String nomFonction, String... cols) {
-		logAppli.trace("Ajout d'une contrainte MultiColonne \n" + "id=>" + id + "< . " + "\n" + "errTemplate=>" + errTemplate + "<");
+	public void addContrainteMultiCol(String id, String errTemplate,
+			String nomFonction, String... cols) {
+		logAppli.trace("Ajout d'une contrainte MultiColonne \n" + "id=>" + id
+				+ "< . " + "\n" + "errTemplate=>" + errTemplate + "<");
 		String msg = cols[0];
 		for (int i = 1; i < cols.length; i++) {
 			msg += "," + cols[i];
 		}
 		logAppli.trace(nomFonction + "(" + msg + ")");
-		addContrainteMultiCol(ContrainteRegistry.ContrainteMulticolEnum.getInstance(id, errTemplate, nomFonction, cols));
+		addContrainteMultiCol(ContrainteRegistry.ContrainteMulticolEnum
+				.createConstraint(id, errTemplate, nomFonction, cols));
 	}
 
 	/**
 	 * Rajoute une contrainte multicolonne au fichier.
-	 *
+	 * 
 	 * @param contrainte
-	 *                la contrainte multicol ï¿½ rajouter
-	 *
+	 *            la contrainte multicol à rajouter
+	 * 
 	 */
 	public void addContrainteMultiCol(ContrainteMultiCol contrainte) {
 		contrainte.setFichierParent(this);
@@ -278,18 +307,19 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * Modifie la source des lignes du fichier.
-	 *
+	 * 
 	 * @param source
-	 *                source des ligne du fichier
+	 *            source des ligne du fichier
 	 */
 	public void setSource(ICSVDataSource source) {
 		this.source = source;
 	}
 
 	/**
-	 * Ajoute une colonne au fichier. La colonne est rajoutï¿½e ï¿½ la fin.
-	 *
-	 * @param c       la colonne à rajouter
+	 * Ajoute une colonne au fichier. La colonne est rajoutée à la fin.
+	 * 
+	 * @param c
+	 *            la colonne à rajouter
 	 */
 	public void addColonne(Colonne c) {
 		addColonne(c, colonnes.size());
@@ -297,17 +327,17 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * Ajoute une colonne au fichier. La colonne est rajoutée à la position
-	 * pos.
-	 *
+	 * Ajoute une colonne au fichier. La colonne est rajoutée à la position pos.
+	 * 
 	 * @param c
-	 *                la colonne ï¿½ rajouter.
+	 *            la colonne à rajouter.
 	 * @param pos
-	 *                la position de la colonne.
+	 *            la position de la colonne.
 	 */
 	public void addColonne(Colonne c, int pos) {
 		if (getColonne(c.getNom()) == null) {
-			logAppli.trace("Ajout de colonne. nom = >" + c.getNom() + "<. position = " + colonnes.size());
+			logAppli.trace("Ajout de colonne. nom = >" + c.getNom()
+					+ "<. position = " + colonnes.size());
 
 			c.setFichierParent(this);
 			c.setPosition(pos);
@@ -316,7 +346,10 @@ public class Fichier implements IHierarchieSchema {
 				colonnes.get(i).setPosition(i);
 			}
 		} else {
-			logAppli.error("Le fichier >" + nom + "< possède déjà une " + "colonne possédant le même nom que la colonne à ajouter.\n" + "La colonne n'a pas été ajoutée");
+			logAppli.error("Le fichier >"
+					+ nom
+					+ "< possède déjà une colonne de même nom que la colonne à ajouter.\n"
+					+ "La colonne n'a pas été ajoutée");
 		}
 	}
 
@@ -336,11 +369,11 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * Lance la vérification du fichier.
-	 *
+	 * 
 	 */
 	protected void verifie() {
-		logAppli.info(">" + nom + "<.Lancement de la vï¿½rification");
-		logAppli.debug("Nombre de lignes d'entï¿½te = " + nbLignesEntete);
+		logAppli.info(">" + nom + "<.Lancement de la vérification");
+		logAppli.debug("Nombre de lignes d'entête = " + nbLignesEntete);
 		etatFichier = ETAT.EN_COURS_DE_VERIFICATION;
 
 		logArbo();
@@ -359,28 +392,36 @@ public class Fichier implements IHierarchieSchema {
 			if (posErrColonne >= 0 && posErrColonne < colonnes.size()) {
 				nomCol = colonnes.get((int) posErrColonne).getDescOuNom();
 			}
-			erreurs.add(ErreurConstante.errCaractereInterdit(err.getNumLigne(), nomCol, err.getErrValeur()));
+			erreurs.add(ErreurConstante.errCaractereInterdit(err.getNumLigne(),
+					nomCol, err.getErrValeur()));
 			etatFichier = ETAT.ABANDONNE_ERREUR_LECTURE;
 		} catch (final AbandonUtilisateur err) {
 			return;
 		} catch (final TropDErreurs err) {
 			etatFichier = ETAT.ABANDON_TROP_D_ERREUR;
-			erreurs.add(ErreurConstante.errTropDErreurs(nom, err.getLigneErreur()));
-			logAppli.info("Abandon de la vérification du fichier " + nom + "cause : dépassement du seuil d'erreur tolérées" + "seuil d'erreur = " + seuilAbandon + " .nbre d'erreurs = " + nbErreurs);
+			erreurs.add(ErreurConstante.errTropDErreurs(nom,
+					err.getLigneErreur()));
+			logAppli.info("Abandon de la vérification du fichier " + nom
+					+ "cause : dépassement du seuil d'erreur tolérées"
+					+ "seuil d'erreur = " + seuilAbandon
+					+ " .nbre d'erreurs = " + nbErreurs);
 
 		} catch (final IOException e) {
 			erreurs.add(ErreurConstante.errLectureFicher(nom));
-			logAppli.info("Erreur de lecture du fichier " + nom + " .Chemin d'accès " + getChemin());
+			logAppli.info("Erreur de lecture du fichier " + nom
+					+ " .Chemin d'accès " + getChemin());
 		} catch (final ExceptionMoteur e) {
 			logAppli.info(e);
-			erreurs.add(ErreurConstante.errExceptionMoteur(source.getPosition(), e.getMessage(), nom));
+			erreurs.add(ErreurConstante.errExceptionMoteur(
+					source.getPosition(), e.getMessage(), nom));
 			return;
 		} catch (final Throwable t) {
-			//exception non prevue, generalement erreur dans le moteur
+			// exception non prevue, generalement erreur dans le moteur
 			etatFichier = ETAT.ABANDON_ERREUR_MOTEUR;
 			t.printStackTrace();
 			logAppli.error(t);
-			erreurs.add(ErreurConstante.errExceptionMoteur(source.getPosition(), t.getMessage(), nom));
+			erreurs.add(ErreurConstante.errExceptionMoteur(
+					source.getPosition(), t.getMessage(), nom));
 			return;
 		} finally {
 			nbErreurs += erreurs.size();
@@ -393,7 +434,9 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	private void finFichier() {
-		logAppli.info(">" + nom + "<.fin de vï¿½rification. Nombre d'erreurs dï¿½tï¿½ctï¿½es=" + nbErreurs);
+		logAppli.info(">" + nom
+				+ "<.fin de vérification. Nombre d'erreurs détéctées="
+				+ nbErreurs);
 
 		if (etatFichier == ETAT.EN_COURS_DE_VERIFICATION) {
 			if (nbErreurs == 0) {
@@ -407,18 +450,19 @@ public class Fichier implements IHierarchieSchema {
 		}
 	}
 
-	private void verifieLigne() throws CaractereInterdit, TropDErreurs, AbandonUtilisateur, ExceptionMoteur, IOException {
+	private void verifieLigne() throws CaractereInterdit, TropDErreurs,
+			AbandonUtilisateur, ExceptionMoteur, IOException {
 		long num_ligne = 0;
 		String[] input;
-		//int res = 0;
+		// int res = 0;
 		while (!abandonneVerifFichier && source.hasNext()) {
 			verifieSiUtilisateurVeutAbandonner();
 			input = source.next();
 			num_ligne = source.getPosition();
-			//			res = 0;
-			//			for (int i = 0; i < input.length; i++) {
-			//				res += input[i].length();
-			//			}
+			// res = 0;
+			// for (int i = 0; i < input.length; i++) {
+			// res += input[i].length();
+			// }
 
 			try {
 				if (erreurSiTropDeColonnes && input.length > colonnes.size()) {
@@ -427,8 +471,11 @@ public class Fichier implements IHierarchieSchema {
 				erreurs = verifie(num_ligne, input);
 
 			} catch (final NbreColonnesInsuffisant err) {
-				erreurs.add(ErreurConstante.errNbreColonnesIncorrect(num_ligne, input.length, colonnes.size()));
-				logAppli.debug(nom + "Le nombre de colonnes lu est supï¿½rieur ï¿½ celui attendu" + "lu=" + input.length + ".attendu=" + colonnes.size());
+				erreurs.add(ErreurConstante.errNbreColonnesIncorrect(num_ligne,
+						input.length, colonnes.size()));
+				logAppli.debug(nom
+						+ "Le nombre de colonnes lu est supérieur à celui attendu"
+						+ "lu=" + input.length + ".attendu=" + colonnes.size());
 				return;
 			}
 			nbErreurs += erreurs.size();
@@ -467,7 +514,8 @@ public class Fichier implements IHierarchieSchema {
 
 	}
 
-	protected List<IErreur> verifie(long numLigne, String[] valeurs) throws ExceptionMoteur {
+	protected List<IErreur> verifie(long numLigne, String[] valeurs)
+			throws ExceptionMoteur {
 		final List<IErreur> errs = new ArrayList<>();
 		for (final Colonne c : colonnes) {
 			errs.addAll(c.verifie(numLigne, valeurs));
@@ -487,15 +535,19 @@ public class Fichier implements IHierarchieSchema {
 		int i = 0;
 		for (final Colonne c : colonnes) {
 			if (i != c.getPosition()) {
-				logAppli.error("La colonne >" + c.getNom() + "< n'est pas ï¿½ la bonne position");
-				logAppli.error("position dans le fichier=" + i + ". Colonne.position=" + c.getPosition());
+				logAppli.error("La colonne >" + c.getNom()
+						+ "< n'est pas à la bonne position");
+				logAppli.error("position dans le fichier=" + i
+						+ ". Colonne.position=" + c.getPosition());
 			}
 			if (c.getFichierParent() != this) {
-				logAppli.error("La colonne >" + c.getNom() + "< n'a pas le bon fichierParent");
+				logAppli.error("La colonne >" + c.getNom()
+						+ "< n'a pas le bon fichierParent");
 
 			}
 			i++;
-			logAppli.debug("        " + c.getPosition() + " - >" + c.getNom() + "<");
+			logAppli.debug("        " + c.getPosition() + " - >" + c.getNom()
+					+ "<");
 			for (final ContrainteUniCol cuc : c.getContraintes()) {
 				logAppli.debug("                " + cuc.getID());
 			}
@@ -512,7 +564,7 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * Renvoie la liste des colonnes du fichier.
-	 *
+	 * 
 	 * @return la liste des colonnes du fichier
 	 */
 	public List<Colonne> getColonnes() {
@@ -520,43 +572,45 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * Renvoie une contrainte de type {@linkplain ContrainteRef_Lookup}.Si
-	 * une contrainte de Lookup n'existe pas, elle est rajoutï¿½e ï¿½ la colonne .
+	 * Renvoie une contrainte de type {@linkplain ContrainteRef_Lookup}.Si une
+	 * contrainte de Lookup n'existe pas, elle est rajoutée à la colonne . <br>
 	 * <br>
-	 * <br>
-	 * Cela permet d'avoir une syntaxe plus facile pour rajouter une
-	 * contrainte de rï¿½fï¿½rence entre deux colonnes.<br>
-	 *
+	 * Cela permet d'avoir une syntaxe plus facile pour rajouter une contrainte
+	 * de référence entre deux colonnes.<br>
+	 * 
 	 * @param nom_colonne
-	 *                le nom de la colonne rï¿½fï¿½rencï¿½e
+	 *            le nom de la colonne référencée
 	 * @return la contrainte de Lookup
 	 */
 	private ContrainteReferenceLookup ref(String nomColonne) {
 		if (getColonne(nomColonne) == null) {
-			logAppli.error("Une rï¿½fï¿½rence a ï¿½tï¿½ demandï¿½e ï¿½ une colonne non dï¿½finie");
-			logAppli.error("colonne demandï¿½e = " + nomColonne);
+			logAppli.error("Une référence a été demandée à une colonne non définie");
+			logAppli.error("colonne demandée = " + nomColonne);
 			return null;
 		}
 
 		if (getColonne(nomColonne).getContrainte(nomRefLookup) == null) {
-			getColonne(nomColonne).addContrainte(new ContrainteReferenceLookup());
+			getColonne(nomColonne).addContrainte(
+					new ContrainteReferenceLookup());
 
-			logAppli.trace(">" + nom + "<:une ContrainteReferenceLookup" + " a ï¿½tï¿½ crï¿½e pour la colonne >" + nomColonne + "<");
+			logAppli.trace(">" + nom + "<:une ContrainteReferenceLookup"
+					+ " a été créée pour la colonne >" + nomColonne + "<");
 		}
 
-		return (ContrainteReferenceLookup) getColonne(nomColonne).getContrainte(nomRefLookup);
+		return (ContrainteReferenceLookup) getColonne(nomColonne)
+				.getContrainte(nomRefLookup);
 	}
 
 	/**
-	 * Renvoie une contrainte de type ContrianteReference.Si une contrainte
-	 * de Lookup n'existe pas sur mla colonne rï¿½fï¿½rencï¿½e, elle est rajoutï¿½e
-	 * ï¿½ la colonne . <br>
+	 * Renvoie une contrainte de type ContrianteReference.Si une contrainte de
+	 * Lookup n'existe pas sur mla colonne référencée, elle est rajoutée à la
+	 * colonne . <br>
 	 * <br>
-	 * Cela permet d'avoir une syntaxe plus facile pour rajouter une
-	 * contrainte de rï¿½fï¿½rence entre deux colonnes.<br>
-	 *
+	 * Cela permet d'avoir une syntaxe plus facile pour rajouter une contrainte
+	 * de référence entre deux colonnes.<br>
+	 * 
 	 * @param nomColonne
-	 *                le nom de la colonne rï¿½fï¿½rencï¿½e
+	 *            le nom de la colonne référencée
 	 * @return la contrainte de Lookup
 	 */
 	private ContrainteUniCol reference(String nomColonne) {
@@ -565,9 +619,9 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * @param nomColonne
-	 *                le nom de la colonne du fichier
+	 *            le nom de la colonne du fichier
 	 * @param c2
-	 *                la colonne rï¿½fï¿½rencï¿½e
+	 *            la colonne référencée
 	 */
 	public void addReference(String nomColonne, Colonne c2) {
 
@@ -575,13 +629,14 @@ public class Fichier implements IHierarchieSchema {
 			fichiersDontOnDepend.add(c2.getFichierParent());
 			c2.getFichierParent().fichiersQuiDependentDeNous.add(this);
 		}
-		getColonne(nomColonne).addContrainte(c2.getFichierParent().reference(c2.getNom()));
+		getColonne(nomColonne).addContrainte(
+				c2.getFichierParent().reference(c2.getNom()));
 
 	}
 
 	/**
 	 * Renvoie le loggueur du fichier.
-	 *
+	 * 
 	 * @return le loggueur du fichier
 	 */
 	public ILogger getLogger() {
@@ -590,9 +645,9 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * REmplace le logguer du fichier par un nouveau loggueur.
-	 *
+	 * 
 	 * @param logger
-	 *                le nouveau loggueur du fichier
+	 *            le nouveau loggueur du fichier
 	 */
 	public void setLogger(ILogger logger) {
 		this.logger = logger;
@@ -601,10 +656,10 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * Renvoie la ieme colonne du fichier.
-	 *
+	 * 
 	 * @param pos
-	 *                position de la colonne demandï¿½e
-	 * @return la colonne ï¿½ la position pos
+	 *            position de la colonne demandée
+	 * @return la colonne à la position pos
 	 */
 	public Colonne getColonne(int pos) {
 		return colonnes.get(pos);
@@ -618,33 +673,33 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * Remplace la collonne ï¿½ la position pos , par la colonne c.
-	 *
+	 * Remplace la colonne à la position pos , par la colonne c.
+	 * 
 	 * @param pos
-	 *                la position de la colonne ï¿½ remplacer
+	 *            la position de la colonne à remplacer
 	 * @param c
-	 *                la nouvelle colonne
+	 *            la nouvelle colonne
 	 */
 	public void setColonne(int pos, Colonne c) {
 		colonnes.set(pos, c);
 	}
 
 	/**
-	 * Rajoute une colonne au fichier. LA colonne sera rajoutï¿½e ï¿½ la fin.<br>
+	 * Rajoute une colonne au fichier. La colonne sera rajoutée à la fin.<br>
 	 * Remarque: Le nom de chaque colonne doit etre unique
-	 *
+	 * 
 	 * @param nomColonne
-	 *                le nom de la colonne ï¿½ rajouter
+	 *            le nom de la colonne à rajouter
 	 */
 	public void addColonne(String nomColonne) {
 		addColonne(new Colonne(nomColonne));
 	}
 
 	/**
-	 * Rajoute une liste de colonne ï¿½ la fin du fichier.
-	 *
+	 * Rajoute une liste de colonne à la fin du fichier.
+	 * 
 	 * @param cols
-	 *                les noms des colonnes ï¿½ rajouter
+	 *            les noms des colonnes à rajouter
 	 */
 	public void addColonne(String... cols) {
 		for (final String s : cols) {
@@ -654,10 +709,10 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * . Renvoie la colonne dont le nom est nom_colonne
-	 *
+	 * 
 	 * @param nomColonne
-	 *                le nom de la colonne recherchï¿½e
-	 * @return la colonne recherchï¿½e
+	 *            le nom de la colonne recherchée
+	 * @return la colonne recherchée
 	 */
 	public Colonne getColonne(String nomColonne) {
 		for (final Colonne col : colonnes) {
@@ -670,8 +725,8 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * @param seuil
-	 *                le nombre d'erreur tolï¿½rï¿½ avant l'abandon de la vï¿½rif (<=0
-	 *                si pas d'abandon)
+	 *            le nombre d'erreur toléré avant l'abandon de la vérification
+	 *            (<=0 si pas d'abandon)
 	 */
 	public void setSeuilAbandon(int seuil) {
 		logAppli.debug("fichier " + nom + ".seuilAbandon=" + seuil);
@@ -679,7 +734,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return le nombre d'erreur tolï¿½rï¿½ avant l'abandon de la vï¿½rif (<=0
+	 * @return le nombre d'erreur toléré avant l'abandon de la vérification (<=0
 	 *         si pas d'abandon)
 	 */
 	public int getSeuilAbandon() {
@@ -687,8 +742,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return le nombre de ligne d'entetes (ignorï¿½es lors de la
-	 *         vï¿½rification)
+	 * @return le nombre de ligne d'entetes (ignorées lors de la vérification)
 	 */
 	public int getNbLignesEntete() {
 		return nbLignesEntete;
@@ -696,8 +750,8 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * @param nbLignesEntete
-	 *                le nombre de ligne d'entetes (ignorï¿½es lors de la
-	 *                vï¿½rification)
+	 *            le nombre de ligne d'entetes (ignorées lors de la
+	 *            vérification)
 	 */
 	public void setNbLignesEntete(int nbLignesEntete) {
 		this.nbLignesEntete = nbLignesEntete;
@@ -705,8 +759,8 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return si la vï¿½rification lï¿½ve une erreur si le nombre de colonnes
-	 *         lues est supï¿½rieur ï¿½ celui attendu
+	 * @return si la vérification lève une erreur si le nombre de colonnes lues
+	 *         est supérieur à celui attendu
 	 */
 	public boolean isErreurSiTropDeColonnes() {
 		return erreurSiTropDeColonnes;
@@ -714,8 +768,8 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * @param erreur
-	 *                true si la vï¿½rification doit lever une erreur si le
-	 *                nombre de colonnes lues est supï¿½rieur ï¿½ celui attendu
+	 *            true si la vérification doit lever une erreur si le nombre de
+	 *            colonnes lues est supérieur à celui attendu
 	 */
 	public void setErreurSiTropDeColonnes(boolean erreur) {
 		this.erreurSiTropDeColonnes = erreur;
@@ -737,9 +791,9 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * definit le groupe de verification du fichier.
-	 *
+	 * 
 	 * @param grp
-	 *                le groupe du fichier
+	 *            le groupe du fichier
 	 */
 	public void setNiveau(int grp) {
 		this.groupe = grp;
@@ -749,10 +803,10 @@ public class Fichier implements IHierarchieSchema {
 	 * Renvoie le "niveau" du fichier. <br>
 	 * l'ordre est definit formellement de la maniere suivante:<br>
 	 * un fichier qui ne depend sur aucun autre fichier, est au niveau 0 un
-	 * fichier qui depend sur d'autre fichier a son niveau egal au maximum
-	 * de l'ordre de ses fils +1<br>
+	 * fichier qui depend sur d'autre fichier a son niveau egal au maximum de
+	 * l'ordre de ses fils +1<br>
 	 * niveau= max (fils.niveau)+1
-	 *
+	 * 
 	 * @return le niveau topologique du fichier
 	 */
 	public int getNiveauTopo() {
@@ -773,7 +827,8 @@ public class Fichier implements IHierarchieSchema {
 
 		for (final Fichier f : fichiersDontOnDepend) {
 			if (fichiersQuiDependentDeNous.contains(f)) {
-				logAppli.error("dependence circulaire entre " + this.nom + " et " + f.nom);
+				logAppli.error("dépendence circulaire entre " + this.nom
+						+ " et " + f.nom);
 				return Integer.MIN_VALUE;
 			}
 			final int tmp = f.calculeNiveauTopo();
@@ -783,9 +838,9 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * Indique si le fichier est pret pour lancer la verification. Un
-	 * fichier est pret si tous les fichiers dont il depend ont ete verifies
-	 *
+	 * Indique si le fichier est pret pour lancer la verification. Un fichier
+	 * est pret si tous les fichiers dont il depend ont ete verifies
+	 * 
 	 * @return true s'il est pret pour la verification
 	 */
 	public boolean isPretVerif() {
@@ -803,7 +858,7 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * renvoie la liste des contraintes multicolonnes.
-	 *
+	 * 
 	 * @return la liste des contraintes multicolonnes
 	 */
 	public List<ContrainteMultiCol> getContraintesMultiCol() {
@@ -812,7 +867,7 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * renvoie le chemin d'acces du fichier.
-	 *
+	 * 
 	 * @return le chemin d'acces du fichier
 	 */
 	public String getChemin() {
@@ -828,9 +883,9 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * modifie l'etat du fichier.
-	 *
+	 * 
 	 * @param etatFichier
-	 *                le nouvel etat du fichier
+	 *            le nouvel etat du fichier
 	 */
 	public void setEtatFichier(ETAT etatFichier) {
 		this.etatFichier = etatFichier;
@@ -844,18 +899,18 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * Designe un element a notifier dans le cas de certains evenement(
-	 * debut de verification, fin de verification, avacncement,...).
-	 *
+	 * Designe un element a notifier dans le cas de certains evenement( debut de
+	 * verification, fin de verification, avacncement,...).
+	 * 
 	 * @param eltAnotifier
-	 *                l'element a notifier
+	 *            l'element a notifier
 	 */
 	public void setEltAnotifier(INotifiable eltAnotifier) {
 		this.eltAnotifier = eltAnotifier;
 	}
 
 	/**
-	 * @return le nombre d'erreurs detectï¿½es jusqu'ï¿½ prï¿½sent dans ce fichier
+	 * @return le nombre d'erreurs detectées jusqu'à présent dans ce fichier
 	 */
 	public long getNbErreurs() {
 		return nbErreurs;
@@ -871,8 +926,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * abandonne la verification de ce ficier, si une verification est en
-	 * cours
+	 * abandonne la verification de ce ficier, si une verification est en cours
 	 */
 	protected void cancel() {
 		cancel = true;
@@ -882,7 +936,7 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * @param chemin
-	 *                designe le chemin du fichier source
+	 *            designe le chemin du fichier source
 	 */
 	public void setChemin(String chemin) {
 		if (chemin == null) {
@@ -907,7 +961,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return le fichier est il activï¿½?
+	 * @return le fichier est il activé ?
 	 */
 	public boolean isEnabled() {
 		return etatFichier == ETAT.EN_ATTENTE;
@@ -915,9 +969,9 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * nettoie l'objet. Remet ï¿½ zero les donnï¿½es spï¿½cifique utilisï¿½e lors de
-	 * la derniï¿½re vï¿½rification pour pouvoir rï¿½utiliser cet objet pour une
-	 * nouvelle vï¿½rification
+	 * nettoie l'objet. Remet à zero les données spécifique utilisées lors de la
+	 * dernière vérification pour pouvoir réutiliser cet objet pour une nouvelle
+	 * vérification
 	 */
 	protected void clean() {
 		nbErreurs = 0;
@@ -952,8 +1006,8 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * le PrefixNom sert a retrouver le fichier parmi d'autres dans un
-	 * repertoire de donnï¿½es. Il consiste d'une partie du nom du fichier
-	 *
+	 * repertoire de données. Il consiste d'une partie du nom du fichier
+	 * 
 	 * @return le Prefix du nom du fichier
 	 */
 	public String getPrefixNom() {
@@ -962,10 +1016,10 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * le PrefixNom sert a retrouver le fichier parmi d'autres dans un
-	 * repertoire de donnï¿½es. Il consiste d'une partie du nom du fichier
-	 *
+	 * repertoire de données. Il consiste d'une partie du nom du fichier
+	 * 
 	 * @param prefixNom
-	 *                le Prefix du nom du fichier
+	 *            le Prefix du nom du fichier
 	 */
 	public void setPrefixNom(String prefixNom) {
 		this.prefixNom = prefixNom;
@@ -979,10 +1033,10 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * dï¿½signe l'extension du fichier.
-	 *
+	 * désigne l'extension du fichier.
+	 * 
 	 * @param extension
-	 *                l'extension du fichier
+	 *            l'extension du fichier
 	 */
 	public void setExtension(String extension) {
 		if (extension != null) {
@@ -992,19 +1046,19 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * @param nom
-	 *                le nom du fichier
+	 *            le nom du fichier
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
 	/**
-	 * le groupe sert a dï¿½finir une hiï¿½rarchie entre les fichiers. Tant que
-	 * les fichiers du groupe infï¿½rieur ne sont pas correctes, on ne vï¿½rifie
-	 * pas les fichiers des groupes supï¿½rieurs
-	 *
+	 * le groupe sert à définir une hiérarchie entre les fichiers. Tant que
+	 * les fichiers du groupe inférieur ne sont pas corrects, on ne vérifie
+	 * pas les fichiers des groupes supérieurs
+	 * 
 	 * @param groupe
-	 *                le groupe du fichier
+	 *            le groupe du fichier
 	 */
 	public void setGroupe(int groupe) {
 		this.groupe = groupe;
@@ -1012,7 +1066,7 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * renvoit une copie du fichier.
-	 *
+	 * 
 	 * @return la copie du fichier
 	 */
 	public Fichier copy() {
@@ -1028,7 +1082,12 @@ public class Fichier implements IHierarchieSchema {
 		}
 
 		for (final ContrainteMultiCol cmc : getContraintesMultiCol()) {
-			fichierEquiv.addContrainteMultiCol(cmc.getID(), cmc.getErrTemplate(), cmc.getNomFonction(), cmc.getNomColonnes().toArray(new String[cmc.getNomColonnes().size()]));
+			fichierEquiv.addContrainteMultiCol(
+					cmc.getID(),
+					cmc.getErrTemplate(),
+					cmc.getNomFonction(),
+					cmc.getNomColonnes().toArray(
+							new String[cmc.getNomColonnes().size()]));
 		}
 
 		return fichierEquiv;
@@ -1038,7 +1097,7 @@ public class Fichier implements IHierarchieSchema {
 	 * determine le comportoment de toString().<br>
 	 * =0 toString() = nom du fichier <br>
 	 * !=0 toString() = nom du fichier (NbErreurs) <br>
-	 *
+	 * 
 	 * @return le mode d'affichage
 	 */
 	public int getModeAffichage() {
@@ -1049,17 +1108,19 @@ public class Fichier implements IHierarchieSchema {
 	 * determine le comportoment de toString().<br>
 	 * =0 toString() = nom du fichier <br>
 	 * !=0 toString() = nom du fichier (NbErreurs) <br>
-	 *
+	 * 
 	 * @param modeAffichage
-	 *                le mode d'affichage
+	 *            le mode d'affichage
 	 */
 	public void setModeAffichage(int modeAffichage) {
 		this.modeAffichage = modeAffichage;
 	}
 
 	/**
-	 * notifie que le fichier a ï¿½tï¿½ abandonnï¿½.
-	 * @param etatFinal l'etat final du fichier.
+	 * notifie que le fichier a été abandonné.
+	 * 
+	 * @param etatFinal
+	 *            l'etat final du fichier.
 	 */
 	public void abandonFichier(ETAT etatFinal) {
 		etatFichier = etatFinal;
@@ -1067,15 +1128,17 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return la catï¿½gorie du fichier.
+	 * @return la catégorie du fichier.
 	 */
 	public Categorie getCategorie() {
 		return categorie;
 	}
 
 	/**
-	 * Rattache le fichier ï¿½ catï¿½gorie.
-	 * @param categorie la nouvelle catï¿½gorie du fichier.
+	 * Rattache le fichier à la catégorie.
+	 * 
+	 * @param categorie
+	 *            la nouvelle catégorie du fichier.
 	 */
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
@@ -1083,15 +1146,17 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return le nom de la catï¿½gorie du fichier.
+	 * @return le nom de la catégorie du fichier.
 	 */
 	public String getNomCategorie() {
 		return nomCategorie;
 	}
 
 	/**
-	 * Modifie le nom de la catï¿½gorie du fichier.
-	 * @param nomCategorie le nom de la catï¿½gorie du fichier.
+	 * Modifie le nom de la catégorie du fichier.
+	 * 
+	 * @param nomCategorie
+	 *            le nom de la catégorie du fichier.
 	 */
 	public void setNomCategorie(String nomCategorie) {
 		this.nomCategorie = nomCategorie;
@@ -1099,7 +1164,9 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * Supprime une colonne du fichier.
-	 * @param pos la position de la colonne ï¿½ supprimer.
+	 * 
+	 * @param pos
+	 *            la position de la colonne à supprimer.
 	 */
 	public void deleteColonne(int pos) {
 		colonnes.remove(pos);
@@ -1107,8 +1174,10 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * Dï¿½place une colonne vers le bas.
-	 * @param selectedRow la position de la colonne.
+	 * Déplace une colonne vers le bas.
+	 * 
+	 * @param selectedRow
+	 *            la position de la colonne.
 	 */
 	public void moveColonneDn(int selectedRow) {
 		if (selectedRow < 0 || !(selectedRow < colonnes.size() - 1)) {
@@ -1120,8 +1189,10 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * Dï¿½place une colonne vers le haut.
-	 * @param selectedRow la position de la colonne.
+	 * Déplace une colonne vers le haut.
+	 * 
+	 * @param selectedRow
+	 *            la position de la colonne.
 	 */
 	public void moveColonneUp(int selectedRow) {
 		if (selectedRow <= 0 || !(selectedRow < colonnes.size())) {
@@ -1133,7 +1204,8 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return une suggestion de nom de colonne non utilisï¿½ par les autres colonnes du fichier.
+	 * @return une suggestion de nom de colonne non utilisé par les autres
+	 *         colonnes du fichier.
 	 */
 	public String getNomColonneLibre() {
 		String nomCol = "Nouvelle Colonne ";
@@ -1153,84 +1225,86 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @param valeurs les valeurs de la ligne
+	 * @param valeurs
+	 *            les valeurs de la ligne
 	 * @return la liste des valeurs de reference de la colonnes
 	 */
 	public List<String> getValeursColRef(String[] valeurs) {
 		final String[] resTmp = new String[posColRef.length];
 		for (int i = 0; i < posColRef.length; i++) {
-			resTmp[i] = posColRef[i] < valeurs.length ? valeurs[posColRef[i]].intern() : "";
+			resTmp[i] = posColRef[i] < valeurs.length ? valeurs[posColRef[i]]
+					.intern() : "";
 
 		}
-		//	List<String> res=new ArrayList<String>(posColRef.length);
-		//	for(int i=0;i<posColRef.length;i++){
-		//	    if(posColRef[i]<valeurs.length){
-		//		String tmp=valeurs[posColRef[i]].intern();
-		//		res.add( tmp);
-		//		System.out.println(tmp);
-		//	    }else{
-		//		res.add("");
-		//	    }
-		//	}
+		// List<String> res=new ArrayList<String>(posColRef.length);
+		// for(int i=0;i<posColRef.length;i++){
+		// if(posColRef[i]<valeurs.length){
+		// String tmp=valeurs[posColRef[i]].intern();
+		// res.add( tmp);
+		// System.out.println(tmp);
+		// }else{
+		// res.add("");
+		// }
+		// }
 
 		return java.util.Arrays.asList(resTmp);
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public IHierarchieSchema getChild(int index) {
 		return colonnes.get(index);
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public int getChildCount() {
 		return colonnes.size();
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public int getNiveau() {
 		return 1;
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public String getNomHierarchie() {
 		return getNom();
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public IHierarchieSchema getParent() {
 		return categorie;
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public int getPosition() {
 		return categorie.getPosFichier(nom);
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public boolean isCategorie() {
 		return false;
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public boolean isColonne() {
 		return false;
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public boolean isContrainte() {
 		return false;
 	}
 
-	/**{@inheritDoc}*/
+	/** {@inheritDoc} */
 	@Override
 	public boolean isFichier() {
 		return true;

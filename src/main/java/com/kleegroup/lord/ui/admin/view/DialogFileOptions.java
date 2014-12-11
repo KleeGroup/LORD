@@ -96,7 +96,8 @@ public final class DialogFileOptions extends JDialog {
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 		setText();
 		final Set<String> s = Charset.availableCharsets().keySet();
-		jcbEncoding.setModel(new DefaultComboBoxModel<String>((String[]) s.toArray()));
+		final String[] set = s.toArray(new String[0]);
+		jcbEncoding.setModel(new DefaultComboBoxModel<String>(set));
 		jcbEncoding.setSelectedItem("ISO-8859-15");
 
 		jcbFieldSeparator.setModel(new DefaultComboBoxModel<String>(new String[] { ",", ";" }));
