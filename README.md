@@ -1,19 +1,23 @@
 # L'Outil de Reprise de Données (LORD)
 
-Ce programme a pour objectif de valider le format et le contenu d'un ensemble de fichiers CSV d'après une spécification XML. Il propose aussi une interface pour aider à la définition de ces règles (mode admin).
+Ce programme a pour objectif de valider qu'un ensemble de fichiers CSV respecte un format défini par une spécification XML.
+Il propose une interface utilisateur pour aider à la définition de ces règles (mode admin), et une autre interface pour l'exécution des contrôles.
+Il a été conçut afin de pouvoir anticiper la validation de la qualité des données sans attendre que les développements (reprise, interfaces) soient réalisés.
 
 ##1. Pourquoi utiliser LORD ?
 
-La reprise de données est un problème récurrent pour lequel, le plus souvent, des solutions jetables sont mises en place. LORD est un outil qui permet de limiter les parties spécifiques (et donc jetées) lors de reprises de données.
+La reprise de données est un problème récurrent pour lequel, le plus souvent, des solutions jetables sont mises en place.
+LORD est un outil qui permet de limiter les parties spécifiques (et donc jetées) lors de reprises de données.
+Mais il peut aussi contrôler n'importe quel jeu de ficheirs CSV et est donc aussi adapté au contrôle de format sur des interfaces par fichiers plats.
 
 LORD a pour objectifs principaux de :
 * formaliser le contrat du format attendu (xml)
-* ne pas recoder les contrôles pour chaque reprise
-* limiter les itérations (données fiables)
+* ne pas recoder les contrôles de format pour chaque reprise
+* limiter les itérations (données fiables en entrée)
 
 Et par conséquence :
 * assurer la confidentialité des données (le contrôle peut être fait chez le client, par des équipes habilités)
-* commencer le chantier d’extraction des données plus tôt
+* commencer le chantier d’extraction des données plus tôt, bien avant que les programmes de reprise ou d'import soient prêts
 * valider d’autres données (interfaces, jeux de test)
 
 ##2. Fonctionnalités
@@ -22,11 +26,12 @@ Et par conséquence :
 
 LORD permet de définir des catégories de fichiers. Il peut s'agir de catégories fonctionnelles (ex: référentiel, finance, stock) ou techniques (ex: source_A, source_B) selon le besoin.
 
-Pour chaque fichier il est possible de définir
-* le nombre de lignes d'entête
-* un seuil d'erreur au-delà duquel arrêter le traitement
-* une catégorie
-* le nom du fichier    
+Pour chaque fichier il est possible de 
+* l'associer à une catégorie
+* définir le nombre de lignes d'entête
+* choisir un seuil d'erreur au-delà duquel arrêter le traitement sur le fichier
+* définir le nom du fichier (préfixe)
+Les dépendances entre fichiers pour la validation seront déduites des règles de contrôle.
 	
 ### Contraintes sur le format
 
@@ -38,11 +43,14 @@ LORD est capable de tester les points suivants :
 ### Contraintes sur les données
 
 LORD est capable de tester les points suivants :
-* Unicité de la valeur au sein d'un fichier (colonne unique et multi-colonne)
+* Unicité de la valeur au sein d'un fichier : colonne unique et multi-colonne
+* Test de non nullité : colonne unique ou multi-colonne
 * Liste de contrôle (explicite)
 * Intégrité référentielle vers une donnée du même fichier ou d'un autre
 * Validation d'une expression régulière
-	
+
+Il permet aussi d'ajouter des types de contraintes supplémentaires (simple colonne ou multi-colonne).
+
 ##2. Usage
 
 ###2.1. Construction du JAR
