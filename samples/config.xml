@@ -69,9 +69,6 @@
             </colonne>
         </colonnes>
     </fichier>
-    <fichier nom="Fournisseur" groupe="1" categorie="Référentiel" prefix-nom="Fournisseur" extension="CSV" seuil-erreurs="-1" nb-lignes-entete="1">
-        <colonnes/>
-    </fichier>
     <fichier nom="Article" groupe="0" categorie="Stock" prefix-nom="Categorie_article" extension="csv" seuil-erreurs="-1" nb-lignes-entete="1">
         <colonnes>
             <colonne nom="ID" description="Identifiant" presence-valeur="OBLIGATOIRE" colonne-de-reference="false">

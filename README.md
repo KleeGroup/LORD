@@ -22,6 +22,8 @@ Et par conséquence :
 
 ##2. Fonctionnalités
 
+Rendez-vous sur le [[Wiki | https://github.com/KleeGroup/LORD/wiki]] pour en apprendre plus !
+
 ###	Gestion des fichiers
 
 LORD permet de définir des catégories de fichiers. Il peut s'agir de catégories fonctionnelles (ex: référentiel, finance, stock) ou techniques (ex: source_A, source_B) selon le besoin.
@@ -61,10 +63,10 @@ N'oubliez pas d'inclure "target/generated-sources/jaxb" dans votre build path.
 
 Lancer l'interface administrateur afin de générer un fichier "schema.xml".
 ```
-java -cp LORD-1.0-shaded.jar spark.reprise.outil.ui.admin.AdminUI 
+java -cp LORD-1.1.jar spark.reprise.outil.ui.admin.AdminUI 
 ```
 
 Lancer l'interface utilisateur afin de procéder au contrôle.
 ```
-java -cp LORD-1.0-shaded.jar spark.reprise.outil.ui.utilisateur.UserUI
+java -cp LORD-1.1.jar spark.reprise.outil.ui.utilisateur.UserUI
 ```
