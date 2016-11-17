@@ -22,7 +22,7 @@ Et par conséquence :
 
 ##2. Fonctionnalités
 
-Rendez-vous sur le [[Wiki | https://github.com/KleeGroup/LORD/wiki]] pour en apprendre plus !
+Rendez-vous sur le [Wiki](https://github.com/KleeGroup/LORD/wiki) pour en apprendre plus !
 
 ###	Gestion des fichiers
 
