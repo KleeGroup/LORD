@@ -15,7 +15,7 @@ public class FenetrePrincipaleUtilisateurModel extends Model{
 	/**
 	 * Essaie de charger le fichier "config.xml" dans le repertoire du programme.
 	 * @param execDir le repertoire du programme
-	 * @throws FileNotFoundException si le fichier n'est pas trouv�.
+	 * @throws FileNotFoundException si le fichier n'est pas trouvé.
 	 * @throws JAXBException Exception JAXB
 	 */
 	public FenetrePrincipaleUtilisateurModel (File execDir) throws FileNotFoundException, JAXBException{

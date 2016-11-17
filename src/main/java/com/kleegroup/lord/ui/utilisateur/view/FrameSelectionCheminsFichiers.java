@@ -1,25 +1,35 @@
 ﻿package com.kleegroup.lord.ui.utilisateur.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.font.TextAttribute;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.swing.AbstractAction;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
+
+import org.apache.log4j.Logger;
 
 import com.kleegroup.lord.ui.utilisateur.controller.FrameSelectionCheminsFichiersController;
 
@@ -28,6 +38,8 @@ import com.kleegroup.lord.ui.utilisateur.controller.FrameSelectionCheminsFichier
  * activer/d�scativer.
  */
 public class FrameSelectionCheminsFichiers extends javax.swing.JPanel {
+
+	private static org.apache.log4j.Logger logger = Logger.getLogger(FrameSelectionCheminsFichiers.class);
 
 	private static final long serialVersionUID = -3028875209077812559L;
 
@@ -68,13 +80,13 @@ public class FrameSelectionCheminsFichiers extends javax.swing.JPanel {
 	}
 
 	/**
-	 * Rajoute des contr�les pour modifier les propri�t�s d'un fichier.
+	 * Rajoute des contrôles pour modifier les propriétés d'un fichier.
 	 * @param nom le nom du fichier.
 	 * @param extension l'extension du fichier.
 	 */
-	public void addFichier(final String nom, final String extension) {
+	public void addFichier(final String nom, final String extension, final String categorie) {
 
-		final TreeCellLineEditor fichier = new TreeCellLineEditor(listFichier1, nom, extension);
+		final TreeCellLineEditor fichier = new TreeCellLineEditor(listFichier1, nom, extension, categorie);
 
 		editeursFichier.add(fichier);
 		fichier.setNom(nom);
@@ -113,16 +125,78 @@ public class FrameSelectionCheminsFichiers extends javax.swing.JPanel {
 		nbFichier++;
 	}
 
+	private void categorieSelection(final String categorie, boolean enable) {
+		logger.info(((enable)?"Sélectionner ":"Désélectionner ") + "les fichiers de la catégorie \"" + categorie + "\"");
+		// Traitement
+		for (TreeCellLineEditor fic : editeursFichier) {
+			if (fic.hasCategorie(categorie)) {
+				fic.setFichierEnabled(enable);
+			}
+		}
+		
+	}
+	
 	/**
-	 * Ajoute une zone qui indique le d�but d'une cat�gorie.
-	 * @param nom le nom de la cat�gorie.
+	 * Ajoute une zone qui indique le début d'une catégorie.
+	 * Deux actions sont possibles pour (dé)sélectionner les fichiers.
+	 * 
+	 * @param nom le nom de la catégorie.
 	 */
 	public void addCategorie(String nom) {
-		final JLabel lblCat = new JLabel("      " + nom);
-		lblCat.setBackground(java.awt.Color.LIGHT_GRAY);
-		lblCat.setOpaque(true);
+		
+		// Libellé de catégorie
+		final JLabel lblCat = new JLabel(nom);
 		lblCat.setFont(new Font(getFont().getName(), Font.BOLD, getFont().getSize() + 2));
+		lblCat.setBorder(new EmptyBorder(0,20,0,0)); // Remplace les espaces en tête
 
+		// Bloc de boutons (sélectionner Aucun / tous)
+		final javax.swing.JPanel buttonBar = new javax.swing.JPanel(); 
+		buttonBar.setOpaque(false);
+		buttonBar.setLayout(new FlowLayout());
+
+		Font font = new Font(getFont().getName(), Font.PLAIN, getFont().getSize() + 2);
+		Map<TextAttribute, Object> attributes = new HashMap<TextAttribute, Object>();
+		attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+		Font underlinedFont = font.deriveFont(attributes);
+				
+		final JLabel selectTous = new JLabel(resourceMap.getString("labelSelectAll.text"));
+		selectTous.setLabelFor(lblCat);
+		selectTous.setFont(underlinedFont);
+		selectTous.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getComponent() instanceof JLabel) {
+                	categorieSelection(((JLabel)((JLabel)e.getComponent()).getLabelFor()).getText(), true);
+                }
+            }
+        });
+		
+		final JLabel selectAucun = new JLabel(resourceMap.getString("labelSelectNone.text"));
+		selectAucun .setFont(underlinedFont);
+		selectAucun.setLabelFor(lblCat);
+		selectAucun.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getComponent() instanceof JLabel) {
+                	categorieSelection(((JLabel)((JLabel)e.getComponent()).getLabelFor()).getText(), false);
+                }
+            }
+        });
+	
+		buttonBar.add(selectAucun);
+		buttonBar.add(new JLabel(" / "));
+		buttonBar.add(selectTous);
+		
+		// Ligne d'entête : libellé et boutons
+		final javax.swing.JPanel entete = new javax.swing.JPanel(); 
+		entete.setBackground(java.awt.Color.LIGHT_GRAY);
+		entete.setOpaque(true);
+		entete.setLayout(new BorderLayout());
+
+		entete.add(lblCat, BorderLayout.LINE_START);
+		entete.add(buttonBar, BorderLayout.LINE_END);
+		
+		// Ajout à la Frame
 		final java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
 		gridBagConstraints.gridx = 0;
@@ -130,7 +204,7 @@ public class FrameSelectionCheminsFichiers extends javax.swing.JPanel {
 		gridBagConstraints.insets = new java.awt.Insets(8, 0, 3, 0);
 		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
 
-		listFichier1.add(lblCat, gridBagConstraints);
+		listFichier1.add(entete, gridBagConstraints);
 	}
 
 	/**
@@ -372,7 +446,9 @@ public class FrameSelectionCheminsFichiers extends javax.swing.JPanel {
 		protected List<DocumentListener> tcleListeCheminListener = new ArrayList<>();
 
 		//	protected int pos;
-		protected String nom = "";
+		private String nom = "";
+		
+		private String categorie = "";
 
 		private javax.swing.JCheckBox jChckFichierActif;
 
@@ -409,15 +485,20 @@ public class FrameSelectionCheminsFichiers extends javax.swing.JPanel {
 		}
 
 		/** Creates new form line. */
-		TreeCellLineEditor(javax.swing.JPanel panel1, String nom, String extention) {
+		TreeCellLineEditor(javax.swing.JPanel panel1, String nom, String extension, String categorie) {
 			myPanel = panel1;
 			//	    this.pos = pos;
 			this.nom = nom;
+			this.categorie = categorie;
 			initComponents();
 		}
 
-		Object getNom() {
+		protected String getNom() {
 			return nom;
+		}
+
+		protected boolean hasCategorie(final String cat) {
+			return (categorie != null)?categorie.equals(cat):false;
 		}
 
 		/**

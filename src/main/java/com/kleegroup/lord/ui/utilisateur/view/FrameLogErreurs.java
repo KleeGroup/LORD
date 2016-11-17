@@ -16,6 +16,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeSelectionEvent;
@@ -62,7 +63,7 @@ public class FrameLogErreurs extends javax.swing.JPanel implements
 
     private javax.swing.JTree jTreeFileList;
 
-    /** Cr�e une nouvelle frame.
+    /** Crée une nouvelle frame.
      * @param controller controlleur de la frame*/
     public FrameLogErreurs(FrameLogErreursController controller) {
 	super();
@@ -72,7 +73,7 @@ public class FrameLogErreurs extends javax.swing.JPanel implements
 
     private void initComponents() {
 	jSplitPane = new javax.swing.JSplitPane();
-	jScrollPaneTreeFileList = new javax.swing.JScrollPane();
+	jScrollPaneTreeFileList = new javax.swing.JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	jTreeFileList = new javax.swing.JTree();
 	jTreeFileList.setModel(new FileTreeModel(new Schema()));
 	
@@ -80,7 +81,7 @@ public class FrameLogErreurs extends javax.swing.JPanel implements
 	
 	
 	jTreeFileList.setCellRenderer(new MyDefaultTreeCellRenderer());
-	jScrollPaneTblErrorList = new javax.swing.JScrollPane();
+	jScrollPaneTblErrorList = new javax.swing.JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	jTblErrorList = new javax.swing.JTable();
 //	jTblErrorList.setAutoCreateRowSorter(true); // a remettre pour java 1.6
 
@@ -111,7 +112,7 @@ public class FrameLogErreurs extends javax.swing.JPanel implements
     }
 
     /**
-     * l'utilisateur a selectionn� un fichier diff�rent.
+     * l'utilisateur a selectionné un fichier différent.
      * @param arg0 l'evenement de selection
      */
     @Override
@@ -128,7 +129,7 @@ public class FrameLogErreurs extends javax.swing.JPanel implements
     }
 
     /**
-     * @param tm le mod�le de la table qui affiche la liste des erreurs
+     * @param tm le modèle de la table qui affiche la liste des erreurs
      */
     public void setTableModel(TableModel tm) {
 	jTblErrorList.setModel(tm);

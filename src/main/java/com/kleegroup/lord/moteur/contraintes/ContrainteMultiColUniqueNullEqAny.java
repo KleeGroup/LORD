@@ -3,7 +3,7 @@
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+// import org.apache.log4j.Logger;
 
 import com.kleegroup.lord.moteur.ContrainteMultiCol;
 
@@ -15,7 +15,7 @@ import com.kleegroup.lord.moteur.ContrainteMultiCol;
  */
 public class ContrainteMultiColUniqueNullEqAny extends ContrainteMultiCol {
 
-	private static org.apache.log4j.Logger logAppli = Logger.getLogger(ContrainteMultiColUniqueNullEqAny.class);
+	// private static org.apache.log4j.Logger logAppli = Logger.getLogger(ContrainteMultiColUniqueNullEqAny.class);
 
 	private class Value {
 		private String[] values;

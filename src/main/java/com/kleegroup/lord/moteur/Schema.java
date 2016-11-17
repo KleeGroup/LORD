@@ -114,7 +114,7 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * Met en pause la vérification du fichier actuel. La vérification peut continuer
+	 * Met en pause la vÃ©rification du fichier actuel. La vÃ©rification peut continuer
 	 * en appelant {@link #resume()}
 	 */
 	public void pause() {
@@ -122,7 +122,7 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * Lance la veirification du schema.
+	 * Lance la vÃ©rification du schÃ©ma.
 	 */
 	public void verifie() {
 		logAppli.info("debut de la verification du schema");
@@ -169,9 +169,9 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * Nettoie l'objet. Remet à zero les données spécifiques utilisées lors de la
-	 * dernière vérification pour pouvoir réutiliser cet objet pour une nouvelle
-	 * vérification
+	 * Nettoie l'objet. Remet Ã  zero les donnï¿½es spï¿½cifiques utilisï¿½es lors de la
+	 * derniï¿½re vï¿½rification pour pouvoir rï¿½utiliser cet objet pour une nouvelle
+	 * vï¿½rification
 	 * */
 	public void clean() {
 		niveauActuel = 0;

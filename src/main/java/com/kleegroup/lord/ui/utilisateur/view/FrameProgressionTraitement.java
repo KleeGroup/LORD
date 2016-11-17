@@ -7,6 +7,7 @@ import java.awt.GridBagConstraints;
 import java.util.ResourceBundle;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -35,6 +36,7 @@ public class FrameProgressionTraitement extends javax.swing.JPanel {
     private javax.swing.JProgressBar jProgressTotal;
 
     private javax.swing.JTable jTblEtatFichiers;
+    private javax.swing.JScrollPane jScroll;
 
     private javax.swing.JPanel jPanel1;
 
@@ -53,7 +55,12 @@ public class FrameProgressionTraitement extends javax.swing.JPanel {
      */
     private void initComponents() {
 
-	jTblEtatFichiers = new javax.swing.JTable();
+    	
+    jTblEtatFichiers = new javax.swing.JTable();
+    // Added for scrollbar
+    // jTblEtatFichiers.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+	jScroll = new JScrollPane(jTblEtatFichiers, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+    
 	jLblTotalProgress = new javax.swing.JLabel();
 	jLblFileProgress = new javax.swing.JLabel();
 	jProgressTotal = new javax.swing.JProgressBar();
@@ -139,7 +146,8 @@ public class FrameProgressionTraitement extends javax.swing.JPanel {
 	gridBagConstraints.weightx = 1.0;
 	gridBagConstraints.weighty = 1.0;
 	gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-	add(jTblEtatFichiers, gridBagConstraints);
+	// add(jTblEtatFichiers, gridBagConstraints);
+	add(jScroll, gridBagConstraints);
     }
 
     /**
@@ -157,7 +165,7 @@ public class FrameProgressionTraitement extends javax.swing.JPanel {
     }
 
     /**
-     * @param tm le mod�le de la table (liste des fichiers+etat).
+     * @param tm le modèle de la table (liste des fichiers+etat).
      */
     public void setTableModel(TableModel tm) {
 	jTblEtatFichiers.setModel(tm);
