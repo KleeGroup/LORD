@@ -8,7 +8,7 @@ Il a été conçut afin de pouvoir anticiper la validation de la qualité des do
 
 La reprise de données est un problème récurrent pour lequel, le plus souvent, des solutions jetables sont mises en place.
 LORD est un outil qui permet de limiter les parties spécifiques (et donc jetées) lors de reprises de données.
-Mais il peut aussi contrôler n'importe quel jeu de ficheirs CSV et est donc aussi adapté au contrôle de format sur des interfaces par fichiers plats.
+Mais il peut aussi contrôler n'importe quel jeu de fichiers CSV et est donc aussi adapté au contrôle de format sur des interfaces par fichiers plats.
 
 LORD a pour objectifs principaux de :
 * formaliser le contrat du format attendu (xml)
