@@ -3,6 +3,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -130,7 +131,7 @@ public class FrameSelectionCheminsFichiers extends javax.swing.JPanel {
 		// Traitement
 		for (TreeCellLineEditor fic : editeursFichier) {
 			if (fic.hasCategorie(categorie)) {
-				fic.setFichierEnabled(enable);
+				controller.setEnabled(fic.getNom(), enable);
 			}
 		}
 		
@@ -162,6 +163,7 @@ public class FrameSelectionCheminsFichiers extends javax.swing.JPanel {
 		final JLabel selectTous = new JLabel(resourceMap.getString("labelSelectAll.text"));
 		selectTous.setLabelFor(lblCat);
 		selectTous.setFont(underlinedFont);
+		selectTous.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		selectTous.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -172,8 +174,9 @@ public class FrameSelectionCheminsFichiers extends javax.swing.JPanel {
         });
 		
 		final JLabel selectAucun = new JLabel(resourceMap.getString("labelSelectNone.text"));
-		selectAucun .setFont(underlinedFont);
 		selectAucun.setLabelFor(lblCat);
+		selectAucun.setFont(underlinedFont);
+		selectAucun.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		selectAucun.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -607,6 +610,7 @@ public class FrameSelectionCheminsFichiers extends javax.swing.JPanel {
 		}
 
 		void setFichierEnabled(boolean etat) {
+			logger.trace("Modification de " + nom + " ("+etat+")");
 			jChckFichierActif.setSelected(etat);
 			disableLine(!etat);
 		}

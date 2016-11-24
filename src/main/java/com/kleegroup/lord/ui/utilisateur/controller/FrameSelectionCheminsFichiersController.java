@@ -17,8 +17,8 @@ import com.kleegroup.lord.ui.utilisateur.model.FrameSelectionCheminsFichiersMode
 import com.kleegroup.lord.ui.utilisateur.view.FrameSelectionCheminsFichiers;
 
 /**
- * Frame qui permet � l'utilisateur de renseigner l'emplacement
- * des diff�rents fichiers.
+ * Frame qui permet à l'utilisateur de renseigner l'emplacement
+ * des différents fichiers.
  */
 public class FrameSelectionCheminsFichiersController extends FrameController<FrameSelectionCheminsFichiers, FrameSelectionCheminsFichiersModel> {
 	private static final String USER_PREFS_FILEPATH = System.getProperty("java.io.tmpdir") + "/lord.properties";
@@ -37,7 +37,7 @@ public class FrameSelectionCheminsFichiersController extends FrameController<Fra
 
 	/**
 	 * change le repertoire de sauvegarde des fichiers de logs.
-	 * @param pathSuggere le chemin d'acc�s du nouveau repertoire.
+	 * @param pathSuggere le chemin d'accès du nouveau repertoire.
 	 */
 	public void setLogDir(String pathSuggere) {
 		String path = pathSuggere;
@@ -111,7 +111,7 @@ public class FrameSelectionCheminsFichiersController extends FrameController<Fra
 	}
 
 	/**
-	 * Active/d�sactive le fichier.
+	 * Active/désactive le fichier.
 	 * @param nom le nom du fichier.
 	 * @param etat true s'il faut activer le fichier.
 	 */
@@ -205,7 +205,7 @@ public class FrameSelectionCheminsFichiersController extends FrameController<Fra
 
 	/**
 	 * Change l'emplacement fu fichier nom.<br>
-	 * Demande � l'utilisateur le nouvel emplacaemnt. Mets � jour le view et le model.
+	 * Demande à l'utilisateur le nouvel emplacaemnt. Mets à jour le view et le model.
 	 * @param nom le nom du fichier dont on veut changer l'emplacement.
 	 */
 	public void changerEmplacement(String nom) {
@@ -224,7 +224,7 @@ public class FrameSelectionCheminsFichiersController extends FrameController<Fra
 	}
 
 	/**
-	 * Cherche  les fichiers CSV dans un r�pertoire choisi par l'utilisateur.
+	 * Cherche  les fichiers CSV dans un répertoire choisi par l'utilisateur.
 	 */
 	public void changeDataDir() {
 		final JFileChooser fc = new JFileChooser();
@@ -237,7 +237,7 @@ public class FrameSelectionCheminsFichiersController extends FrameController<Fra
 	}
 
 	/**
-	 * Change le r�pertoire des fichiers de logs.
+	 * Change le répertoire des fichiers de logs.
 	 */
 	public void changeLogDir() {
 		final JFileChooser fc = new JFileChooser();
@@ -257,8 +257,8 @@ public class FrameSelectionCheminsFichiersController extends FrameController<Fra
 		/**
 		 * Constructeur MyFileFilter
 		 * 
-		 * @param extension param�tre � d�finir
-		 * @param resourceMap param�tre � d�finir
+		 * @param extension paramètre à définir
+		 * @param resourceMap paramètre à définir
 		 */
 		public MyFileFilter(String extension, ResourceBundle resourceMap) {
 			super();
