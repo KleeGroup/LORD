@@ -1,17 +1,37 @@
 ﻿package com.kleegroup.lord.moteur.util;
 
 /**
- * Enum simple pour indique quel est la s�parateur de d�cimal (point ou virgule).
+ * Enumération simple pour indiquer quel est le séparateur de décimale (point ou virgule).
  */
 public enum SeparateurDecimales {
     /**
-         * Constante pour indiquer que le s�parateur de d�cimale est une virgule
-         * (valeur par d�faut).
-         */
-    SEPARATEUR_VIRGULE,
+     * Séparateur virgule (valeur par défaut).
+     */
+    SEPARATEUR_VIRGULE(',', ", (virgule)"),
     /**
-         * Constante pour indiquer que le s�parateur de d�cimale est un point.
-         */
-    SEPARATEUR_POINT
+     * Séparateur point.
+     */
+    SEPARATEUR_POINT('.', ". (point)"),
+    ;
+	
+	private char separateur = ',';
+	private String label;
     
+	SeparateurDecimales(char separateur, String label) {
+		this.separateur = separateur;
+		this.label = label;
+	}
+	
+	public char value() {
+		return separateur;
+	}
+	
+	@Override
+	public String toString() {
+		if (label != null) {
+			return label;
+		}
+		return super.toString();
+	}
+	
 }

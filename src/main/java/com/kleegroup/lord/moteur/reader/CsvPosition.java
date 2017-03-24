@@ -1,16 +1,14 @@
-﻿/*
- * Created on 13 avr. 2004
- * by jmainaud
- */
-package com.kleegroup.lord.utils.csv;
+﻿package com.kleegroup.lord.moteur.reader;
 
 /**
- * CsvPosition du curseur.
+ * Représente la position de lecture.
+ * Utilisé par l'automate de lecture et les exceptions.
  *
- * @author $Author: maalzreibi $
+ * @author $Author: flimont $
  * @version $Revision: 1.1 $
  */
 public class CsvPosition {
+
 	/** Numéro du caractère courant. */
 	private long caractere;
 
@@ -63,7 +61,7 @@ public class CsvPosition {
 	}
 
 	/**
-	 * Ajoute un enregsitrement.
+	 * Ajoute un enregistrement.
 	 */
 	void nouvelEnregistrement() {
 		++enregistrement;

@@ -5,30 +5,30 @@ import java.io.IOException;
 import com.kleegroup.lord.moteur.exceptions.CaractereInterdit;
 
 /**
- * Cette interface doit ï¿½tre implï¿½mentï¿½e par les sources les sources du moteur.
- * Elle dï¿½finit les fonctions nï¿½cessaire au moteur pour lire les donnï¿½es. 
+ * Cette interface doit être implémentée par les sources les sources du moteur.
+ * Elle définit les fonctions nécessaire au moteur pour lire les données. 
  */
 public interface ICSVDataSource  {
 
 	/**
 	 * Normalement, la taille totale est le taille du fichier.
-	 * @return le nombre de caractï¿½re que contient la source. 
+	 * @return le nombre de caractère que contient la source. 
 	 */
 	long getTotalSize();
 	/**
-	 * Sert ï¿½ calculer le progrï¿½s de la vï¿½rification.
-	 * @return le nombre de caractï¿½res lues par la source.
+	 * Sert à calculer le progrès de la vérification.
+	 * @return le nombre de caractères lues par la source.
 	 */
 	long getNbCharactersRead();
 	/**
-	 * dï¿½finit le séparateur de champ de la source.
+	 * Définit le séparateur de champ de la source.
 	 * @param separator le séparateur de champ de la source.
 	 */
 	void setFieldSeparator(char separator);
 	/**
-	 * @return true si la source conteint encore des donnï¿½es , false sinon.
+	 * @return true si la source contient encore des données , false sinon.
 	 * @throws IOException si la source est illisible.
-	 * @throws CaractereInterdit si un caractere interdit est rencontre
+	 * @throws CaractereInterdit si un caractère interdit est rencontré
 	 */
 	boolean hasNext() throws IOException,CaractereInterdit;
 	/**
@@ -36,9 +36,9 @@ public interface ICSVDataSource  {
 	 */
 	int getPosition();
 	/**
-	 * @return les donnï¿½es de la source 
+	 * @return les données de la source 
 	 * @throws IOException si la source est illisible.
-	 * @throws CaractereInterdit si la source contient un caractere interdit
+	 * @throws CaractereInterdit si la source contient un caractère interdit
 	 */
 	String[] next() throws IOException, CaractereInterdit;
 }

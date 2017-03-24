@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.config;
+﻿package com.kleegroup.lord.moteur.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +24,16 @@ import com.kleegroup.lord.moteur.contraintes.ContrainteTypeDate;
 import com.kleegroup.lord.moteur.contraintes.ContrainteTypeDecimal;
 import com.kleegroup.lord.moteur.contraintes.ContrainteTypeEntier;
 import com.kleegroup.lord.moteur.contraintes.ContrainteUnique;
+import com.kleegroup.lord.moteur.util.SeparateurChamps;
 import com.kleegroup.lord.moteur.util.SeparateurDecimales;
 
 /**
- * Sert a tranformer un schema XML (JAXB) en schema de moteur.
+ * Sert à tranformer un schéma XML (JAXB) en schéma de moteur.
  */
 public class XmlObjTransformer {
+	
+	// private static org.apache.log4j.Logger logger = Logger.getLogger(XmlObjTransformer.class);
+	
 	Schema schemaEquiv = new Schema();
 
 	List<Colonne> colonnesPrinc = new ArrayList<>();
@@ -38,29 +42,38 @@ public class XmlObjTransformer {
 
 	List<String> colonneRef = new ArrayList<>();
 
-	SeparateurDecimales separateur = SeparateurDecimales.SEPARATEUR_VIRGULE;
+	SeparateurChamps sepChamps = null;
+	SeparateurDecimales sepDecimal = null;
 
 	/**
 	 * @param schemaOriginal	le schema extrait du XML
 	 * @return 					le schema de moteur
 	 */
 	public Schema transform(TypeSchema schemaOriginal) {
+		// En cas d'absence de configuration (nouveau fichier)
 		if (schemaOriginal == null) {
 			return new Schema();
 		}
-		try {
-			separateur = SeparateurDecimales.valueOf(schemaOriginal.getSeparateurDecimal());
-		} catch (Exception e) {
-			separateur = SeparateurDecimales.SEPARATEUR_VIRGULE;
-		}
 
+		// Séparateur de décimales
+		try {
+			sepDecimal = SeparateurDecimales.valueOf(schemaOriginal.getSeparateurDecimal());
+		} catch (Exception e) {
+			sepDecimal = SeparateurDecimales.SEPARATEUR_VIRGULE;
+		}
+		schemaEquiv.setSeparateurDecimales(sepDecimal);
+		
+		// Séparateur de champs
+		try {
+			sepChamps = SeparateurChamps.valueOf(schemaOriginal.getSeparateurChamps());
+		} catch (Exception e) {
+			sepChamps = SeparateurChamps.SEPARATEUR_POINT_VIRGULE;
+		}
+		schemaEquiv.setSeparateurChamp(sepChamps);
+
+		// Autres paramètres globaux
 		schemaEquiv.setEncoding(schemaOriginal.getEncodage());
 		schemaEquiv.setAfficherExportLogs(schemaOriginal.getAfficherExportLogs());
-		char sep = schemaOriginal.getSeparateurChamps().charAt(0);
-		schemaEquiv.setSeparateurChamp(sep);
-
-		schemaEquiv.setSeparateurDecimales(separateur.toString());
-
 		for (TypeFichier fichierOriginal : schemaOriginal.getFichier()) {
 			schemaEquiv.addFichier(transform(fichierOriginal));
 		}
@@ -73,7 +86,8 @@ public class XmlObjTransformer {
 			Fichier fRef = schemaEquiv.getFichier(fichierRef.get(i));
 			if (fRef != null) {
 				Colonne cRef = fRef.getColonne(colonneRef.get(i));
-				if (cRef != null) {// la colonne a été trouvéeaaa
+				if (cRef != null) {
+					// la colonne a été trouvée
 					colonnesPrinc.get(i).getFichierParent().addReference(colonnesPrinc.get(i).getNom(), cRef);
 				}
 			}
@@ -151,7 +165,7 @@ public class XmlObjTransformer {
 			return new ContrainteTypeDate(contrainteOriginale.getParam().get(0));
 		}
 		if ("ContrainteTypeDecimal".equals(type)) {
-			return new ContrainteTypeDecimal(Integer.parseInt(contrainteOriginale.getParam().get(0)), separateur, Integer.parseInt(contrainteOriginale.getParam().get(1)));
+			return new ContrainteTypeDecimal(Integer.parseInt(contrainteOriginale.getParam().get(0)), sepDecimal, Integer.parseInt(contrainteOriginale.getParam().get(1)));
 		}
 		if ("ContrainteListeValeursPermises".equals(type)) {
 			String[] valeursPermises = new String[contrainteOriginale.getParam().size()];

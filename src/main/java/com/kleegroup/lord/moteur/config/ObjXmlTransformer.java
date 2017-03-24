@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.config;
+﻿package com.kleegroup.lord.moteur.config;
 
 import javax.xml.bind.JAXBElement;
 
@@ -16,7 +16,7 @@ import com.kleegroup.lord.moteur.Fichier;
 import com.kleegroup.lord.moteur.Schema;
 
 /**
- * Sert a convertir un schema de moteur en document XML.
+ * Sert à convertir un schéma de moteur en document XML.
  * 
  */
 public class ObjXmlTransformer {
@@ -30,23 +30,17 @@ public class ObjXmlTransformer {
 	 * @return le schema JAXB equivalent
 	 */
 	public JAXBElement<TypeSchema> transform(final Schema schemaObjOriginal) {
-
 		final TypeSchema schemaEquiv = localOF.createTypeSchema();
 
-		schemaEquiv.setAfficherExportLogs(schemaObjOriginal
-				.isAfficherExportLogs());
-		schemaEquiv.setSeparateurChamps(String.valueOf(schemaObjOriginal
-				.getSeparateurChamp()));
-		schemaEquiv.setSeparateurDecimal(schemaObjOriginal
-				.getSeparateurDecimales().toString());
+		schemaEquiv.setAfficherExportLogs(schemaObjOriginal.isAfficherExportLogs());
+		schemaEquiv.setSeparateurChamps(schemaObjOriginal.getSeparateurChamp().name());
+		schemaEquiv.setSeparateurDecimal(schemaObjOriginal.getSeparateurDecimales().name());
 		schemaEquiv.setEncodage(schemaObjOriginal.getEncoding());
-		for (Categories.Categorie c : schemaObjOriginal.getCategories()
-				.getListCategories()) {
+		for (Categories.Categorie c : schemaObjOriginal.getCategories().getListCategories()) {
 			for (Fichier f : c.getFiles()) {
 				schemaEquiv.getFichier().add(transform(f));
 			}
 		}
-
 		return localOF.createSchema(schemaEquiv);
 	}
 
@@ -79,8 +73,7 @@ public class ObjXmlTransformer {
 		colonneEquiv.setPresenceValeur(colonneOriginale.getPresenceValeur().toString());
 		colonneEquiv.setColonneDeReference(colonneOriginale.isColonneReference());
 
-		for (ContrainteUniCol contrainteOriginale : colonneOriginale
-				.getContraintes()) {
+		for (ContrainteUniCol contrainteOriginale : colonneOriginale.getContraintes()) {
 			colonneEquiv.getContrainte().add(transform(contrainteOriginale));
 		}
 		return colonneEquiv;
@@ -95,16 +88,13 @@ public class ObjXmlTransformer {
 		return contrainteEquiv;
 	}
 
-	private TypeContrainteMultiColonne transform(
-			final ContrainteMultiCol contrainteOrigin) {
-		final TypeContrainteMultiColonne cmcEquiv = localOF
-				.createTypeContrainteMultiColonne();
+	private TypeContrainteMultiColonne transform(final ContrainteMultiCol contrainteOrigin) {
+		final TypeContrainteMultiColonne cmcEquiv = localOF.createTypeContrainteMultiColonne();
 		cmcEquiv.setId(contrainteOrigin.getID());
 		cmcEquiv.setMessageErreur(contrainteOrigin.getErrTemplate());
 		cmcEquiv.setNomFonction(contrainteOrigin.getNomFonction());
 		for (String nomColonne : contrainteOrigin.getNomColonnes()) {
-			final TypeContrainteMultiColonne.Colonne param = localOF
-					.createTypeContrainteMultiColonneColonne();
+			final TypeContrainteMultiColonne.Colonne param = localOF.createTypeContrainteMultiColonneColonne();
 			param.setNom(nomColonne);
 			cmcEquiv.getColonne().add(param);
 		}

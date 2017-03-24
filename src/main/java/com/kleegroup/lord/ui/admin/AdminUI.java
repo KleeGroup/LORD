@@ -8,7 +8,7 @@ import com.kleegroup.lord.ui.UILauncher;
 import com.kleegroup.lord.ui.admin.controller.FenetrePrincipaleAdminController;
 
 /**
- * The main class of the application.
+ * Application main class for administrative usage (schema editing).
  */
 public class AdminUI extends UILauncher {
 	/** {@inheritDoc}. */
@@ -18,8 +18,8 @@ public class AdminUI extends UILauncher {
 	}
 
 	/**
-	 *Point d'entr�e du programme en mode utilisateur.
-	 * @param args parametres du programme
+	 *Point d'entrée du programme en mode administrateur.
+	 * @param args paramètres du programme
 	 */
 	public static void main(String[] args) {
 		new AdminUI().run();

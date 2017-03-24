@@ -8,7 +8,7 @@ import com.kleegroup.lord.ui.UILauncher;
 import com.kleegroup.lord.ui.utilisateur.controller.FenetrePrincipaleUtilisateurController;
 
 /**
- * The main class of the application.
+ * Application main class for data control usage (schema enforcement).
  */
 public class UserUI extends UILauncher {
 	/** {@inheritDoc}. */
@@ -18,8 +18,8 @@ public class UserUI extends UILauncher {
 	}
 
 	/**
-	 *Point d'entr�e du programme en mode utilisateur.
-	 * @param args parametres du programme
+	 *Point d'entrée du programme en mode utilisateur.
+	 * @param args paramètres du programme
 	 */
 	public static void main(String[] args) {
 		new UserUI().run();

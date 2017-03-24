@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ns2:schema xmlns:ns2="urn:kleegoup:spark:reprise" encodage="ISO-8859-15" separateur-champs=";" separateur-decimal="SEPARATEUR_VIRGULE" afficher-export-logs="false">
+<ns2:schema xmlns:ns2="urn:kleegoup:spark:reprise" encodage="ISO-8859-15" separateur-champs="SEPARATEUR_POINT_VIRGULE" separateur-decimal="SEPARATEUR_VIRGULE" afficher-export-logs="false">
     <fichier nom="Catégorie article" groupe="0" categorie="Référentiel" prefix-nom="Categorie_article" extension="csv" seuil-erreurs="-1" nb-lignes-entete="1">
         <colonnes>
             <colonne nom="ID" description="Identifiant" presence-valeur="OBLIGATOIRE" colonne-de-reference="true">

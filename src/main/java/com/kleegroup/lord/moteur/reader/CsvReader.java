@@ -2,7 +2,7 @@
  * Created on 7 avr. 2004
  * by jmainaud
  */
-package com.kleegroup.lord.utils.csv;
+package com.kleegroup.lord.moteur.reader;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -64,7 +64,7 @@ public class CsvReader {
 	private CsvPosition posProchainEnregistrement;
 
 	/** Erreur lattente. */
-	private CsvReaderException erreur;
+	private CsvException erreur;
 
 	/** Fin de fichier atteinte. */
 	private boolean finDeFichier;
@@ -128,7 +128,7 @@ public class CsvReader {
 
 	private void nouvelleErreur(String message) {
 		if (erreur == null) {
-			erreur = new CsvReaderException(message, posCurseur.copy());
+			erreur = new CsvException(message, posCurseur.copy());
 		}
 	}
 
@@ -312,7 +312,7 @@ public class CsvReader {
 	 * @throws CsvReaderException En cas d'erreur dans le fichier.
 	 * @throws IOException En cas d'erreur d'entré-sortie.
 	 */
-	public String[] next() throws CsvReaderException, IOException {
+	public String[] next() throws CsvException, IOException {
 		if (!hasNext()) {
 			return new String[0];
 		}

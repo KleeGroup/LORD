@@ -28,23 +28,24 @@ import javax.xml.bind.Unmarshaller;
 
 import org.apache.log4j.Logger;
 
-import com.kleegroup.lord.config.ObjXmlTransformer;
-import com.kleegroup.lord.config.XmlObjTransformer;
 import com.kleegroup.lord.config.xml.ObjectFactory;
 import com.kleegroup.lord.config.xml.TypeSchema;
 import com.kleegroup.lord.moteur.Fichier.ETAT;
+import com.kleegroup.lord.moteur.config.ObjXmlTransformer;
+import com.kleegroup.lord.moteur.config.XmlObjTransformer;
 import com.kleegroup.lord.moteur.exceptions.EchecCreationLogs;
 import com.kleegroup.lord.moteur.logs.ILogger;
 import com.kleegroup.lord.moteur.logs.LoggueurFichierCSV;
 import com.kleegroup.lord.moteur.logs.LoggueurMultiple;
 import com.kleegroup.lord.moteur.logs.LoggueurRam;
+import com.kleegroup.lord.moteur.reader.CsvReaderAdapter;
 import com.kleegroup.lord.moteur.util.FichierComparteurGroupe;
 import com.kleegroup.lord.moteur.util.FichierComparteurOrdreTopo;
 import com.kleegroup.lord.moteur.util.ICSVDataSource;
 import com.kleegroup.lord.moteur.util.INotifiable;
 import com.kleegroup.lord.moteur.util.LogFilesZipper;
+import com.kleegroup.lord.moteur.util.SeparateurChamps;
 import com.kleegroup.lord.moteur.util.SeparateurDecimales;
-import com.kleegroup.lord.utils.csv.CsvReaderAdapter;
 
 /**
  * Sert a ordonner les fichier selon leur dependeances.<br>
@@ -64,8 +65,6 @@ public class Schema implements INotifiable {
 
 	protected String encoding;
 
-	protected char separateurChamp = ';';
-
 	protected String separateurLignes;
 
 	protected String charEchapGuillemets;
@@ -75,6 +74,8 @@ public class Schema implements INotifiable {
 	protected boolean afficherExportLogs;
 
 	protected Categories categories = new Categories();
+
+	protected SeparateurChamps separateurChamp = SeparateurChamps.SEPARATEUR_POINT_VIRGULE;
 
 	protected SeparateurDecimales separateurDecimales = SeparateurDecimales.SEPARATEUR_VIRGULE;
 
@@ -91,10 +92,9 @@ public class Schema implements INotifiable {
 	private Date dateDebut = null;
 
 	/**
-	 * Ajoute le fichier f au schema, � la fin de liste des fichiers.
+	 * Ajoute le fichier au schema, en fin de la liste des fichiers.
 	 * 
-	 * @param f
-	 *            fichier a rajouter au schema
+	 * @param f	fichier a rajouter au schema
 	 */
 	public void addFichier(Fichier f) {
 		addFichier(f, fichiers.size());
@@ -164,15 +164,15 @@ public class Schema implements INotifiable {
 
 	private void creerSourceDonnee(Fichier f) {
 		final ICSVDataSource source = new CsvReaderAdapter(f.getChemin(), encoding);
-		source.setFieldSeparator(separateurChamp);
+		source.setFieldSeparator(separateurChamp.value());
 		f.setSource(source);
 	}
 
 	/**
-	 * Nettoie l'objet. Remet à zero les donn�es sp�cifiques utilis�es lors de la
-	 * derni�re v�rification pour pouvoir r�utiliser cet objet pour une nouvelle
-	 * v�rification
-	 * */
+	 * Nettoie l'objet. Remet à zero les données spécifiques utilisées lors de la
+	 * dernière vérification pour pouvoir réutiliser cet objet pour une nouvelle
+	 * vérification
+	 */
 	public void clean() {
 		niveauActuel = 0;
 
@@ -502,38 +502,19 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * d�signe le'encodage des fichier.
+	 * Désigne l'encodage des fichiers.
 	 * 
-	 * @param encoding
-	 *            string qui d�signe l'encodage des fichiers. voir
-	 *            {@link Charset}.
+	 * @param encoding string qui désigne l'encodage des fichiers. Voir{@link Charset}.
 	 */
 	public void setEncoding(String encoding) {
 		this.encoding = encoding;
 	}
 
 	/**
-	 * @return le separateur de champ utilis�.
-	 */
-	public char getSeparateurChamp() {
-		return separateurChamp;
-	}
-
-	/**
-	 * @param separateurChamp
-	 *            le separateur de champ � utiliser.
-	 */
-	public void setSeparateurChamp(char separateurChamp) {
-		this.separateurChamp = separateurChamp;
-	}
-
-	/**
-	 * Zip les fichier de log dans le fichier d�sign�.
+	 * Zip les fichiers de log dans le fichier désigné.
 	 * 
-	 * @param outputZip
-	 *            le fichier destination.
-	 * @throws IOException
-	 *             si une erreur d'�criture a lieu.
+	 * @param outputZip		le fichier destination.
+	 * @throws IOException	si une erreur d'écriture a lieu.
 	 */
 	public void zipLogFiles(File outputZip) throws IOException {
 		LogFilesZipper.zip(outputZip, listCheminFichiersLog);
@@ -569,15 +550,28 @@ public class Schema implements INotifiable {
 	}
 
 	/**
-	 * @param text
-	 *            voir {@link SeparateurDecimales#toString()}.
+	 * @return le separateur de champ utilisé.
 	 */
-	public void setSeparateurDecimales(String text) {
-		separateurDecimales = SeparateurDecimales.valueOf(text);
+	public SeparateurChamps getSeparateurChamp() {
+		return separateurChamp;
 	}
 
 	/**
-	 * @return le separateur des decimales.
+	 * @param sep le séparateur de champs à utiliser. Voir {@link SeparateurChamps}.
+	 */
+	public void setSeparateurChamp(SeparateurChamps sep) {
+		this.separateurChamp = sep;
+	}
+
+	/**
+	 * @param sep le séparateur de décimales à utiliser. Voir {@link SeparateurDecimales}.
+	 */
+	public void setSeparateurDecimales(SeparateurDecimales sep) {
+		this.separateurDecimales = sep;
+	}
+
+	/**
+	 * @return le separateur des décimales.
 	 */
 	public SeparateurDecimales getSeparateurDecimales() {
 		return separateurDecimales;

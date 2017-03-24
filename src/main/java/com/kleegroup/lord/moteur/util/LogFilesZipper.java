@@ -11,7 +11,7 @@ import java.util.zip.ZipOutputStream;
 
 import org.apache.log4j.Logger;
 
-import com.kleegroup.lord.utils.csv.CsvReaderAdapter;
+import com.kleegroup.lord.moteur.reader.CsvReaderAdapter;
 
 /**
  *Zip les fichier de log dauns un fichier d�sign�.

@@ -2,7 +2,7 @@
  * Created on 13 avr. 2004
  * by jmainaud
  */
-package com.kleegroup.lord.utils.csv;
+package com.kleegroup.lord.moteur.reader;
 
 /**
  * @author jmainaud, $Author: maalzreibi $
@@ -45,7 +45,7 @@ public class CsvException extends Exception {
     /**
      * Indique l'enregistrement de l'erreur.
      * L'enregistrement est différent d'une ligne. L'enregistrement est l'ensemble complet 
-     * des valeurs, une pour chaque colonne.Il peut donc s'étendre sur plusieus lignes.
+     * des valeurs, une pour chaque colonne.Il peut donc s'étendre sur plusieurs lignes.
      * @return l'enregistrement de l'erreur.
      */
     public long getEnregistrement() {

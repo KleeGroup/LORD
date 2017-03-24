@@ -1,9 +1,11 @@
 ﻿package com.kleegroup.lord.ui.admin.controller;
 
+import com.kleegroup.lord.moteur.util.SeparateurChamps;
+import com.kleegroup.lord.moteur.util.SeparateurDecimales;
 import com.kleegroup.lord.ui.admin.view.DialogFileOptions;
 
 /**
- * Controlleur pour la fenetre {@link DialogFileOptions}.
+ * Contrôleur pour la fenêtre {@link DialogFileOptions}.
  */
 public class DialogFileOptionsController {
 
@@ -11,10 +13,10 @@ public class DialogFileOptionsController {
     private final FenetrePrincipaleAdminController fpc;
     
     /**
-     * Le controlleur des fenetre de dialgue se limite a communiquer 
-     * les actions de l'utilisateur au controlleur de la fenetre principale 
-     * qui lui se charge d'effectuer veritablement les modifications.
-     * @param fpc controlleur de la fenetre principale.
+     * Le contrôleur des fenêtres de dialogue se limite à communiquer 
+     * les actions de l'utilisateur au contrôleur de la fenêtre principale 
+     * qui lui se charge d'effectuer véritablement les modifications.
+     * @param fpc controlleur de la fenêtre principale.
      */
     public DialogFileOptionsController(FenetrePrincipaleAdminController fpc){
 	this.fpc=fpc;
@@ -23,7 +25,7 @@ public class DialogFileOptionsController {
 
 
     /**
-     * affiche la fenetre.
+     * Affiche la fenêtre.
      */
     public void showWindow() {
 	view.setVisible(true);
@@ -39,17 +41,17 @@ public class DialogFileOptionsController {
 
 
     /**
-     * @return le seprateur de champs.
+     * @return le séparateur de champs.
      */
-    public String getFieldSeparator() {
+    public SeparateurChamps getFieldSeparator() {
 	return fpc.getFieldSeparator();
     }
 
 
     /**
-     * @return le separateur de d�cimales.
+     * @return le séparateur de décimales.
      */
-    public String getDecimalSeparator() {
+    public SeparateurDecimales getDecimalSeparator() {
 	return fpc.getDecimalSeparator();
     }
 
@@ -63,22 +65,18 @@ public class DialogFileOptionsController {
 
 
     /**
-     * @param text le separateur de d�cimales.
+     * @param text le séparateur de décimales.
      */
-    public void setDecimalSeparator(String text) {
-	fpc.setDecimalSeparator(text);
+    public void setDecimalSeparator(SeparateurDecimales sep) {
+	fpc.setDecimalSeparator(sep);
     }
 
 
     /**
-     * @param text le seprateur de champs ("," ou ";").
+     * @param text le séparateur de champs ("," ou ";").
      */
-    public void setFieldSeparator(String text) {
-	if(",".equals(text)){
-	    fpc.setFieldSeparator(',');
-	}else{
-	    fpc.setFieldSeparator(';');
-	}
+    public void setFieldSeparator(SeparateurChamps sep) {
+    	fpc.setFieldSeparator(sep);
     }
     
 

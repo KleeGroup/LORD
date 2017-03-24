@@ -12,10 +12,11 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import javax.xml.bind.JAXBException;
 
+import com.kleegroup.lord.moteur.Categories.Categorie;
 import com.kleegroup.lord.moteur.Fichier;
 import com.kleegroup.lord.moteur.Schema;
-import com.kleegroup.lord.moteur.Categories.Categorie;
 import com.kleegroup.lord.moteur.util.IHierarchieSchema;
+import com.kleegroup.lord.moteur.util.SeparateurChamps;
 import com.kleegroup.lord.moteur.util.SeparateurDecimales;
 import com.kleegroup.lord.ui.admin.model.FenetrePrincipaleAdminModel;
 import com.kleegroup.lord.ui.admin.view.FenetrePrincipaleAdmin;
@@ -29,12 +30,11 @@ public class FenetrePrincipaleAdminController {
 
     private final FenetrePrincipaleAdmin view;
 
-    private String lastPath = ".";// le repertoire du dernier fichier
-
-    // s�l�ctionn�
+    // le répertoire du dernier fichier sélectionné
+    private String lastPath = ".";
 
     /**
-     * Constructeur par d�faut du controlleur.
+     * Constructeur par défaut du controlleur.
      */
     public FenetrePrincipaleAdminController() {
 	view = new FenetrePrincipaleAdmin(this);
@@ -401,23 +401,6 @@ public class FenetrePrincipaleAdminController {
     }
 
     /**
-     * @return le separateur de champ.
-     */
-    public String getFieldSeparator() {
-	return String.valueOf(model.getSchemaSeparateurChamp());
-    }
-
-    /**
-     * @return le separateur de decimales
-     */
-    public String getDecimalSeparator() {
-	if (model.getSchemaSeparateurDecimales() == SeparateurDecimales.SEPARATEUR_POINT) {
-	    return ".";
-	}
-	return ",";
-    }
-
-    /**
      * @param encoding
      *                l'encodage des fichiers du schema.
      */
@@ -427,27 +410,31 @@ public class FenetrePrincipaleAdminController {
     }
 
     /**
-     * @param text
-     *                le separateur de decimales ({@link SeparateurDecimales#toString()}
+     * @return le separateur de champ.
      */
-    public void setDecimalSeparator(String text) {
-	if (".".equals(text)) {
-	    model
-		    .setSchemaSeparateurDecimales(SeparateurDecimales.SEPARATEUR_POINT
-			    .toString());
-	} else {
-	    model
-		    .setSchemaSeparateurDecimales(SeparateurDecimales.SEPARATEUR_VIRGULE
-			    .toString());
-	}
+    public SeparateurChamps getFieldSeparator() {
+	return model.getSchemaSeparateurChamp();
     }
 
     /**
-     * @param separateurChamp
-     *                le separateur de champs.
+     * @return le separateur de decimales
      */
-    public void setFieldSeparator(char separateurChamp) {
-	model.setSchemaSeparateurChamp(separateurChamp);
+    public SeparateurDecimales getDecimalSeparator() {
+	 return model.getSchemaSeparateurDecimales();
+    }
+
+    /**
+     * @param sep Séparateur de décimales ({@link SeparateurDecimales}).
+     */
+    public void setDecimalSeparator(SeparateurDecimales sep) {
+	    model.setSchemaSeparateurDecimales(sep);
+    }
+
+    /**
+     * @param separateurChamp Séparateur de champs ({@link SeparateurChamps}).
+     */
+    public void setFieldSeparator(SeparateurChamps sep) {
+	model.setSchemaSeparateurChamp(sep);
 	view.refreshTitle();
 
     }
@@ -564,8 +551,8 @@ public class FenetrePrincipaleAdminController {
     }
 
     /**
-     * D�place le fichier vers le haut.
-     * @param selectionPath Le path du fichier � d�placer.
+     * Déplace le fichier vers le haut.
+     * @param selectionPath Le chemin du fichier à déplacer.
      * @return le nouveau path du fichier.
      */
     public TreePath moveFileUp(TreePath selectionPath) {

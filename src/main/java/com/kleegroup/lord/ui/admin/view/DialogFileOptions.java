@@ -10,6 +10,10 @@ import javax.swing.Box;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JDialog;
 
+//import org.apache.log4j.Logger;
+
+import com.kleegroup.lord.moteur.util.SeparateurChamps;
+import com.kleegroup.lord.moteur.util.SeparateurDecimales;
 import com.kleegroup.lord.ui.admin.controller.DialogFileOptionsController;
 
 /**
@@ -19,6 +23,8 @@ public final class DialogFileOptions extends JDialog {
 
 	private static final long serialVersionUID = -6828356803936809959L;
 
+//	private static org.apache.log4j.Logger logger = Logger.getLogger(DialogFileOptions.class);
+	
 	final ResourceBundle resourceMap = ResourceBundle.getBundle("resources.Administration");
 
 	private class ActnOk extends AbstractAction {
@@ -56,13 +62,13 @@ public final class DialogFileOptions extends JDialog {
 	private javax.swing.JLabel jlblSeparateurChamp;
 	private javax.swing.JLabel jlblSeparateurDecimales;
 	private javax.swing.JPanel jPanel;
-	private javax.swing.JComboBox<String> jcbFieldSeparator;
-	private javax.swing.JComboBox<String> jcbDecimalSeparator;
+	private javax.swing.JComboBox<SeparateurChamps> jcbFieldSeparator;
+	private javax.swing.JComboBox<SeparateurDecimales> jcbDecimalSeparator;
 
 	private final DialogFileOptionsController controller;
 
 	/**
-	 * @param cntrl contrÃ´leur de la fenÃªtre
+	 * @param cntrl contrôleur de la fenêtre
 	 */
 	public DialogFileOptions(DialogFileOptionsController cntrl) {
 		this.controller = cntrl;
@@ -73,11 +79,11 @@ public final class DialogFileOptions extends JDialog {
 		setTitle(resourceMap.getString("window.options.files.title"));
 	}
 
-	private void setDecimalSeparator(String decimalSeparator) {
+	private void setDecimalSeparator(SeparateurDecimales decimalSeparator) {
 		jcbDecimalSeparator.setSelectedItem(decimalSeparator);
 	}
 
-	private void setFieldSeparator(String fieldSeparator) {
+	private void setFieldSeparator(SeparateurChamps fieldSeparator) {
 		jcbFieldSeparator.setSelectedItem(fieldSeparator);
 	}
 
@@ -100,9 +106,11 @@ public final class DialogFileOptions extends JDialog {
 		jcbEncoding.setModel(new DefaultComboBoxModel<String>(set));
 		jcbEncoding.setSelectedItem("ISO-8859-15");
 
-		jcbFieldSeparator.setModel(new DefaultComboBoxModel<String>(new String[] { ",", ";" }));
+		//jcbFieldSeparator.setModel(new DefaultComboBoxModel<String>(new String[] { ",", ";", "|" }));
+		jcbFieldSeparator.setModel(new DefaultComboBoxModel<SeparateurChamps>(SeparateurChamps.values()));
 		jcbEncoding.setSelectedIndex(1);
-		jcbDecimalSeparator.setModel(new DefaultComboBoxModel<String>(new String[] { ",", "." }));
+		//jcbDecimalSeparator.setModel(new DefaultComboBoxModel<String>(new String[] { ",", "." }));
+		jcbDecimalSeparator.setModel(new DefaultComboBoxModel<SeparateurDecimales>(SeparateurDecimales.values()));
 		jcbEncoding.setSelectedIndex(0);
 
 		jbtnOk.setAction(new ActnOk());
@@ -183,8 +191,8 @@ public final class DialogFileOptions extends JDialog {
 		jlblSeparateurChamp = new javax.swing.JLabel();
 		jlblSeparateurDecimales = new javax.swing.JLabel();
 		jcbEncoding = new javax.swing.JComboBox<String>();
-		jcbFieldSeparator = new javax.swing.JComboBox<String>();
-		jcbDecimalSeparator = new javax.swing.JComboBox<String>();
+		jcbFieldSeparator = new javax.swing.JComboBox<SeparateurChamps>();
+		jcbDecimalSeparator = new javax.swing.JComboBox<SeparateurDecimales>();
 		jPanel = new javax.swing.JPanel();
 		jbtnOk = new javax.swing.JButton();
 		jbtnCancel = new javax.swing.JButton();
@@ -192,9 +200,9 @@ public final class DialogFileOptions extends JDialog {
 
 	void setFileOptions() {
 		controller.setEncoding(jcbEncoding.getSelectedItem().toString());
-		controller.setDecimalSeparator(jcbDecimalSeparator.getSelectedItem().toString());
-		controller.setFieldSeparator(jcbFieldSeparator.getSelectedItem().toString());
-
+		controller.setDecimalSeparator((SeparateurDecimales)jcbDecimalSeparator.getSelectedItem());
+		controller.setFieldSeparator((SeparateurChamps)jcbFieldSeparator.getSelectedItem());
+		// TODO Ajouter le choix du caractère d'échappement des quotes ?
 		dispose();
 	}
 
