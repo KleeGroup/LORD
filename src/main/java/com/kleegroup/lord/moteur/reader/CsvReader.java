@@ -183,7 +183,7 @@ public class CsvReader {
 	public boolean hasNext() throws IOException {
 		// Si la valeur a déjà été calculée, on passe.
 		if (enregistrementLu == null) {
-			// Si la fin du fichier a été atteint, on renvoi null.
+			// Si la fin du fichier a été atteinte, on renvoie null.
 			if (finDeFichier) {
 				enregistrementLu = Boolean.FALSE;
 			} else {
@@ -193,7 +193,6 @@ public class CsvReader {
 				do {
 					// Lecture du caractère suivant
 					final int iChar = in.read();
-					//nbCaracteresLus++;
 					posCurseur.nouvelleColonne();
 
 					// Traitement de la fin de fichier
@@ -203,7 +202,6 @@ public class CsvReader {
 							nouveauChamp();
 						}
 						finDeFichier = true;
-
 						break;
 					}
 
@@ -259,7 +257,6 @@ public class CsvReader {
 								nouveauCharactere(cChar);
 								etat = ETAT_VALEUR_GUILLEMETS;
 							}
-
 							break;
 
 						case ETAT_GUILLEMETS:

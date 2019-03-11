@@ -68,15 +68,14 @@ public class CsvReaderAdapter implements ICSVDataSource {
 	 */
 	@Override
 	public String[] next() throws IOException, CaractereInterdit {
-		if (reader==null){
+		if (reader==null) {
 		    return new String[0];
 		}
-		    try {
-			return reader.next();
-		    } catch (final CsvException e) {
-			throw new CaractereInterdit(e.getEnregistrement()
-				,e.getColonne(),"");
-		    }
+		try {
+		  	return reader.next();
+		} catch (final CsvException e) {
+			throw new CaractereInterdit(e.getEnregistrement(), e.getColonne(), "");
+		}
 	}
 	
 	/** {@inheritDoc} */
