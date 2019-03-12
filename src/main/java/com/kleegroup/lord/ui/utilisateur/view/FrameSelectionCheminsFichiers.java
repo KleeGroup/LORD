@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.ui.utilisateur.view;
+package com.kleegroup.lord.ui.utilisateur.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

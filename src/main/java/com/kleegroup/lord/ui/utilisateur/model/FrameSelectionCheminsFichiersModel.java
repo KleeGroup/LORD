@@ -1,4 +1,3 @@
-﻿
 package com.kleegroup.lord.ui.utilisateur.model;
 
 import java.io.File;
