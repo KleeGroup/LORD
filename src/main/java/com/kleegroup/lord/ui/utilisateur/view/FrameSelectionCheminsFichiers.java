@@ -242,7 +242,7 @@ public class FrameSelectionCheminsFichiers extends javax.swing.JPanel {
 	}
 
 	/**
-	 * Active/descative le fichier.
+	 * Active/désactive le fichier.
 	 * @param nom le nom du fichier.
 	 * @param etat true s'il faut l'activer.
 	 */
@@ -377,8 +377,7 @@ public class FrameSelectionCheminsFichiers extends javax.swing.JPanel {
 	}
 
 	/**
-	 * Rajoute un label � la fin de la lsite des fichiers pour pousser les controles vers le
-	 * haut.
+	 * Rajoute un label à la fin de la liste des fichiers pour pousser les contrôles vers le haut.
 	 */
 	public void fin() {
 		final javax.swing.JLabel l3 = new javax.swing.JLabel("");

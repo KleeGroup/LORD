@@ -1,4 +1,5 @@
-﻿package com.kleegroup.lord.ui.utilisateur.model;
+﻿
+package com.kleegroup.lord.ui.utilisateur.model;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -26,8 +27,8 @@ public class FrameSelectionCheminsFichiersModel extends Model {
 	}
 
 	/**
-	 * Active/desactive le fichier.
-	 * @param nom lle nom du fichier � d�sactiver.
+	 * Active/désactive le fichier.
+	 * @param nom le nom du fichier à désactiver.
 	 * @param etat true s'il faut l'activer.
 	 */
 	public void setEnabled(String nom, boolean etat) {
@@ -47,7 +48,7 @@ public class FrameSelectionCheminsFichiersModel extends Model {
 	}
 
 	/**
-	 * @return null si les chemins donn�s � chaque fichiers sont valide,
+	 * @return null si les chemins donnés à chaque fichiers sont valides,
 	 * sinon renvoie le nom du premier fichier invalide.
 	 */
 	public String isValide() {
@@ -112,8 +113,8 @@ public class FrameSelectionCheminsFichiersModel extends Model {
 
 	/**
 	 * Cherche dans un repertoire les fichiers pour remplir automqtiquement l'emplacement
-	 * pr�vu.
-	 * @param dir le r�pertoire o� il faut chercher
+	 * prévu.
+	 * @param dir le répertoire où il faut chercher
 	 */
 	public void searchDir(File dir) {
 		if (dir == null || !dir.isDirectory()) {
@@ -156,9 +157,9 @@ public class FrameSelectionCheminsFichiersModel extends Model {
 	}
 
 	/**
-	 * Renvoie l'�tat d'activation du fichier.
+	 * Renvoie l'état d'activation du fichier.
 	 * @param nom le nom du fichier.
-	 * @return l'�tat du fichier.
+	 * @return l'état du fichier.
 	 */
 	public boolean getEnabled(String nom) {
 		return schema.getFichier(nom).isEnabled();
@@ -170,7 +171,7 @@ public class FrameSelectionCheminsFichiersModel extends Model {
 	}
 
 	/**
-	 * @return une liste des noms de cat�gorie du sch�ma.
+	 * @return une liste des noms de catégorie du schéma.
 	 */
 	public List<String> getNomsCategories() {
 		final List<String> nomCategories = new ArrayList<>();
@@ -182,8 +183,8 @@ public class FrameSelectionCheminsFichiersModel extends Model {
 	}
 
 	/**
-	 * Renvoie la liste des fichiers d'une cat�gorie.
-	 * @param nomCategorie le nom de la cat�gorie.
+	 * Renvoie la liste des fichiers d'une catégorie.
+	 * @param nomCategorie le nom de la catégorie.
 	 * @return la liste des fichiers.
 	 */
 	public List<Fichier> getFichiers(String nomCategorie) {
@@ -191,14 +192,14 @@ public class FrameSelectionCheminsFichiersModel extends Model {
 	}
 
 	/**
-	 * @return la liste des fichiers non attribu�s � une cat�gorie.
+	 * @return la liste des fichiers non attribués à une catégorie.
 	 */
 	public List<Fichier> getFichiersSansCategorie() {
 		return schema.getCategories().getRootCategorie().getFiles();
 	}
 
 	/**
-	 * @return le nom de la cat�gorie racine
+	 * @return le nom de la catégorie racine
 	 */
 	public String getRootCategorie() {
 		return schema.getCategories().getRootCategorie().getNom();
@@ -211,8 +212,8 @@ public class FrameSelectionCheminsFichiersModel extends Model {
 		/**
 		* Constructeur MyFileFilter
 		* 
-		* @param prefix param�tre � d�finir
-		* @param extension param�tre � d�finir
+		* @param prefix paramètre à définir
+		* @param extension paramètre à définir
 		*/
 		public MyFileFilter(String prefix, String extension) {
 			super();

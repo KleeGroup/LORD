@@ -67,11 +67,12 @@ public class FrameSelectionCheminsFichiersController extends FrameController<Fra
 	@Override
 	protected FrameSelectionCheminsFichiers createView() {
 		final FrameSelectionCheminsFichiers temp = new FrameSelectionCheminsFichiers(this);
-		if (model.getNomsCategories().size() > 1) {
+		// toujours afficher les catégories pour bénéficier de l'activation en masse
+		//if (model.getNomsCategories().size() > 1) {
 			creerListeCheminsAvecCategories(temp);
-		} else {
-			creerListeCheminsSansCategories(temp);
-		}
+		//} else {
+		//	creerListeCheminsSansCategories(temp);
+		//}
 		temp.fin();
 
 		return temp;
