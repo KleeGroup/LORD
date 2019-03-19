@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur.contraintes;
+package com.kleegroup.lord.moteur.contraintes;
 
 import java.util.HashSet;
 import java.util.Set;

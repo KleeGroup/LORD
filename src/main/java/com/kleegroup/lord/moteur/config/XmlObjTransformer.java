@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur.config;
+package com.kleegroup.lord.moteur.config;
 
 import java.util.ArrayList;
 import java.util.List;

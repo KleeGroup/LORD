@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.ui.admin.view;
+package com.kleegroup.lord.ui.admin.view;
 
 import java.awt.event.ActionEvent;
 import java.nio.charset.Charset;

@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur;
+package com.kleegroup.lord.moteur;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur;
+package com.kleegroup.lord.moteur;
 
 import com.kleegroup.lord.moteur.exceptions.ExceptionMoteur;
 

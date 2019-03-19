@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur.contraintes;
+package com.kleegroup.lord.moteur.contraintes;
 
 /**
  * Contient les fonctions statiques utilisables pour créer une contrainte multicolonne.

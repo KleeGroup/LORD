@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.ui.admin.model;
+package com.kleegroup.lord.ui.admin.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;

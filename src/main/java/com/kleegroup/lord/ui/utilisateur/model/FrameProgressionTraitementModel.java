@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.ui.utilisateur.model;
+package com.kleegroup.lord.ui.utilisateur.model;
 
 import java.text.NumberFormat;
 import java.util.ResourceBundle;

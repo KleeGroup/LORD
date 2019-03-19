@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur.contraintes;
+package com.kleegroup.lord.moteur.contraintes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,13 +7,14 @@ import com.kleegroup.lord.moteur.ContrainteUniCol;
 import com.kleegroup.lord.moteur.util.SeparateurDecimales;
 
 /**
- * V�rifie que la valeur repr�sente un nombre d�cimal.
+ * Vérifie que la valeur représente un nombre décimal.
  * @author maazreibi
  *
  */
 public class ContrainteTypeDecimal extends ContrainteUniCol {
 
-	protected String regex;//expression reguliere utilisee pour tester le decimal
+	//expression regulière utilisée pour tester le decimal
+	protected String regex;
 	protected String separateurFraction = ",";
 	protected int avantVirgule, apresVirgule;
 	private int etat = 0;
@@ -21,14 +22,14 @@ public class ContrainteTypeDecimal extends ContrainteUniCol {
 	private String PAS_D_ERREUR = "PAS_D_ERREUR", TROP_DE_CHIFFRES_AVANT_VIRG = "TROP_DE_CHIFFRES_AVANT_VIRG", TROP_DE_CHIFFRES_APRES_VIRG = "TROP_DE_CHIFFRES_APRES_VIRG", PAS_UN_CHIFFRE = "PAS_UN_CHIFFRE";
 
 	/**
-	 * Construit la contrainte avec les param�tres fournies.
+	 * Construit la contrainte avec les paramètres fournis.
 	 * <br><br>
-	 * Le param�ter s�parateur de d�cimal peut prendre 2 valeurs. Ces valeurs sont 
-	 * des constantes d�finie dans la classe:
+	 * Le paramètre séparateur de décimal peut prendre 2 valeurs. Ces valeurs sont 
+	 * des constantes définie dans la classe:
 	 * <code>SEPARATEUR_VIRGULE </code> et <code>SEPARATEUR_POINT</code>
 	 * @param avantVirgule nombre de chiffres avant la virgule
-	 * @param separateur constante indiquent le s�prateur de d�cimale d�sir�
-	 * @param apresVirgule nombre de chiffres apr�s la virgule
+	 * @param separateur constante indiquent le séprateur de décimale désiré
+	 * @param apresVirgule nombre de chiffres après la virgule
 	 */
 	public ContrainteTypeDecimal(int avantVirgule, SeparateurDecimales separateur, int apresVirgule) {
 		super();
@@ -37,7 +38,7 @@ public class ContrainteTypeDecimal extends ContrainteUniCol {
 		initMsgErreurs();
 
 		if (separateur == SeparateurDecimales.SEPARATEUR_POINT) {
-			separateurFraction = ".";
+			separateurFraction = "\\.";
 		}
 		regex = "([\\+|-])?" + //plus ou moins au debut
 				"(\\d){1," + avantVirgule + "}" //pattern avant la virgule %d=nbre de chiffre max
@@ -118,17 +119,17 @@ public class ContrainteTypeDecimal extends ContrainteUniCol {
 	 * un nombre repr�sentant le nombre de chiffre accept�s avant la virgule, et
 	 * apresVirgule le nombre de chiffres apr�s.
 	 * 
-	 * @return le format de v�rification
+	 * @return le format de vérification
 	 * */
 	public String getFormat() {
 		return avantVirgule + "," + apresVirgule;
 	}
 
 	/**
-	 * Construit une ContrainteTypeDecimal � partir d'une chaine de caract�res repr�sentant 
+	 * Construit une ContrainteTypeDecimal à partir d'une chaine de caractères représentant 
 	 * le format. voir aussi {@link #getFormat()}.
 	 * @param format le format de la contrainte
-	 * @return une ContrainteTypeDecimal qui suit le format d�fini.
+	 * @return une ContrainteTypeDecimal qui suit le format défini.
 	 */
 	public static ContrainteTypeDecimal fromString(String format) {
 		String[] arr = format.split(",");

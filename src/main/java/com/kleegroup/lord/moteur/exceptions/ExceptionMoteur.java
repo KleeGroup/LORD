@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur.exceptions;
+package com.kleegroup.lord.moteur.exceptions;
 
 /**
  * Represente une exception levee lors de la verification.

@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur.reader;
+package com.kleegroup.lord.moteur.reader;
 
 import java.io.File;
 import java.io.FileInputStream;

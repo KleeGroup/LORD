@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.ui.admin.controller;
+package com.kleegroup.lord.ui.admin.controller;
 
 import com.kleegroup.lord.ui.admin.view.DialogGeneralOptions;
 

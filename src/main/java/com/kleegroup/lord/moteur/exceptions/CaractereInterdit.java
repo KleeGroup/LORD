@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur.exceptions;
+package com.kleegroup.lord.moteur.exceptions;
 
 /**
  * Une exception lev�e si un champ contient une valeur interdite (" ou \n normalement).

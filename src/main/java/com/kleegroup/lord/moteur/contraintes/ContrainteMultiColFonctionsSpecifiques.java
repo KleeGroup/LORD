@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur.contraintes;
+package com.kleegroup.lord.moteur.contraintes;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;

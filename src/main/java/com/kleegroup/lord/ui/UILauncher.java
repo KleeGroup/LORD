@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.ui;
+package com.kleegroup.lord.ui;
 
 import java.awt.EventQueue;
 import java.io.File;

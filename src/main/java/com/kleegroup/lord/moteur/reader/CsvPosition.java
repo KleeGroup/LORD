@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur.reader;
+package com.kleegroup.lord.moteur.reader;
 
 /**
  * Représente la position de lecture.

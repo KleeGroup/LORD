@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur;
+package com.kleegroup.lord.moteur;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;

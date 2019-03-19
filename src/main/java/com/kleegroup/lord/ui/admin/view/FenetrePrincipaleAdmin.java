@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.ui.admin.view;
+package com.kleegroup.lord.ui.admin.view;
 
 import java.awt.Component;
 import java.awt.Rectangle;

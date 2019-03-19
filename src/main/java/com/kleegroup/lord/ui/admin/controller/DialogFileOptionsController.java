@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.ui.admin.controller;
+package com.kleegroup.lord.ui.admin.controller;
 
 import com.kleegroup.lord.moteur.util.SeparateurChamps;
 import com.kleegroup.lord.moteur.util.SeparateurDecimales;

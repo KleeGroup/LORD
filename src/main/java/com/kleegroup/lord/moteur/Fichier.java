@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur;
+package com.kleegroup.lord.moteur;
 
 import java.io.IOException;
 import java.util.ArrayList;

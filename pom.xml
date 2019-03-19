@@ -4,14 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kleegroup</groupId>
 	<artifactId>LORD</artifactId>
-	<version>1.1</version>
+	<version>1.2</version>
 	<packaging>jar</packaging>
 	<name>Outil-Reprise-Donnees</name>
 	<description>L'Outil de Reprise des Données.</description>
 
 	<properties>
 		<!-- Target JDK version -->
-		<jdk.version>1.7</jdk.version>
+		<jdk.version>1.8</jdk.version>
 		<!-- User interface for end-user (file testing only) -->
 		<mainClass>com.kleegroup.lord.ui.utilisateur.UserUI</mainClass>
 		<!-- User interface for administrator (exclusive with previous) -->

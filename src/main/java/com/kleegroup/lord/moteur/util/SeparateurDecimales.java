@@ -1,4 +1,4 @@
-﻿package com.kleegroup.lord.moteur.util;
+package com.kleegroup.lord.moteur.util;
 
 /**
  * Enumération simple pour indiquer quel est le séparateur de décimale (point ou virgule).
