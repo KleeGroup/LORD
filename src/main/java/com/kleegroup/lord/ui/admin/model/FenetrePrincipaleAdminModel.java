@@ -43,7 +43,7 @@ public class FenetrePrincipaleAdminModel {
 		 */
 		private static final long serialVersionUID = 4157087119873576473L;
 
-		private final String nomColonne[] = new String[] { "Colonne", "Description", "O/F", "Ref", "Unique", "Type", "Format", "Taille Max", "Valeurs permises", "Champ de contrôle", };
+		private final String nomColonne[] = new String[] { "Colonne", "Description", "O/F", "Ref", "Unique", "Type", "Format", "Taille Max", "Valeurs permises", "Champ de contr�le", };
 
 		private Fichier f = new Fichier("", "");
 
@@ -299,6 +299,14 @@ public class FenetrePrincipaleAdminModel {
 			return f.getNbLignesEntete();
 		}
 
+		boolean getCheckHeaderName() {
+			return f.getCheckHeaderName();
+		}
+
+		boolean getCheckHeaderNameCaseSensitive() {
+			return f.getCheckHeaderNameCaseSensitive();
+		}
+
 		void setFileGroup(int grp) {
 			f.setGroupe(grp);
 
@@ -306,6 +314,14 @@ public class FenetrePrincipaleAdminModel {
 
 		void setHeaderLinesCount(int nb) {
 			f.setNbLignesEntete(nb);
+		}
+
+		void setCheckHeaderName(boolean value) {
+			f.setCheckHeaderName(value);
+		}
+
+		void setCheckHeaderNameCaseSensitive(boolean value) {
+			f.setCheckHeaderNameCaseSensitive(value);
 		}
 
 		void setFileErrorLimit(int nb) {
@@ -560,6 +576,20 @@ public class FenetrePrincipaleAdminModel {
 	}
 
 	/**
+	 * @return nbre de lignes d'entete du fichier sï¿½lectionnï¿½.
+	 */
+	public boolean getCurrentFileCheckHeaderName() {
+		return currentFile.getCheckHeaderName();
+	}
+
+	/**
+	 * @return nbre de lignes d'entete du fichier sï¿½lectionnï¿½.
+	 */
+	public boolean getCurrentFileCheckHeaderNameCaseSensitive() {
+		return currentFile.getCheckHeaderNameCaseSensitive();
+	}
+
+	/**
 	 * @param grp numero de groupe du fichier sï¿½lectionnï¿½.
 	 */
 	public void setCurrentFileGroup(int grp) {
@@ -578,6 +608,27 @@ public class FenetrePrincipaleAdminModel {
 			setModified();
 		}
 		currentFile.setHeaderLinesCount(nb);
+	}
+
+	/**
+	 * @param value s'il faut contr�ler les libell�s des ent�tes
+	 */
+	public void setCurrentFileCheckHeaderName(boolean value) {
+		if (value != getCurrentFileCheckHeaderName()) {
+			setModified();
+		}
+		currentFile.setCheckHeaderName(value);
+	}
+
+
+	/**
+	 * @param value s'il faut contr�ler les libell�s des ent�tes
+	 */
+	public void setCurrentFileCheckHeaderNameCaseSensitive(boolean value) {
+		if (value != getCurrentFileCheckHeaderNameCaseSensitive()) {
+			setModified();
+		}
+		currentFile.setCheckHeaderNameCaseSensitive(value);
 	}
 
 	/**

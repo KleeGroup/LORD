@@ -22,7 +22,7 @@ import com.kleegroup.lord.moteur.util.IHierarchieSchema;
 import com.kleegroup.lord.moteur.util.INotifiable;
 
 /**
- * ReprÃ©sente un fichier Ã  vÃ©rifier.
+ * Représente un fichier à vérifier.
  */
 public class Fichier implements IHierarchieSchema {
 
@@ -57,6 +57,10 @@ public class Fichier implements IHierarchieSchema {
 
 	private int nbLignesEntete = 0;
 
+	private boolean checkHeaderName = false;
+
+	private boolean checkHeaderNameCaseSensitive = false;
+
 	private int seuilAbandon = -1;
 
 	private long nbErreurs = 0;
@@ -89,11 +93,11 @@ public class Fichier implements IHierarchieSchema {
 	 */
 	private int modeAffichage = 0;
 
-	/** Indique l'Ã©tat du fichier. */
+	/** Indique l'état du fichier. */
 	public enum ETAT {
 
 		/**
-		 * Le fichier n'a pas Ã©tÃ© encore vÃ©rifiÃ©.
+		 * Le fichier n'a pas été encore vérifié
 		 */
 		EN_ATTENTE {
 			/** {@inheritDoc} */
@@ -259,7 +263,7 @@ public class Fichier implements IHierarchieSchema {
 	 *            le dÃ©but du nom du fichier (pour le retrouver automatiquement)
 	 */
 	public Fichier(String nom, String prefixNom) {
-		logAppli.trace("CrÃ©ation d'un fichier. nom = " + nom);
+		logAppli.trace("Création d'un fichier. nom = " + nom);
 		this.nom = nom;
 		this.prefixNom = prefixNom;
 		cancel = false;
@@ -276,9 +280,9 @@ public class Fichier implements IHierarchieSchema {
 	 * @param errTemplate
 	 *            le template du message d'erreur
 	 * @param nomFonction
-	 *            le nom de la fonction de vÃ©rification de la contrainte
+	 *            le nom de la fonction de vérification de la contrainte
 	 * @param cols
-	 *            les colonnes Ã  vÃ©rifier
+	 *            les colonnes à vérifier
 	 */
 	public void addContrainteMultiCol(String id, String errTemplate,
 			String nomFonction, String... cols) {
@@ -621,7 +625,7 @@ public class Fichier implements IHierarchieSchema {
 	 * @param nomColonne
 	 *            le nom de la colonne du fichier
 	 * @param c2
-	 *            la colonne rÃ©fÃ©rencÃ©e
+	 *            la colonne référencée
 	 */
 	public void addReference(String nomColonne, Colonne c2) {
 
@@ -644,7 +648,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * REmplace le logguer du fichier par un nouveau loggueur.
+	 * Remplace le logguer du fichier par un nouveau loggueur.
 	 * 
 	 * @param logger
 	 *            le nouveau loggueur du fichier
@@ -749,6 +753,20 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
+	 * @return s'il faut contrôler les libellés des entêtes
+	 */
+	public boolean getCheckHeaderName() {
+		return checkHeaderName;
+	}
+	
+	/**
+	 * @return s'il faut contrôler les libellés des entêtes
+	 */
+	public boolean getCheckHeaderNameCaseSensitive() {
+		return checkHeaderNameCaseSensitive;
+	}
+
+	/**
 	 * @param nbLignesEntete
 	 *            le nombre de ligne d'entetes (ignorÃ©es lors de la
 	 *            vÃ©rification)
@@ -756,6 +774,22 @@ public class Fichier implements IHierarchieSchema {
 	public void setNbLignesEntete(int nbLignesEntete) {
 		this.nbLignesEntete = nbLignesEntete;
 		logAppli.debug("fichier " + nom + ".nbLignesEntete=" + nbLignesEntete);
+	}
+
+	/**
+	 * @param value s'il faut contrôler les libellés des entêtes
+	 */
+	public void setCheckHeaderName(boolean value) {
+		this.checkHeaderName = value;
+		logAppli.debug("fichier " + nom + ".checkHeaderName=" + value);
+	}
+
+	/**
+	 * @param value s'il faut contrôler les libellés des entêtes
+	 */
+	public void setCheckHeaderNameCaseSensitive(boolean value) {
+		this.checkHeaderNameCaseSensitive = value;
+		logAppli.debug("fichier " + nom + ".checkHeaderNameCaseSensitive=" + value);
 	}
 
 	/**

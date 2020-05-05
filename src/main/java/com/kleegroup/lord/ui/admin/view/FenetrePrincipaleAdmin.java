@@ -393,16 +393,6 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
 	private javax.swing.JButton jbtnColMoveDn;
 
-	private javax.swing.JLabel jlblNomFichier;
-
-	private javax.swing.JLabel jmbmExtensionFichier;
-
-	private javax.swing.JLabel jlblGroupeFichier;
-
-	private javax.swing.JLabel jlblEnteteFichier;
-
-	private javax.swing.JLabel jlblSeuilErreurFichier;
-
 	private javax.swing.JLabel jLabel6;
 
 	private javax.swing.JMenuBar jMenuBar;
@@ -411,9 +401,28 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
 	private javax.swing.JPanel jpnlContent;
 
-	private javax.swing.JPanel jpnlLine1;
+	// File name and extension
+	private javax.swing.JPanel jpnlLine1; 
+	private javax.swing.JLabel jlblNomFichier;
+	private javax.swing.JTextField jtxtNamePrefix;
+	private javax.swing.JLabel jmbmExtensionFichier;
+	private javax.swing.JTextField jtxtExtension;
 
-	private javax.swing.JPanel jpnlLine2;
+	// Group and error threshold
+	private javax.swing.JPanel jpnlLine2; 
+	private javax.swing.JLabel jlblGroupeFichier;
+	private javax.swing.JSpinner jspnFileGroup;
+	private javax.swing.JLabel jlblSeuilErreurFichier;
+	private javax.swing.JSpinner jspnFileErrorLimit;
+
+	// Header parameters
+	private javax.swing.JPanel jpnlLine3; 
+	private javax.swing.JLabel jlblEnteteFichier;
+	private javax.swing.JSpinner jspnFileHeader;
+	private javax.swing.JCheckBox jcbCheckHeaderName;
+	private javax.swing.JLabel jlblCheckHeaderName;	
+	private javax.swing.JCheckBox jcbCheckHeaderNameCaseSensitive;
+	private javax.swing.JLabel jlblCheckHeaderNameCaseSensitive;	
 
 	private javax.swing.JPanel jpnlTable;
 
@@ -421,24 +430,14 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
 	private javax.swing.JScrollPane jScrollPaneTree;
 
-	private javax.swing.JSpinner jspnFileGroup;
-
-	private javax.swing.JSpinner jspnFileHeader;
-
-	private javax.swing.JSpinner jspnFileErrorLimit;
-
 	private javax.swing.JTable jtblFileDetails;
-
-	private javax.swing.JTextField jtxtNamePrefix;
-
-	private javax.swing.JTextField jtxtExtension;
 
 	private final int defaultRowHeight;
 
 	/**
-	 * CrÃ©e la fenÃªtre principale de l'interface administrateur.
+	 * Crée la fenêtre principale de l'interface administrateur.
 	 * 
-	 * @param controller	le contrÃ´leur de la fenÃªtre
+	 * @param controller	le contrôleur de la fenêtre
 	 */
 	public FenetrePrincipaleAdmin(FenetrePrincipaleAdminController controller) {
 		ORD_TITLE = resourceMap.getString("window.title");
@@ -530,18 +529,31 @@ public class FenetrePrincipaleAdmin extends JFrame {
 		jbtnFileTreeMoveUp.setName("jButton4");
 		jbtnFileTreeMoveDn.setName("jButton5");
 		jpnlContent.setName("jPanel2");
-		jpnlLine1.setName("jPanel3");
+		
+		// Line 1 : file name and extension
+		jpnlLine1.setName("jPanelFileName");
 		jlblNomFichier.setName("jLabel1");
 		jtxtNamePrefix.setName("jTextField1");
 		jmbmExtensionFichier.setName("jLabel2");
 		jtxtExtension.setName("jTextField2");
+		
+		// Line 2 : file group and error threshold
 		jpnlLine2.setName("jPanel4");
 		jlblGroupeFichier.setName("jLabel3");
 		jspnFileGroup.setName("jSpinner1");
-		jlblEnteteFichier.setName("jLabel4");
 		jlblSeuilErreurFichier.setName("jLabel5");
-		jpnlTable.setName("jPanel5");
+		jspnFileErrorLimit.setName("jSpinner3");
+		
+		// Line 3 : file header
+		jpnlLine3.setName("jPanelFileHeader");
+		jlblEnteteFichier.setName("jLabel4");
 		jspnFileHeader.setName("jSpinner2");
+		jcbCheckHeaderName.setName("jCheckboxHeaderName");
+		jlblCheckHeaderName.setName("jLabelHeaderName");
+		jcbCheckHeaderNameCaseSensitive.setName("jCheckboxHeaderNameCaseInsensitive");
+		jlblCheckHeaderNameCaseSensitive.setName("jLabelHeaderNameCaseInsensitive");
+
+		jpnlTable.setName("jPanel5");
 		jScrollPaneTable.setName("jScrollPane3");
 		jtblFileDetails.setName("jTable1");
 		jbtnColNew.setName("jButton6");
@@ -558,6 +570,8 @@ public class FenetrePrincipaleAdmin extends JFrame {
 		jlblGroupeFichier.setText(resourceMap.getString("label.file.group"));
 		jlblEnteteFichier.setText(resourceMap.getString("label.file.header"));
 		jlblSeuilErreurFichier.setText(resourceMap.getString("label.file.threshold"));
+		jlblCheckHeaderName.setText(resourceMap.getString("label.file.checkheader"));
+		jlblCheckHeaderNameCaseSensitive.setText(resourceMap.getString("label.file.checkheadercase"));
 	}
 
 	private void createLayout() {
@@ -567,6 +581,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 		jpnlContent.setLayout(new java.awt.GridBagLayout());
 		jpnlLine1.setLayout(new java.awt.GridBagLayout());
 		jpnlLine2.setLayout(new java.awt.GridBagLayout());
+		jpnlLine3.setLayout(new java.awt.GridBagLayout());		
 		jpnlTable.setLayout(new java.awt.GridBagLayout());
 
 		gridBagConstraints = new java.awt.GridBagConstraints();
@@ -643,60 +658,102 @@ public class FenetrePrincipaleAdmin extends JFrame {
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 2;
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
+		jpnlContent.add(jpnlLine3, gridBagConstraints);
+
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 3;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
 		gridBagConstraints.weightx = 1.0;
 		gridBagConstraints.weighty = 1.0;
 		gridBagConstraints.insets = new java.awt.Insets(3, 3, 3, 3);
 		jpnlContent.add(jpnlTable, gridBagConstraints);
 
+		// ********************
+		// File Panel line #1 : filename and extension
+		
+		// Label : file name
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
 		jpnlLine1.add(jlblNomFichier, gridBagConstraints);
 
+		// Field : file name
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.weightx = 1.0;
 		jpnlLine1.add(jtxtNamePrefix, gridBagConstraints);
 
+		// Label : file extension
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
 		jpnlLine1.add(jmbmExtensionFichier, gridBagConstraints);
 
+		// Field : file extension
 		jpnlLine1.add(jtxtExtension, new java.awt.GridBagConstraints());
 
 		createLayoutPart2();
 	}
 
 	private void createLayoutPart2() {
+		
+		// ********************
+		// File Panel line #2 : file group and error threshold
+		
+		// Label : file group
 		java.awt.GridBagConstraints gridBagConstraints;
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
 		jpnlLine2.add(jlblGroupeFichier, gridBagConstraints);
 
+		// Field : file group
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.weightx = 1.0;
 		jpnlLine2.add(jspnFileGroup, gridBagConstraints);
 
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
-		jpnlLine2.add(jlblEnteteFichier, gridBagConstraints);
-
-		gridBagConstraints = new java.awt.GridBagConstraints();
-		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		gridBagConstraints.weightx = 1.0;
-		jpnlLine2.add(jspnFileHeader, gridBagConstraints);
-
+		// Label : error threshold
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
 		jpnlLine2.add(jlblSeuilErreurFichier, gridBagConstraints);
 
-		jspnFileErrorLimit.setName("jSpinner3");
+		// Field : error threshold
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints.weightx = 1.0;
 		jpnlLine2.add(jspnFileErrorLimit, gridBagConstraints);
 
+		// ********************
+		// File Panel line #3 : header parameters
+	
+		// Label : # file header lines
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
+		jpnlLine3.add(jlblEnteteFichier, gridBagConstraints);
+
+		// Field : # file header lines
+		gridBagConstraints = new java.awt.GridBagConstraints();
+		gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.weightx = 1.0;
+		jpnlLine3.add(jspnFileHeader, gridBagConstraints);
+
+		
+		// field : check header name ?
+		jpnlLine3.add(jcbCheckHeaderName, gridBagConstraints);
+		// Label : check header name ?
+		jpnlLine3.add(jlblCheckHeaderName, gridBagConstraints);	
+	    
+		// Field : is header name check cas-insensitive ?
+		jpnlLine3.add(jcbCheckHeaderNameCaseSensitive, gridBagConstraints);
+		// Label : is header name check cas-insensitive ?
+		jpnlLine3.add(jlblCheckHeaderNameCaseSensitive, gridBagConstraints);	
+
+		
+		
+		// ********************
+		// File Panel Table
+		
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
 		gridBagConstraints.gridy = 0;
@@ -789,18 +846,27 @@ public class FenetrePrincipaleAdmin extends JFrame {
 		jbtnFileTreeMoveUp = new javax.swing.JButton();
 		jbtnFileTreeMoveDn = new javax.swing.JButton();
 		jpnlContent = new javax.swing.JPanel();
+		//File name and extension
 		jpnlLine1 = new javax.swing.JPanel();
 		jlblNomFichier = new javax.swing.JLabel();
 		jtxtNamePrefix = new javax.swing.JTextField();
 		jmbmExtensionFichier = new javax.swing.JLabel();
 		jtxtExtension = new javax.swing.JTextField();
+		// File group and error threshold
 		jpnlLine2 = new javax.swing.JPanel();
 		jlblGroupeFichier = new javax.swing.JLabel();
 		jspnFileGroup = new javax.swing.JSpinner();
-		jlblEnteteFichier = new javax.swing.JLabel();
-		jspnFileHeader = new javax.swing.JSpinner();
 		jlblSeuilErreurFichier = new javax.swing.JLabel();
 		jspnFileErrorLimit = new javax.swing.JSpinner();
+		// File header parameters
+		jpnlLine3 = new javax.swing.JPanel();
+		jlblEnteteFichier = new javax.swing.JLabel();
+		jspnFileHeader = new javax.swing.JSpinner();
+		jcbCheckHeaderName = new javax.swing.JCheckBox();
+		jlblCheckHeaderName = new javax.swing.JLabel();
+		jcbCheckHeaderNameCaseSensitive = new javax.swing.JCheckBox();
+		jlblCheckHeaderNameCaseSensitive = new javax.swing.JLabel();
+		// File table
 		jpnlTable = new javax.swing.JPanel();
 		jScrollPaneTable = new javax.swing.JScrollPane();
 		jbtnColNew = new javax.swing.JButton();
@@ -854,7 +920,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	}
 
 	/**
-	 * @param model	le modÃ¨le de la table des colonnes.
+	 * @param model	le modèle de la table des colonnes.
 	 */
 	public void setTableModel(TableModel model) {
 		jtblFileDetails.setModel(model);
@@ -927,6 +993,31 @@ public class FenetrePrincipaleAdmin extends JFrame {
 				controller.setFileErrorLimit(getFileErrorLimit());
 			}
 		});
+		
+		jspnFileHeader.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				controller.setFileHeaderLinesCount(getFileHeaderLinesCount());
+			}
+		});
+
+		jcbCheckHeaderName.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				controller.setCheckHeaderName(getCheckHeaderName());
+				boolean status = controller.getCurrentFichier().getCheckHeaderName();
+				if (!status) jcbCheckHeaderNameCaseSensitive.setSelected(false); 
+				jcbCheckHeaderNameCaseSensitive.setEnabled(status);
+				jlblCheckHeaderNameCaseSensitive.setEnabled(status);
+			}
+		});
+		
+		jcbCheckHeaderNameCaseSensitive.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				controller.setCheckHeaderNameCaseSensitive(getCheckHeaderNameCaseSensitive());
+			}
+		});
 	}
 
 	/**
@@ -965,26 +1056,55 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	}
 
 	/**
-	 * @param value	le numÃ©ro du groupe du fichier Ã  afficher Ã  l'utilisateur
+	 * @param value	le numéro du groupe du fichier à  afficher à  l'utilisateur
 	 */
 	public void setFileGroupNumber(int value) {
 		jspnFileGroup.setValue(value);
 	}
 
 	/**
-	 * @return le nombre de ligne d'entÃªte que l'utilisateur a choisi
+	 * @return le nombre de ligne d'entête que l'utilisateur a choisi
 	 */
 	public int getFileHeaderLinesCount() {
 		return (Integer) jspnFileHeader.getValue();
 	}
 
 	/**
-	 * @param value	le nombre de ligne d'entÃªte Ã  afficher Ã  l'utilisateur
+	 * @param value	le nombre de ligne d'entête à  afficher à l'utilisateur
 	 */
 	public void setFileHeaderLinesCount(int value) {
 		jspnFileHeader.setValue(value);
 	}
 
+
+	/**
+	 * @return s'il faut contrôler le libellé des entêtes
+	 */
+	public boolean getCheckHeaderName() {
+		return jcbCheckHeaderName.isSelected();
+	}
+
+	/**
+	 * @param value	s'il faut contrôler le libellé des entêtes
+	 */
+	public void setCheckHeaderName(boolean value) {
+		jcbCheckHeaderName.setSelected(value);
+	}
+
+	/**
+	 * @return si le contrôle du libellé des entêtes est sensible à la casse
+	 */
+	public boolean getCheckHeaderNameCaseSensitive() {
+		return jcbCheckHeaderNameCaseSensitive.isSelected();
+	}
+
+	/**
+	 * @param value	si le contrôle du libellé des entêtes est sensible à la casse
+	 */
+	public void setCheckHeaderNameCaseSensitive(boolean value) {
+		jcbCheckHeaderNameCaseSensitive.setSelected(value);
+	}
+	
 	/**
 	 * @return le seuil d'erreurs que l'utilisateur a choisi
 	 */
@@ -1001,8 +1121,8 @@ public class FenetrePrincipaleAdmin extends JFrame {
 
 	/**
 	 * Synchronise l'affichage avec le controlleur.<br>
-	 * UtilisÃ© suite Ã  des modifications, pour reflÃ©ter ces modifications dans
-	 * l'affichage. Par exemple, lors de la sÃ©lection d'un nouveau fichier.
+	 * Utilisé suite à des modifications, pour refléter ces modifications dans
+	 * l'affichage. Par exemple, lors de la sélection d'un nouveau fichier.
 	 */
 	public void refresh() {
 		jtreeFileList.setModel(controller.getTreeModel());
@@ -1166,7 +1286,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 	}
 
 	/**
-	 * Affiche la zone "dÃ©tails des fichiers". Cette zone contient la table des
+	 * Affiche la zone "détails des fichiers". Cette zone contient la table des
 	 * colonnes ainsi que le reste des paramÃ¨tres du fichier.
 	 * 
 	 * @param etat	true s'il faut l'afficher
@@ -1175,7 +1295,7 @@ public class FenetrePrincipaleAdmin extends JFrame {
 		jpnlTable.setVisible(etat);
 		jpnlLine1.setVisible(etat);
 		jpnlLine2.setVisible(etat);
-
+		jpnlLine3.setVisible(etat);
 	}
 
 	static class MyTreeWillExpandListener implements TreeWillExpandListener {
@@ -1197,8 +1317,8 @@ public class FenetrePrincipaleAdmin extends JFrame {
 		/**
 		 * Constructeur MyJTable
 		 * 
-		 * @param currentCellEditor	paramÃ¨tre Ã  dÃ©finir
-		 * @param controller		paramÃ¨tre Ã  dÃ©finir
+		 * @param currentCellEditor	paramètre à définir
+		 * @param controller		paramètre à définir
 		 */
 		public MyJTable(TableCellEditor currentCellEditor, FenetrePrincipaleAdminController controller) {
 			super();

@@ -77,11 +77,10 @@ public class FenetrePrincipaleAdminController {
 	    view.setFileExtension(model.getCurrentFileExtension());
 	    view.setFileErrorLimit(model.getCurrentFileErrorLimit());
 	    view.setFileGroupNumber(model.getCurrentFileGroupNumber());
-	    view
-		    .setFileHeaderLinesCount(model
-			    .getCurrentFileHeaderLinesCount());
-	    view.setFileContraintesMultiColCount(model
-		    .getCurrentFileMultiColContraintesCount());
+	    view.setFileHeaderLinesCount(model.getCurrentFileHeaderLinesCount());
+	    view.setCheckHeaderName(model.getCurrentFileCheckHeaderName());
+	    view.setCheckHeaderNameCaseSensitive(model.getCurrentFileCheckHeaderNameCaseSensitive());
+	    view.setFileContraintesMultiColCount(model.getCurrentFileMultiColContraintesCount());
 	    model.revertModified();
 	    view.refreshTitle();
 	}
@@ -105,7 +104,7 @@ public class FenetrePrincipaleAdminController {
     public void exit() {
 	if (model.isSchemaModified()){
 	   final int res=JOptionPane.showConfirmDialog(view,
-		    "Le schÃ©ma a Ã©tÃ© modifiÃ©.Voulez-vous sauvegarder vos modifications ?",
+		    "Le schéma a été modifié. Voulez-vous sauvegarder vos modifications ?",
 		    "Interface administrateur",
 		    JOptionPane.YES_NO_CANCEL_OPTION);
 	    if (res==JOptionPane.CANCEL_OPTION){
@@ -254,8 +253,7 @@ public class FenetrePrincipaleAdminController {
     /**
      * Supprime un fichier.
      * 
-     * @param selection
-     *                le treepath du fichier ï¿½ supprimer
+     * @param selection le treepath du fichier à supprimer
      * @return le TreePath de l'objet a selectionner apres suppression
      */
     public TreePath deleteFile(TreePath selection) {
@@ -273,7 +271,7 @@ public class FenetrePrincipaleAdminController {
 	}
 
 	final int res = JOptionPane.showConfirmDialog(view,
-		"Voulez vous garder les fichiers de ce groupe?",
+		"Voulez-vous garder les fichiers de ce groupe ?",
 		"Suppresion de groupe", JOptionPane.YES_NO_CANCEL_OPTION);
 	if (res == JOptionPane.CANCEL_OPTION) {
 	    return selection;
@@ -327,6 +325,30 @@ public class FenetrePrincipaleAdminController {
      */
     public void setFileHeaderLinesCount(int nb) {
 	model.setCurrentFileHeaderLinesCount(nb);
+	view.refreshTitle();
+    }
+
+    /**
+     * Modifie s'il faut contrôler le libellés des entêtes
+     * 
+     * @param value état du contrôle des libellés d'entêtes
+     */
+    public void setCheckHeaderName(boolean value) {
+		model.setCurrentFileCheckHeaderName(value);
+		if (value) {
+			view.refreshTitle();
+		} else {
+			setCheckHeaderNameCaseSensitive(false);
+		}
+    }
+
+    /**
+     * Modifie s'il faut contrôler le libellés des entêtes
+     * 
+     * @param value état du contrôle des libellés d'entêtes
+     */
+    public void setCheckHeaderNameCaseSensitive(boolean value) {
+	model.setCurrentFileCheckHeaderNameCaseSensitive(value);
 	view.refreshTitle();
     }
 

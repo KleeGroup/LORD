@@ -55,7 +55,7 @@ public class XmlObjTransformer {
 			return new Schema();
 		}
 
-		// SÃ©parateur de dÃ©cimales
+		// Séparateur de décimales
 		try {
 			sepDecimal = SeparateurDecimales.valueOf(schemaOriginal.getSeparateurDecimal());
 		} catch (Exception e) {
@@ -63,7 +63,7 @@ public class XmlObjTransformer {
 		}
 		schemaEquiv.setSeparateurDecimales(sepDecimal);
 		
-		// SÃ©parateur de champs
+		// Séparateur de champs
 		try {
 			sepChamps = SeparateurChamps.valueOf(schemaOriginal.getSeparateurChamps());
 		} catch (Exception e) {
@@ -71,7 +71,7 @@ public class XmlObjTransformer {
 		}
 		schemaEquiv.setSeparateurChamp(sepChamps);
 
-		// Autres paramÃ¨tres globaux
+		// Autres paramètres globaux
 		schemaEquiv.setEncoding(schemaOriginal.getEncodage());
 		schemaEquiv.setAfficherExportLogs(schemaOriginal.getAfficherExportLogs());
 		for (TypeFichier fichierOriginal : schemaOriginal.getFichier()) {
@@ -104,6 +104,9 @@ public class XmlObjTransformer {
 			fichierEquiv.addContrainteMultiCol(transform(contrainteOriginale));
 		}
 		fichierEquiv.setNbLignesEntete(fichierOriginal.getNbLignesEntete());
+		fichierEquiv.setCheckHeaderName(fichierOriginal.getCheckHeaderName());
+		fichierEquiv.setCheckHeaderNameCaseSensitive(fichierOriginal.getCheckHeaderNameCaseSensitive());
+				
 		fichierEquiv.setSeuilAbandon(fichierOriginal.getSeuilErreurs());
 		fichierEquiv.setGroupe(fichierOriginal.getGroupe());
 		fichierEquiv.setNomCategorie(fichierOriginal.getCategorie());

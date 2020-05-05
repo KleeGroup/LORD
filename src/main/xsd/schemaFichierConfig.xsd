@@ -38,6 +38,8 @@
 		<xsd:attribute name="extension" type="xsd:string" default="csv"/>
 		<xsd:attribute name="seuil-erreurs" type="xsd:int" use="optional" default="-1"/>
 		<xsd:attribute name="nb-lignes-entete" type="xsd:int" use="optional" default="0"/>
+		<xsd:attribute name="check-header-name" type="xsd:boolean" use="optional" default="false"/>
+		<xsd:attribute name="check-header-name-case-sensitive" type="xsd:boolean" use="optional" default="false"/>
 	</xsd:complexType>
 	<xsd:complexType name="typeColonne" id="typeColonne">
 		<xsd:sequence maxOccurs="unbounded">

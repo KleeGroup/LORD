@@ -51,6 +51,9 @@ public class ObjXmlTransformer {
 		fichierEquiv.setExtension(fichierOriginal.getExtension());
 		fichierEquiv.setGroupe(fichierOriginal.getGroupe());
 		fichierEquiv.setNbLignesEntete(fichierOriginal.getNbLignesEntete());
+		fichierEquiv.setCheckHeaderName(fichierOriginal.getCheckHeaderName());
+		fichierEquiv.setCheckHeaderNameCaseSensitive(fichierOriginal.getCheckHeaderNameCaseSensitive());
+		
 		fichierEquiv.setSeuilErreurs(fichierOriginal.getSeuilAbandon());
 		fichierEquiv.setCategorie(fichierOriginal.getNomCategorie());
 
