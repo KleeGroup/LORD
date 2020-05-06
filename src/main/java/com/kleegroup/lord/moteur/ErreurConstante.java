@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Reprï¿½sentre une erreur rencntrï¿½e. Contient toutes les informations nï¿½cessaires sous
+ * Représentre une erreur rencontrée. Contient toutes les informations nécessaires sous
  * forme de string.
  * 
- * Cet objet est crï¿½e par une des classes contraintes, quand une erreur est detectï¿½e.
+ * Cet objet est crée par une des classes contraintes, quand une erreur est detectï¿½e.
  */
 public class ErreurConstante extends Erreur {
 
@@ -25,7 +25,7 @@ public class ErreurConstante extends Erreur {
 	 * @param numLigne numero de la ligne de l'erreur
 	 * @param errMessage le message d'erreur
 	 * @param errColonne la colonne de l'erreur
-	 * @param errValeur la valeur qui a crï¿½e l'erreur
+	 * @param errValeur la valeur qui a crée l'erreur
 	 * @param errFichier le fichier de l'erreur
 	 */
 	private ErreurConstante(long numLigne, String errMessage, String errColonne, String errValeur, String errFichier) {
@@ -41,7 +41,7 @@ public class ErreurConstante extends Erreur {
 	 * @param numLigne numero de la ligne de l'erreur
 	 * @param errMessage le message d'erreur
 	 * @param errColonne la colonne de l'erreur
-	 * @param errValeur la valeur qui a crï¿½e l'erreur
+	 * @param errValeur la valeur qui a crée l'erreur
 	 * @param errFichier le fichier de l'erreur
 	 * @param errReference reference d'erreur
 	 */
@@ -105,6 +105,21 @@ public class ErreurConstante extends Erreur {
 		errMsg = errMsg.replaceAll("_attendu_", "(" + Integer.toString(attendu) + ")");
 		return new ErreurConstante(numLigne, errMsg);
 	}
+	
+	/**
+	 * @param numLigne numï¿½ro de la ligne d'erreur
+	 * @param rencontre le nombre de colonnes rencontres
+	 * @param attendu le nombre de colonne attendu
+	 * @return un objet ErreurConstante
+	 */
+	public static ErreurConstante errNbreEnteteIncorrect(long numLigne, int rencontre, int attendu, String nomFichier) {
+		String errMsg = RESOURCE_MAP.getString("errNbreEnteteIncorrect");
+		errMsg = errMsg.replaceAll("_nom_fichier_", nomFichier);
+		errMsg = errMsg.replaceAll("_rencontre_", "(" + Integer.toString(rencontre) + ")");
+		errMsg = errMsg.replaceAll("_attendu_", "(" + Integer.toString(attendu) + ")");
+		return new ErreurConstante(numLigne, errMsg);
+	}
+
 
 	/**
 	 * Cette erreur ne devrait pas etre rencontrï¿½e. C'est un message d'erreur
@@ -119,9 +134,9 @@ public class ErreurConstante extends Erreur {
 	}
 
 	/**
-	 * Cette erreur ne devrait pas etre rencontrï¿½e. C'est un message d'erreur
-	 * levï¿½ si une exception de type MoteurException n'a pas ï¿½tï¿½ captï¿½e.
-	 * @param numLigne numero de ligbe
+	 * Cette erreur ne devrait pas etre rencontrée. C'est un message d'erreur
+	 * levée si une exception de type MoteurException n'a pas été captée.
+	 * @param numLigne numero de ligne
 	 * @param message message d'erreur
 	 * @param nomFichier nom du fichier de l'erreur
 	 * @return un objet ErreurConstante
@@ -132,6 +147,21 @@ public class ErreurConstante extends Erreur {
 		return new ErreurConstante(numLigne, errMsg, message, "", nomFichier);
 	}
 
+	/**
+	 * @param numLigne numero de ligne
+	 * @param expected valeur attendue
+	 * @param actual   valeur effective
+	 * @param nomFichier nom du fichier de l'erreur
+	 * @return un objet ErreurConstante
+	 */
+	public static ErreurConstante errExceptionHeaderName(int numLigne, String expected, String actual, String nomFichier) {
+		String errMsg = RESOURCE_MAP.getString("errExceptionHeaderName");
+		errMsg = errMsg.replaceAll("_nom_fichier_", nomFichier);
+		errMsg = errMsg.replaceAll("_attendu_", expected);
+		errMsg = errMsg.replaceAll("_rencontre_", actual);
+		return new ErreurConstante(numLigne, errMsg, expected, actual,  nomFichier);
+	}
+	
 	/**
 	 * non applicable pour une erreur constante.
 	 * @return null

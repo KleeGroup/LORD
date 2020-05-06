@@ -102,4 +102,13 @@ public class CsvReaderAdapter implements ICSVDataSource {
 	public void setFieldSeparator(char separator) {
 	    reader.setFinDeChamp(separator);
 	}
+
+	/**
+	 * Ferme le lecteur de Fichiers CSV.
+	 *
+	 * @throws IOException En cas d'erreur d'entré-sortie.
+	 */
+	public void close() {
+		reader.close();
+	}
 }

@@ -13,6 +13,8 @@ import com.kleegroup.lord.moteur.contraintes.ContrainteReference;
 import com.kleegroup.lord.moteur.contraintes.ContrainteReferenceLookup;
 import com.kleegroup.lord.moteur.exceptions.AbandonUtilisateur;
 import com.kleegroup.lord.moteur.exceptions.CaractereInterdit;
+import com.kleegroup.lord.moteur.exceptions.EnteteIncorrectException;
+import com.kleegroup.lord.moteur.exceptions.EnteteLengthException;
 import com.kleegroup.lord.moteur.exceptions.ExceptionMoteur;
 import com.kleegroup.lord.moteur.exceptions.NbreColonnesInsuffisant;
 import com.kleegroup.lord.moteur.exceptions.TropDErreurs;
@@ -118,7 +120,7 @@ public class Fichier implements IHierarchieSchema {
 			}
 		},
 		/**
-		 * l'utilisateur a demandÃ© l'abandon de la vÃ©rification.
+		 * l'utilisateur a demandé l'abandon de la vérification.
 		 */
 		ABANDONNE_UTILISATEUR {
 			/** {@inheritDoc} */
@@ -130,7 +132,7 @@ public class Fichier implements IHierarchieSchema {
 			}
 		},
 		/**
-		 * l'utilisateur a demandÃ© l'abandon de la vÃ©rification.
+		 * l'utilisateur a demandé l'abandon de la vérification.
 		 */
 
 		ABANDONNE_ERREUR_LECTURE {
@@ -144,7 +146,7 @@ public class Fichier implements IHierarchieSchema {
 		},
 
 		/**
-		 * L'utilisateur a dÃ©sactivÃ© la vÃ©rification de ce fichier.
+		 * L'utilisateur a désactivé la vérification de ce fichier.
 		 * */
 		DESACTIVE_UTILISATEUR {
 			/** {@inheritDoc} */
@@ -155,7 +157,7 @@ public class Fichier implements IHierarchieSchema {
 			}
 		},
 		/**
-		 * Le fichier a Ã©tÃ© dÃ©sactivÃ© car il dÃ©pend d'un fichier dÃ©sactivÃ© par
+		 * Le fichier a été désactivé car il dépend d'un fichier désactivé par
 		 * l'utilisateur.
 		 */
 		DESACTIVE_DEPENDANCE {
@@ -168,7 +170,7 @@ public class Fichier implements IHierarchieSchema {
 		},
 
 		/**
-		 * le fichier a Ã©tÃ© vÃ©rifiÃ©. Il ne contient pas d'erreur.
+		 * le fichier a été vérifié. Il ne contient pas d'erreur.
 		 */
 		VERIFIE_SANS_ERREUR {
 			/** {@inheritDoc} */
@@ -179,7 +181,7 @@ public class Fichier implements IHierarchieSchema {
 			}
 		},
 		/**
-		 * le fichier a Ã©tÃ© vÃ©rifiÃ©. Il contient des erreurs.
+		 * le fichier a été vérifié. Il contient des erreurs.
 		 */
 		VERIFIE_AVEC_ERREUR {
 			/** {@inheritDoc} */
@@ -191,8 +193,8 @@ public class Fichier implements IHierarchieSchema {
 		},
 
 		/**
-		 * La vÃ©rification de ce fichier a Ã©tÃ© abandonnÃ©. des fichiers dont il
-		 * dÃ©pend ou bien de groupe infÃ©rieurs n'ont pas Ã©tÃ© vÃ©rifiÃ©s.
+		 * La vérification de ce fichier a été abandonné. des fichiers dont il
+		 * dépend ou bien de groupe inférieurs n'ont pas été vérifiés.
 		 */
 
 		ABANDONNE_DEPENDANCE {
@@ -204,7 +206,7 @@ public class Fichier implements IHierarchieSchema {
 			}
 		},
 		/**
-		 * DÃ©passement du seuil tolÃ©rÃ© d'erreurs dans le fichier.
+		 * Dépassement du seuil toléré d'erreurs dans le fichier.
 		 */
 		ABANDON_TROP_D_ERREUR {
 			/** {@inheritDoc} */
@@ -216,8 +218,8 @@ public class Fichier implements IHierarchieSchema {
 			}
 		},
 		/**
-		 * Une exception non gÃ©rÃ©e a eu lieu dans le moteur.VÃ©rification
-		 * abandonnÃ©e.
+		 * Une exception non gérée a eu lieu dans le moteur.Vérification
+		 * abandonnée.
 		 */
 		ABANDON_ERREUR_MOTEUR {
 			/** {@inheritDoc} */
@@ -260,7 +262,7 @@ public class Fichier implements IHierarchieSchema {
 	 * @param nom
 	 *            nom du fichier
 	 * @param prefixNom
-	 *            le dÃ©but du nom du fichier (pour le retrouver automatiquement)
+	 *            le début du nom du fichier (pour le retrouver automatiquement)
 	 */
 	public Fichier(String nom, String prefixNom) {
 		logAppli.trace("Création d'un fichier. nom = " + nom);
@@ -320,7 +322,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * Ajoute une colonne au fichier. La colonne est rajoutÃ©e Ã  la fin.
+	 * Ajoute une colonne au fichier. La colonne est rajoutée Ã  la fin.
 	 * 
 	 * @param c
 	 *            la colonne Ã  rajouter
@@ -331,7 +333,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * Ajoute une colonne au fichier. La colonne est rajoutÃ©e Ã  la position pos.
+	 * Ajoute une colonne au fichier. La colonne est rajoutée Ã  la position pos.
 	 * 
 	 * @param c
 	 *            la colonne Ã  rajouter.
@@ -352,8 +354,8 @@ public class Fichier implements IHierarchieSchema {
 		} else {
 			logAppli.error("Le fichier >"
 					+ nom
-					+ "< possÃ¨de dÃ©jÃ  une colonne de mÃªme nom que la colonne Ã  ajouter.\n"
-					+ "La colonne n'a pas Ã©tÃ© ajoutÃ©e");
+					+ "< possÃ¨de déjÃ  une colonne de mÃªme nom que la colonne Ã  ajouter.\n"
+					+ "La colonne n'a pas été ajoutée");
 		}
 	}
 
@@ -372,11 +374,11 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * Lance la vÃ©rification du fichier.
+	 * Lance la vérification du fichier.
 	 * 
 	 */
 	protected void verifie() {
-		logAppli.info(">" + nom + "<.Lancement de la vÃ©rification");
+		logAppli.info(">" + nom + "<.Lancement de la vérification");
 		logAppli.debug("Nombre de lignes d'entÃªte = " + nbLignesEntete);
 		etatFichier = ETAT.EN_COURS_DE_VERIFICATION;
 
@@ -386,10 +388,20 @@ public class Fichier implements IHierarchieSchema {
 		}
 
 		try {
-			sauterLignesEntete();
-
-			verifieLigne();
-
+			
+			if (this.getCheckHeaderName()) {
+				logAppli.debug("Vérification des entêtes.");
+				verifieLignesEntete();
+			} else {
+				logAppli.debug("Saut des entêtes.");
+				sauterLignesEntete();
+			}
+			
+			if (!ETAT.ABANDONNE_ERREUR_LECTURE.equals(etatFichier)) {
+				logAppli.debug("Vérification des données.");
+				verifieLigne();
+			}
+			
 		} catch (final CaractereInterdit err) {
 			final long posErrColonne = err.getErrColonne();
 			String nomCol = "";
@@ -405,15 +417,15 @@ public class Fichier implements IHierarchieSchema {
 			etatFichier = ETAT.ABANDON_TROP_D_ERREUR;
 			erreurs.add(ErreurConstante.errTropDErreurs(nom,
 					err.getLigneErreur()));
-			logAppli.info("Abandon de la vÃ©rification du fichier " + nom
-					+ "cause : dÃ©passement du seuil d'erreur tolÃ©rÃ©es"
+			logAppli.info("Abandon de la vérification du fichier " + nom
+					+ "cause : dépassement du seuil d'erreur tolérées"
 					+ "seuil d'erreur = " + seuilAbandon
 					+ " .nbre d'erreurs = " + nbErreurs);
 
 		} catch (final IOException e) {
 			erreurs.add(ErreurConstante.errLectureFicher(nom));
 			logAppli.info("Erreur de lecture du fichier " + nom
-					+ " .Chemin d'accÃ¨s " + getChemin());
+					+ " .Chemin d'accès " + getChemin());
 		} catch (final ExceptionMoteur e) {
 			logAppli.info(e);
 			erreurs.add(ErreurConstante.errExceptionMoteur(
@@ -432,6 +444,8 @@ public class Fichier implements IHierarchieSchema {
 			logger.log(erreurs);
 			logger.flushAndClose();
 			finFichier();
+			// sinon le ficheir n'est fermé qu'en cas de succès
+			source.close();
 		}
 
 		return;
@@ -439,7 +453,7 @@ public class Fichier implements IHierarchieSchema {
 
 	private void finFichier() {
 		logAppli.info(">" + nom
-				+ "<.fin de vÃ©rification. Nombre d'erreurs dÃ©tÃ©ctÃ©es="
+				+ "<.fin de vérification. Nombre d'erreurs détéctées="
 				+ nbErreurs);
 
 		if (etatFichier == ETAT.EN_COURS_DE_VERIFICATION) {
@@ -478,7 +492,7 @@ public class Fichier implements IHierarchieSchema {
 				erreurs.add(ErreurConstante.errNbreColonnesIncorrect(num_ligne,
 						input.length, colonnes.size()));
 				logAppli.debug(nom
-						+ "Le nombre de colonnes lu est supÃ©rieur Ã  celui attendu"
+						+ "Le nombre de colonnes lu est supérieur à  celui attendu"
 						+ "lu=" + input.length + ".attendu=" + colonnes.size());
 				return;
 			}
@@ -540,7 +554,7 @@ public class Fichier implements IHierarchieSchema {
 		for (final Colonne c : colonnes) {
 			if (i != c.getPosition()) {
 				logAppli.error("La colonne >" + c.getNom()
-						+ "< n'est pas Ã  la bonne position");
+						+ "< n'est pas à  la bonne position");
 				logAppli.error("position dans le fichier=" + i
 						+ ". Colonne.position=" + c.getPosition());
 			}
@@ -567,6 +581,76 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
+	 * Vérifie si la dernière ligne d'entête
+	 * 
+	 * @throws IOException				En cas d'erreur de lecture du fichier
+	 * @throws CaractereInterdit		En cas de caractère interdit dans le fichier
+	 * @throws EnteteIncorrectException	Si le libellé des entêtes ne correspond pas à la définition du schéma
+	 */
+	private void verifieLignesEntete() throws IOException, CaractereInterdit, TropDErreurs {
+		int temp = nbLignesEntete;
+		// Sauter les premières lignes d'entête
+		while (source.hasNext() && temp > 1) {
+			source.next();
+			temp--;
+		}
+
+		// Vérification sur la dernière des lignes d'entête
+		int num_ligne = source.getPosition();
+		
+		String[] line = source.next();
+		List<Colonne> cols = this.getColonnes();
+		
+		try {
+			// Trop peu de valeurs
+			if ( line.length < cols.size()) {
+				logger.log(erreurs);
+				throw new EnteteLengthException(num_ligne, cols.size(), line.length);
+			}
+			
+			// Trop de valeurs
+			if ( line.length > cols.size()  ) {
+				throw new EnteteLengthException(num_ligne, cols.size(), line.length);
+			}
+			
+			// Les deux ont le même nombre d'éléments
+			for (Colonne col : cols) {
+				String expected = col.getNom();
+				String actual = line[col.getPosition()];
+				
+				// stabilisation
+				if (expected != null) expected = expected.trim();
+				if (actual != null) actual = actual.trim();
+				
+				if (this.checkHeaderNameCaseSensitive) {
+					if (!expected.equals(actual))
+						throw new EnteteIncorrectException(num_ligne, expected, actual);
+				} else {
+					if (!expected.equalsIgnoreCase(actual))
+						throw new EnteteIncorrectException(num_ligne, expected, actual);
+				}
+			}
+		
+		} catch (final EnteteLengthException err) {
+			erreurs.add(ErreurConstante.errNbreEnteteIncorrect(num_ligne, err.getExpectedvalue(), err.getAcutalValue(), getNom()));
+			logAppli.info("Le nombre de colonnes d'entête diffère de celui attendu, lu : " + err.getAcutalValue() + ", attendu : " + err.getExpectedvalue());
+			etatFichier = ETAT.ABANDONNE_ERREUR_LECTURE;
+			return;
+		} catch (final EnteteIncorrectException err) {
+			erreurs.add(ErreurConstante.errExceptionHeaderName(num_ligne, err.getExpectedvalue(), err.getAcutalValue(), getNom()));
+			logAppli.info("Le libellé de l'entête diffère de celui attendu, lu : " + err.getAcutalValue() + ", attendu : " + err.getExpectedvalue());
+			etatFichier = ETAT.ABANDONNE_ERREUR_LECTURE;
+			return;
+		}
+		// TODO : vérifier la pertinence de ces lignes
+//		if (seuilAbandon > 0 && nbErreurs >= seuilAbandon) {
+//			throw new TropDErreurs(num_ligne);
+//		}
+
+
+	}
+
+	/**
 	 * Renvoie la liste des colonnes du fichier.
 	 * 
 	 * @return la liste des colonnes du fichier
@@ -577,19 +661,19 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * Renvoie une contrainte de type {@linkplain ContrainteRef_Lookup}.Si une
-	 * contrainte de Lookup n'existe pas, elle est rajoutÃ©e Ã  la colonne . <br>
+	 * contrainte de Lookup n'existe pas, elle est rajoutée Ã  la colonne . <br>
 	 * <br>
 	 * Cela permet d'avoir une syntaxe plus facile pour rajouter une contrainte
-	 * de rÃ©fÃ©rence entre deux colonnes.<br>
+	 * de référence entre deux colonnes.<br>
 	 * 
 	 * @param nom_colonne
-	 *            le nom de la colonne rÃ©fÃ©rencÃ©e
+	 *            le nom de la colonne référencée
 	 * @return la contrainte de Lookup
 	 */
 	private ContrainteReferenceLookup ref(String nomColonne) {
 		if (getColonne(nomColonne) == null) {
-			logAppli.error("Une rÃ©fÃ©rence a Ã©tÃ© demandÃ©e Ã  une colonne non dÃ©finie");
-			logAppli.error("colonne demandÃ©e = " + nomColonne);
+			logAppli.error("Une référence a été demandée à  une colonne non définie");
+			logAppli.error("colonne demandée = " + nomColonne);
 			return null;
 		}
 
@@ -598,7 +682,7 @@ public class Fichier implements IHierarchieSchema {
 					new ContrainteReferenceLookup());
 
 			logAppli.trace(">" + nom + "<:une ContrainteReferenceLookup"
-					+ " a Ã©tÃ© crÃ©Ã©e pour la colonne >" + nomColonne + "<");
+					+ " a été créée pour la colonne >" + nomColonne + "<");
 		}
 
 		return (ContrainteReferenceLookup) getColonne(nomColonne)
@@ -607,14 +691,14 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * Renvoie une contrainte de type ContrianteReference.Si une contrainte de
-	 * Lookup n'existe pas sur mla colonne rÃ©fÃ©rencÃ©e, elle est rajoutÃ©e Ã  la
+	 * Lookup n'existe pas sur mla colonne référencée, elle est rajoutée Ã  la
 	 * colonne . <br>
 	 * <br>
 	 * Cela permet d'avoir une syntaxe plus facile pour rajouter une contrainte
-	 * de rÃ©fÃ©rence entre deux colonnes.<br>
+	 * de référence entre deux colonnes.<br>
 	 * 
 	 * @param nomColonne
-	 *            le nom de la colonne rÃ©fÃ©rencÃ©e
+	 *            le nom de la colonne référencée
 	 * @return la contrainte de Lookup
 	 */
 	private ContrainteUniCol reference(String nomColonne) {
@@ -662,7 +746,7 @@ public class Fichier implements IHierarchieSchema {
 	 * Renvoie la ieme colonne du fichier.
 	 * 
 	 * @param pos
-	 *            position de la colonne demandÃ©e
+	 *            position de la colonne demandée
 	 * @return la colonne Ã  la position pos
 	 */
 	public Colonne getColonne(int pos) {
@@ -689,7 +773,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * Rajoute une colonne au fichier. La colonne sera rajoutÃ©e Ã  la fin.<br>
+	 * Rajoute une colonne au fichier. La colonne sera rajoutée Ã  la fin.<br>
 	 * Remarque: Le nom de chaque colonne doit etre unique
 	 * 
 	 * @param nomColonne
@@ -715,8 +799,8 @@ public class Fichier implements IHierarchieSchema {
 	 * . Renvoie la colonne dont le nom est nom_colonne
 	 * 
 	 * @param nomColonne
-	 *            le nom de la colonne recherchÃ©e
-	 * @return la colonne recherchÃ©e
+	 *            le nom de la colonne recherchée
+	 * @return la colonne recherchée
 	 */
 	public Colonne getColonne(String nomColonne) {
 		for (final Colonne col : colonnes) {
@@ -729,7 +813,7 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * @param seuil
-	 *            le nombre d'erreur tolÃ©rÃ© avant l'abandon de la vÃ©rification
+	 *            le nombre d'erreur toléré avant l'abandon de la vérification
 	 *            (<=0 si pas d'abandon)
 	 */
 	public void setSeuilAbandon(int seuil) {
@@ -738,7 +822,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return le nombre d'erreur tolÃ©rÃ© avant l'abandon de la vÃ©rification (<=0
+	 * @return le nombre d'erreur toléré avant l'abandon de la vérification (<=0
 	 *         si pas d'abandon)
 	 */
 	public int getSeuilAbandon() {
@@ -746,7 +830,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return le nombre de ligne d'entetes (ignorÃ©es lors de la vÃ©rification)
+	 * @return le nombre de ligne d'entetes (ignorées lors de la vérification)
 	 */
 	public int getNbLignesEntete() {
 		return nbLignesEntete;
@@ -768,8 +852,8 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * @param nbLignesEntete
-	 *            le nombre de ligne d'entetes (ignorÃ©es lors de la
-	 *            vÃ©rification)
+	 *            le nombre de ligne d'entetes (ignorées lors de la
+	 *            vérification)
 	 */
 	public void setNbLignesEntete(int nbLignesEntete) {
 		this.nbLignesEntete = nbLignesEntete;
@@ -793,8 +877,8 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return si la vÃ©rification lÃ¨ve une erreur si le nombre de colonnes lues
-	 *         est supÃ©rieur Ã  celui attendu
+	 * @return si la vérification lÃ¨ve une erreur si le nombre de colonnes lues
+	 *         est supérieur Ã  celui attendu
 	 */
 	public boolean isErreurSiTropDeColonnes() {
 		return erreurSiTropDeColonnes;
@@ -802,8 +886,8 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * @param erreur
-	 *            true si la vÃ©rification doit lever une erreur si le nombre de
-	 *            colonnes lues est supÃ©rieur Ã  celui attendu
+	 *            true si la vérification doit lever une erreur si le nombre de
+	 *            colonnes lues est supérieur Ã  celui attendu
 	 */
 	public void setErreurSiTropDeColonnes(boolean erreur) {
 		this.erreurSiTropDeColonnes = erreur;
@@ -861,7 +945,7 @@ public class Fichier implements IHierarchieSchema {
 
 		for (final Fichier f : fichiersDontOnDepend) {
 			if (fichiersQuiDependentDeNous.contains(f)) {
-				logAppli.error("dÃ©pendence circulaire entre " + this.nom
+				logAppli.error("dépendence circulaire entre " + this.nom
 						+ " et " + f.nom);
 				return Integer.MIN_VALUE;
 			}
@@ -944,7 +1028,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return le nombre d'erreurs detectÃ©es jusqu'Ã  prÃ©sent dans ce fichier
+	 * @return le nombre d'erreurs detectées jusqu'Ã  présent dans ce fichier
 	 */
 	public long getNbErreurs() {
 		return nbErreurs;
@@ -995,7 +1079,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return le fichier est il activÃ© ?
+	 * @return le fichier est il activé ?
 	 */
 	public boolean isEnabled() {
 		return etatFichier == ETAT.EN_ATTENTE;
@@ -1003,9 +1087,9 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * nettoie l'objet. Remet Ã  zero les donnÃ©es spÃ©cifique utilisÃ©es lors de la
-	 * derniÃ¨re vÃ©rification pour pouvoir rÃ©utiliser cet objet pour une nouvelle
-	 * vÃ©rification
+	 * nettoie l'objet. Remet à zero les données spécifique utilisées lors de la
+	 * dernière vérification pour pouvoir réutiliser cet objet pour une nouvelle
+	 * vérification
 	 */
 	protected void clean() {
 		nbErreurs = 0;
@@ -1040,7 +1124,7 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * le PrefixNom sert a retrouver le fichier parmi d'autres dans un
-	 * repertoire de donnÃ©es. Il consiste d'une partie du nom du fichier
+	 * repertoire de données. Il consiste d'une partie du nom du fichier
 	 * 
 	 * @return le Prefix du nom du fichier
 	 */
@@ -1050,7 +1134,7 @@ public class Fichier implements IHierarchieSchema {
 
 	/**
 	 * le PrefixNom sert a retrouver le fichier parmi d'autres dans un
-	 * repertoire de donnÃ©es. Il consiste d'une partie du nom du fichier
+	 * repertoire de données. Il consiste d'une partie du nom du fichier
 	 * 
 	 * @param prefixNom
 	 *            le Prefix du nom du fichier
@@ -1067,7 +1151,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * dÃ©signe l'extension du fichier.
+	 * désigne l'extension du fichier.
 	 * 
 	 * @param extension
 	 *            l'extension du fichier
@@ -1087,9 +1171,9 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * le groupe sert Ã  dÃ©finir une hiÃ©rarchie entre les fichiers. Tant que
-	 * les fichiers du groupe infÃ©rieur ne sont pas corrects, on ne vÃ©rifie
-	 * pas les fichiers des groupes supÃ©rieurs
+	 * le groupe sert Ã  définir une hiérarchie entre les fichiers. Tant que
+	 * les fichiers du groupe inférieur ne sont pas corrects, on ne vérifie
+	 * pas les fichiers des groupes supérieurs
 	 * 
 	 * @param groupe
 	 *            le groupe du fichier
@@ -1151,7 +1235,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * notifie que le fichier a Ã©tÃ© abandonnÃ©.
+	 * notifie que le fichier a été abandonné.
 	 * 
 	 * @param etatFinal
 	 *            l'etat final du fichier.
@@ -1162,17 +1246,17 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return la catÃ©gorie du fichier.
+	 * @return la catégorie du fichier.
 	 */
 	public Categorie getCategorie() {
 		return categorie;
 	}
 
 	/**
-	 * Rattache le fichier Ã  la catÃ©gorie.
+	 * Rattache le fichier Ã  la catégorie.
 	 * 
 	 * @param categorie
-	 *            la nouvelle catÃ©gorie du fichier.
+	 *            la nouvelle catégorie du fichier.
 	 */
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
@@ -1180,17 +1264,17 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return le nom de la catÃ©gorie du fichier.
+	 * @return le nom de la catégorie du fichier.
 	 */
 	public String getNomCategorie() {
 		return nomCategorie;
 	}
 
 	/**
-	 * Modifie le nom de la catÃ©gorie du fichier.
+	 * Modifie le nom de la catégorie du fichier.
 	 * 
 	 * @param nomCategorie
-	 *            le nom de la catÃ©gorie du fichier.
+	 *            le nom de la catégorie du fichier.
 	 */
 	public void setNomCategorie(String nomCategorie) {
 		this.nomCategorie = nomCategorie;
@@ -1208,7 +1292,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * DÃ©place une colonne vers le bas.
+	 * Déplace une colonne vers le bas.
 	 * 
 	 * @param selectedRow
 	 *            la position de la colonne.
@@ -1223,7 +1307,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * DÃ©place une colonne vers le haut.
+	 * Déplace une colonne vers le haut.
 	 * 
 	 * @param selectedRow
 	 *            la position de la colonne.
@@ -1238,7 +1322,7 @@ public class Fichier implements IHierarchieSchema {
 	}
 
 	/**
-	 * @return une suggestion de nom de colonne non utilisÃ© par les autres
+	 * @return une suggestion de nom de colonne non utilisé par les autres
 	 *         colonnes du fichier.
 	 */
 	public String getNomColonneLibre() {

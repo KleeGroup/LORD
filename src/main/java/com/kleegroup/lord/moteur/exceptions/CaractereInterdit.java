@@ -1,7 +1,7 @@
 package com.kleegroup.lord.moteur.exceptions;
 
 /**
- * Une exception levï¿½e si un champ contient une valeur interdite (" ou \n normalement).
+ * Une exception levée si un champ contient une valeur interdite (" ou \n normalement).
  *
  */
 public class CaractereInterdit extends ExceptionMoteur {
@@ -15,9 +15,9 @@ public class CaractereInterdit extends ExceptionMoteur {
 	protected long numLigne=0,errColonnePos=0;
 	/**
 	 * 
-	 * @param numLigne le numï¿½ro de la ligne de l'erreur
+	 * @param numLigne le numéro de la ligne de l'erreur
 	 * @param errColonnePos position de la colonne de l'erreur
-	 * @param errValeur valeur qui a dï¿½clanchï¿½ l'erreur
+	 * @param errValeur valeur qui a déclenché l'erreur
 	 */
 	public CaractereInterdit(long numLigne,long errColonnePos,String errValeur ){
 		this.errColonnePos=errColonnePos;
@@ -31,7 +31,7 @@ public class CaractereInterdit extends ExceptionMoteur {
 		return errColonnePos;
 	}
 	/**
-	 * @return la valeur qui a dï¿½clenchï¿½ l'erreur
+	 * @return la valeur qui a déclenché l'erreur
 	 */
 	public String getErrValeur(){
 		return errValeur;

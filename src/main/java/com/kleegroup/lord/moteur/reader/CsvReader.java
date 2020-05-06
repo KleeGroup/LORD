@@ -328,11 +328,17 @@ public class CsvReader {
 
 	/**
 	 * Ferme le lecteur de Fichiers CSV.
-	 *
-	 * @throws IOException En cas d'erreur d'entrÃ©-sortie.
 	 */
-	public void close() throws IOException {
-		in.close();
+	public void close() {
+		if (in != null) {
+			try {
+				in.close();
+			} catch (IOException err) {
+				// TODO : améliorer la gestion d'erreur
+				err.printStackTrace();
+			}
+			
+		}
 	}
 
 }

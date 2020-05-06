@@ -1,2 +1,2 @@
 
-java -cp LORD-1.2.jar com.kleegroup.lord.ui.admin.AdminUI 
+java -cp LORD-1.3.jar com.kleegroup.lord.ui.admin.AdminUI 

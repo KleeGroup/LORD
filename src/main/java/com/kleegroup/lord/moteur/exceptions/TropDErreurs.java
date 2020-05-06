@@ -1,7 +1,7 @@
 package com.kleegroup.lord.moteur.exceptions;
 
 /**
- * Excpetion levï¿½e si le nombre d'erreur rencontrï¿½e est supï¿½rieur ï¿½ un seuil dï¿½fini. 
+ * Excpetion levée si le nombre d'erreur rencontré est supérieur à un seuil défini. 
  *
  */
 public class TropDErreurs extends ExceptionMoteur {
@@ -11,13 +11,13 @@ public class TropDErreurs extends ExceptionMoteur {
 	protected long numLigne=0;
 
 	/**
-	 * @param numligne numï¿½ro de la ligne de l'erreur
+	 * @param numligne numéro de la ligne de l'erreur
 	 */
 	public TropDErreurs (long numligne){
 		numLigne=numligne;	
 	}
 	/**
-	 * @return le numï¿½ro de la ligne de l'erreur
+	 * @return le numéro de la ligne de l'erreur
 	 */
 	public long getLigneErreur(){
 		return numLigne;
