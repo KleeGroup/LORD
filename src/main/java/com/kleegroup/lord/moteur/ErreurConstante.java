@@ -112,7 +112,7 @@ public class ErreurConstante extends Erreur {
 	 * @param attendu le nombre de colonne attendu
 	 * @return un objet ErreurConstante
 	 */
-	public static ErreurConstante errNbreEnteteIncorrect(long numLigne, int rencontre, int attendu, String nomFichier) {
+	public static ErreurConstante errNbreEnteteIncorrect(long numLigne, int attendu, int rencontre, String nomFichier) {
 		String errMsg = RESOURCE_MAP.getString("errNbreEnteteIncorrect");
 		errMsg = errMsg.replaceAll("_nom_fichier_", nomFichier);
 		errMsg = errMsg.replaceAll("_rencontre_", "(" + Integer.toString(rencontre) + ")");
