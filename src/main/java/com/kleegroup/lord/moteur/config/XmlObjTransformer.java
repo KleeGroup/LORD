@@ -73,7 +73,7 @@ public class XmlObjTransformer {
 
 		// Autres paramètres globaux
 		schemaEquiv.setEncoding(schemaOriginal.getEncodage());
-		schemaEquiv.setAfficherExportLogs(schemaOriginal.getAfficherExportLogs());
+		schemaEquiv.setAfficherExportLogs(schemaOriginal.isAfficherExportLogs());
 		for (TypeFichier fichierOriginal : schemaOriginal.getFichier()) {
 			schemaEquiv.addFichier(transform(fichierOriginal));
 		}
@@ -104,8 +104,8 @@ public class XmlObjTransformer {
 			fichierEquiv.addContrainteMultiCol(transform(contrainteOriginale));
 		}
 		fichierEquiv.setNbLignesEntete(fichierOriginal.getNbLignesEntete());
-		fichierEquiv.setCheckHeaderName(fichierOriginal.getCheckHeaderName());
-		fichierEquiv.setCheckHeaderNameCaseSensitive(fichierOriginal.getCheckHeaderNameCaseSensitive());
+		fichierEquiv.setCheckHeaderName(fichierOriginal.isCheckHeaderName());
+		fichierEquiv.setCheckHeaderNameCaseSensitive(fichierOriginal.isCheckHeaderNameCaseSensitive());
 				
 		fichierEquiv.setSeuilAbandon(fichierOriginal.getSeuilErreurs());
 		fichierEquiv.setGroupe(fichierOriginal.getGroupe());
@@ -119,7 +119,7 @@ public class XmlObjTransformer {
 		colonneEquiv.setDescription(desc);
 		String presence = colonneOriginale.getPresenceValeur();
 
-		colonneEquiv.setColonneReference(colonneOriginale.getColonneDeReference());
+		colonneEquiv.setColonneReference(colonneOriginale.isColonneDeReference());
 
 		if ("INTERDITE".equals(presence)) {
 			colonneEquiv.setPresenceValeur(PRESENCE.INTERDITE);
