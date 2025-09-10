@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Maykel Ange AL ZREIBI (Klee Group) -->
 <!--Created with Liquid XML Studio - FREE Community Edition 7.1.4.1284 (http://www.liquid-technologies.com)-->
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ksr="urn:kleegoup:spark:reprise" targetNamespace="urn:kleegoup:spark:reprise" id="tes">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ksr="urn:com:kleegroup:lord:config:xml" targetNamespace="urn:com:kleegroup:lord:config:xml" id="tes">
 	<xsd:annotation>
 		<xsd:documentation xml:lang="fr">Description du fichier de configuration de l'outil de reprise.</xsd:documentation>
 	</xsd:annotation>
